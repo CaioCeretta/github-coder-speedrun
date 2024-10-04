@@ -77,3 +77,7 @@ Now for us to call, this function we are going to use this mapped url. A http fi
 where we will write the routes we create on the controller based on the products, now we'll send the request to the
 url just mapped and the server, that runs inside nestjs will create a framework structure, like the express, and return
 us the response.
+
+in those http files, if we were to add more than one request, basically we just need to write 3 hashes to separate the
+commands.
+
