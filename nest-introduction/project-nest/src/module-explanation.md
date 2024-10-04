@@ -90,4 +90,100 @@ a way more oriented to what the business needs, we end up making concessions and
 necessities, what may lead to very troublesome things. So we always need to take care when start bringing our model into
 the framework.
 
+So back to the entity, in entitoes files, we determine the schema of that entity with an interface. But even though we are
+creating an interface  for our model, it's better to create classes, and normally bringing a concept of rich modelling, be-
+cause as close our business logics are of our data, better for our app. SO we'll go from what is more important to the more
+external parts that are the applications.
+
+But in this case, we are not looking to bring a clean architecture more in depth, because in this lesson, the instructor
+does not want to bring, unnecessary concepts and focus more on the nestjs.
+
+So we created the product folder, with the module, controller, http and entity and now we'll create a constants folder
+inside the src, and utilize a list of products.
+
+Now, through our controller, we are going to return this data, very similar to what we are used on a rest API.
+
+We would normally think the we would declare this method with like
+
+@Get()
+  async fetchProducts(): Promise<Product[]> {
+    return products;
+  }
+
+by passing an empty get, if we just pass the Get as empty, nest will understand that is supposed to get all products when
+the route domain/products is called
+
+now let's say we are going to use a get which needs to receive a parameter, and the parameter is dynamic, and even though in
+our entity the id is a number, it will always come to us as a string, so in the parameter we need to inform that it is a string
+and before the parameter of the function, we need to annotate this parameter as @Param('id'), to inform that this id is
+the same one as the route is receiving.
+
+  @Get(':id')
+  async fetchProductById(@Param('id') id: string): Promise<Product> {}
+
+
+the parameter is used to map the route parameters, so if we were using something like @Get('identification), we would, after
+the / the first value we would receive is the identification, and we can use @Param('identification) id: string and use
+it as we would
+
+then we would simply do something as
+
+GET http://localhost:4000/products/1
+
+Now we'll go for the creation, we may think that this is not possible because we don't have a db, but we have a list on the
+memory, which is products, and while it doesn't make a redeploy or refresh the application, it will add this value to the
+memory and we'll be able to fetch these values as well as the new registered ones.
+
+But we are not adding our entire rules inside the controller, the controller is more something that will take the values
+and dispatch them to other elements.
+
+the format is like this
+
+  @Post()
+  async create(@Body() product: Product): Promise<void> {
+    products.push({
+      ...product,
+      id: product.id ? product.id : products.length + 1,
+    });
+  }
+
+  and call it like
+
+    @Post()
+  async create(@Body() product: Product): Promise<void> {
+    products.push({
+      ...product,
+      id: product.id ? product.id : products.length + 1,
+    });
+  }
+
+
+
+this means tha the product is comming from the body of the request and as they are typed as Product, which is my entity,
+they sall have the same properties as the interface, if it is ok, nest will make this mapping of the body for this class
+and we'll receive the product ready for us to do something with it and save it in our memory.
+
+the patch is pretty similar to the post, patch is for updating a piece of the resource
+like
+
+@Patch()
+  async update(@Body() product: Partial<Product>): Promise<void> {
+    const index = products.findIndex((p) => p.id === +product.id);
+    console.log(index);
+    products[index] = { ...products[index], ...product };
+   }
+
+   and call it like
+
+  @Patch()
+  async update(@Body() product: Partial<Product>): Promise<void> {
+    const index = products.findIndex((p) => p.id === +product.id);
+    console.log(index);
+    products[index] = { ...products[index], ...product };
+  }
+
+
+
+
+  where we will partially pass the product entity, check if the id is the same as one saved, and update it
 

@@ -4,7 +4,7 @@ import { ProductController } from './product.controller';
 
 @Module({
   imports: [ProductModule],
-  controllers: [],
+  controllers: [ProductController],
   providers: [],
 })
 export class AppModule {}
