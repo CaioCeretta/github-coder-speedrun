@@ -81,3 +81,13 @@ us the response.
 in those http files, if we were to add more than one request, basically we just need to write 3 hashes to separate the
 commands.
 
+Another thing we can add to the modules is a module.entity, but one caveat we have that is worth talking about, is that
+it's very important to separate what we are going to use inside the framework, to what we are going to put outside of
+any framework that we'll use. But as good as a framework may be, in the moment we start to mix the code, start to put
+our framework completely "entangled" with the framework, it is very possible that we'll eventually have difficulties to
+have "mobility" in our application, because instead of thinking about the business structure, instead of programming in
+a way more oriented to what the business needs, we end up making concessions and adequating ourselves to the framework
+necessities, what may lead to very troublesome things. So we always need to take care when start bringing our model into
+the framework.
+
+
