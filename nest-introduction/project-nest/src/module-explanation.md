@@ -64,3 +64,16 @@ the command would be `nest g co product --flat --no-spec`
 
 this will cause the product controller to be created inside the folder we're in and assign that controller to the module.
 
+Now on the generated controller is a simple class, with the @Controller() decorated and inside the parenthesis, the name
+nest will use to understand the controller
+
+then we'll write a ping function, that will simply return a string pong, on controller functions, we need to decoratorate
+them, and this decoration is a @ http verb, such as @GET() @POST() and so on, to reach this function and inside of it, we'll
+insert the name we are going to use to call this function. 
+
+When we run the development server, it will show us that the product controller has been mapped, as well as the products/ping
+
+Now for us to call, this function we are going to use this mapped url. A http file will be created called products.http
+where we will write the routes we create on the controller based on the products, now we'll send the request to the
+url just mapped and the server, that runs inside nestjs will create a framework structure, like the express, and return
+us the response.
