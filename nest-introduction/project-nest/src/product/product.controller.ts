@@ -1,7 +1,14 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
-import Product from './product.entity';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import products from 'src/constants';
-import { async } from 'rxjs';
+import Product from './product.entity';
 
 @Controller('products')
 export class ProductController {
@@ -34,6 +41,10 @@ export class ProductController {
     console.log(index);
     products[index] = { ...products[index], ...product };
   }
-}
 
-async dele
+  @Delete(':id')
+  async delete(@Param('id') id: string): Promise<void> {
+    const index = products.findIndex((p) => p.id === +id);
+    products.splice(index, 1);
+  }
+}
