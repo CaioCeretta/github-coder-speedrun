@@ -185,5 +185,66 @@ like
 
 
 
-  where we will partially pass the product entity, check if the id is the same as one saved, and update it
+where we will partially pass the product entity, check if the id is the same as one saved, and update it.
 
+Even though the instructor defined the entity with an id of number, we are always setting the parameter id as the type
+of string, because it may look like we are recieving a number, but it's always a string from the url.
+
+And the delete is pretty simillar to the get by id
+
+@Delete('id')
+async delete(@Param('id') id: string): Promise<void> {
+  const index = products.findIndex((p) => p.id === +id);
+  products.splice(index, 1);
+}
+
+and to call it
+
+DELETE http://localhost:4000/products/4
+
+## Redis
+
+For this project we are using redis as a database, what we did up to the moment was installing the packages redis, ioredis,
+@nestjs/config and altereed the app module, to add the module ConfigModule.forRoot()  on the first module being loaded.
+
+generated a db module, and generated a provider, providers and services do the same job it's just a matter of nomenclature.
+Services are more used for rules and providers for providing services of infrastructure. But everything done in the provider
+can also be done in the service.
+
+SO we are generating a provider in the db folder named cache.
+
+In the DB module, we are now going to export the cache provider because we want it to be accessed outside the module.
+
+the Cache class is going to implement the OnModuleDestroy, because it is part of a
+node module, and when a node module gets destroyed we will call this function so
+we disconnect from the redis server
+
+The redis database is key value pairs, so it does not have the concept ot tables, rows and so on
+SO for us to save, for example, a product, we are going to create something like
+
+nameOfClass:id: {objectThatWillGetConvertedToAStringWithJSON}
+
+e.g.
+
+'product:2': '{"id": 2, "name": "Product 2", "price": 30}
+
+By doing this way with that key pattern, we are going to know the entity name, it's id and the value. But if we save the
+product 2, then the product 3, and so on, a key with just the name of product, and on this key of product we are going to
+have the ids of the products that we're stored in the cache of our application, so by getting the ids, we are able to fetch
+those products
+
+updateIds fn: so we are going to create a function to call whenever we save a new element on the cache, it will get the type of the class,
+and the id that we are saving, by the end it will get a register that has the key product, client, or whatever is the tyoe
+we informed, and it will bring all the ids, then convert them from JSON to an array of integers, check if that id exists, 
+if yes it won't do anything,  otherwide it will push that id, then will set on the redis db, the type we informed and the array
+of ids
+
+save fn: gets the type, id, and the value, then set on the db, this value to the type:id and calls the updateIds fn
+
+get fn: function to get the id stored in the db based on its type and id
+
+fetchAll fn: function where we pass a type and it will call the get function to get the value
+
+## User module
+
+Create the user module, the controller inside the user folder, 
