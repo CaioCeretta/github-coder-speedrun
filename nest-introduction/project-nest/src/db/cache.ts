@@ -12,7 +12,23 @@ export class CacheProvider implements OnModuleDestroy {
     });
   }
 
-  async save(type: string, id: number, value: any): Promise<void> {
+  private async updateIds(type: string, id: number): Promise<void> {
+    const ids = await this.db.get(type);
+
+    const idsArray = ids ? JSON.parse(ids) : [];
+
+    if (idsArray.includes(id)) return;
+
+    idsArray.push(+id);
+    idsArray.sort();
+    await this.db.set(type, JSON.stringify(idsArray));
+  }
+
+  async save(key: string, value: any): Promise<void> {
+    await this.db.set(key, JSON.stringify(value));
+  }
+
+  async saveById(type: string, id: number, value: any): Promise<void> {
     await this.db.set(`${type}:${id}`, JSON.stringify(value));
 
     await this.updateIds(type, id);
@@ -34,25 +50,14 @@ export class CacheProvider implements OnModuleDestroy {
     return JSON.parse(value);
   }
 
-  private async updateIds(type: string, id: number): Promise<void> {
-    const ids = await this.db.get(type);
-
-    const idsArray = ids ? JSON.parse(ids) : [];
-
-    if (idsArray.includes(id)) return;
-
-    idsArray.push(+id);
-    idsArray.sort();
-    await this.db.set(type, JSON.stringify(idsArray));
-  }
-
   async fetchAll(type: string): Promise<any[]> {
     const ids = await this.db.get(type);
     const idsArray = ids ? JSON.parse(ids) : null;
+    console.log(idsArray);
 
     const values = await Promise.all(
       idsArray.map(async (id: number) => {
-        const value = await this.get(type, id);
+        const value = await this.fetchById(type, id);
         return value;
       }),
     );
