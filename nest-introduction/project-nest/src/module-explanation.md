@@ -248,3 +248,28 @@ fetchAll fn: function where we pass a type and it will call the get function to 
 ## User module
 
 Create the user module, the controller inside the user folder, 
+
+The user module will need to use our CacheProvider defined in the db module, for us to be able to access it, there'll need
+to be an explicit dependency between the user module and the db module, so first of all, we'll import the DbModule, which
+is exporting the Cache provider, but another important point is that in the DbModule, is that we need to expose the CacheProvider
+by exporting it, so it will not be accessible for the outside, so no one out of the dbModule would be able to access it.
+
+Now we are going to ask nestjs to create for us an instance of the cacheprovider and put it inside of this file, one important
+thing for us to notice, is that nest manages the life cycle of these classes, that is not us, the user who is creating, for
+example
+
+const controller = new UserController()
+
+this happens because we are not instantiating any object on anywhere, we simply declared the controller, decorated the functions
+in the class, and it automatically created them for us.
+This happens because who manages the creation of these objects, from those classes, is NestJS.
+
+And because it create these files, he can also inject them and pass as dependency for the userController.
+
+So by adding the @Injectable() decorator in the CacheProvider we are able to add to the constructor a property cache that
+has the type of the CacheProvider, this way, it will pass to the controller, an instance ready to use our cache provider.
+
+This idea of injecting a dependency into other file, is exactly one of nestjs central concepts, and this happens automati
+cally because nestjs manages the life cycle of the objects and by the annotations, he can find all the files of our app 
+that are going to be managed and makes this dependency to work.
+
