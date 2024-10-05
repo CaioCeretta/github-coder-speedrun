@@ -23,6 +23,17 @@ export class CacheProvider implements OnModuleDestroy {
     return JSON.parse(value);
   }
 
+  async fetchById(type: string, id: number): Promise<any> {
+    const value = await this.db.get(`${type}:${id}`);
+    return JSON.parse(value);
+  }
+
+  async fetchByKey(key: string): Promise<any> {
+    const value = await this.db.get(key);
+
+    return JSON.parse(value);
+  }
+
   private async updateIds(type: string, id: number): Promise<void> {
     const ids = await this.db.get(type);
 
