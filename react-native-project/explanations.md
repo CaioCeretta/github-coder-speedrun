@@ -125,5 +125,36 @@ onChangeText and the keyboardType, which we can change for
 what the input intends to do. Such as e-mail numpad, number, etc.
 
     
+## Stack
+
+In a Stack we utilize que same principle as we used on the Drawer, we create a const Stack that is equal to createStackNavigator()
+and inside the open and closing tag, we create many Stack.Screen
+
+For our exemplification, we are going to have 3 screens, where one screen has a button to direct us to the next one.
+
+with the function call onPress={() => navigation.navigate('screenPathToRedirect'))}
+
+We are able to make this, because when we are using the navigator, it is passed as parameter, even if we don't explicitly
+pass, in these props we'll have the navigation, and inside the navigation, we have functions to navigate  and other actions.
+
+We would define it like this
+
+<Stack.Navigator>
+    
+      <Stack.Screen name="Screen 1" component={Screen1}/>
+      <Stack.Screen name="Screen 2" component={Screen2}/>
+      <Stack.Screen name="Screen 3" component={Screen3} />
+
+    </Stack.Navigator>
+
+and for us to be able to navigate, we will pass the screen name, then on the functions where we navigate, we pass the
+same name for it as we passed on the Stack.Screen, such as
+
+onPress={() => navigation.navigate('Screen 3')}
+
+We can pass options to the Stack.Navigator by passing the options as an attribute, as well as options we can pass to the
+Stack.Screen, such as a different title, a headerShown, for us to define whetherwe want the screen to have a header or not, define a headerBackTitle, and many more
+
+
 
 

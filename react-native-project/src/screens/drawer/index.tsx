@@ -9,6 +9,7 @@ import Input from "./Input";
 import Button from "./Button";
 import Pressable from "./Pressable";
 import Scroll from "./Scroll";
+import Stack from "../stack";
 
 
 export default function App() {
@@ -88,6 +89,13 @@ export default function App() {
           icon: 'list-outline',
           title: 'Scroll',
           component: Scroll
+        })}
+
+        {screen({
+          name: 'Stack',
+          icon: 'layers-outline',
+          title: 'Stack',
+          component: Stack
         })}
 
 
