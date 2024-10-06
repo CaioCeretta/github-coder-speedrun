@@ -1,3 +1,14 @@
+# Gamer Store App
+
+## Most important rule passed by the instructor
+
+Defining all our business rule inside the core of our application, is essentiall for us, we will be able to test all the
+rules in a better way, there isn't any possibility of us mixing the rules with state management, with specific features
+of the framework, and is very important for us to make this separation clear, of what is business rule from our technologies,
+frameworks, and everything we'll manage in our applications.
+
+ 
+
 ## What is Turbo Repo?
 
 Now we are using turborepo,turbo repo is a high-performance build system designed for managing monorepos. A monorepo is a
