@@ -18,5 +18,112 @@ We'll start by creating an index.tsx inside the drawer folder, this index.tsx is
 through the drawer, so inside of it, we'll create an app component, inside that app component we are going to wrap every
 thing inside a `View`, a `View` is pretty much like a div in a web app, where we will group several elements.
 
-Inside that view we'll start by creating a Text tag, is like the p, span, or things like it
+Inside that view we'll start by creating a Text tag, is like the p, span, or things like it.
+
+Now on our index.js, we will register the first component that is going to be loaded by the app and is the App located on
+drawer.tsx
+
+In the same way we have, in react, a functional component, we also have one in react native, as well as we have jsx on react,
+here we also have it. Jsx is a syntax that extends JS to incorporate these tags and these tags work like instances of these
+components that are other functions inside react native.
+
+For CSS we import the style sheet from 'react-native' library, then use it as an object like
+
+const styles = StyleSheet.create({
+
+})
+
+and these styles are strongly inspired on the css properties, so it would simply be
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+
+  }
+})
+
+and for us to use this property container, which is a set of styles, on the component we want to use it, we just add
+
+<View style={styles.container}> passing that object and property to the style attribute.
+
+Tailwind in here, is a bit more unstable that the web one, so that's why we prefer not to use it. but there is a NativeWind
+library.
+
+Inside the drawer folder, we'll create a component called initial.tsx, which is the component that will be first generated
+on the drawer.
+
+## Drawer 
+Now, going back to the index, this file utilizes a DrawerNavigator from the library @react-navigation/drawer, and based
+on this drawer, we will define the screens we'll use in the app.
+
+This whole jsx is wrapped on a NavigationContainer, which is a component imported from @react-navigation/native
+
+for us to don't keep repeating the same structure, full of detials, we'll create a function where we will pass some
+parameters to it and that function will help us creating each of the screens we will need to declare here.
+
+the function receives the name of the screen, the icon of the drawer, the title and the component to load, that function
+will return a screen based on the properties we received we will return a DrawerScreen based on the parameters.
+
+One thing we must notice is that the drawerIcon receives a property to know if that option is selected or focused. Because
+then we can have different properties for that element
+
+Now on the Drawer.navigation, inside of the tag, we are going to use this function, e.g.g
+'
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator>
+        {screen({
+          name: 'Initial',
+          icon: 'home-outline',
+          title: 'Initial',
+          component: initial
+        })}
+      </Drawer.Navigator>
+    </NavigationContainer>
+  )
+
+and on the app home we will see that initial being loaded as default
+
+Drawer is a very useful featura because we can have many options of funcionatilities in the application. 
+
+## Images
+
+For images in react native we use the Image tag and one of the attributes is the
+source, which we use like source={require('pathToFile')}, on remote images we use
+source={{ uri: 'remoteurl' }}
+
+## Text
+
+Next texts are required to be inside a Text component and are similar to web
+
+## Components
+
+Functional components are very similar to the ones from the web, we simply can export an interface, which receives the
+properties, then pass it as parameter, and so son
+
+## Scroll
+
+In ReactNative there is a specific component for us when we want to create a scrollable component, which is the ScrollView
+
+The ScrollView is a view that scrolls, basically
+
+## Button
+
+Different from the web, instead of onClick, here we utilize the onPress, and to change the button color there is an property
+named color where we assign to it a hex code
+
+## Pressable
+
+Pressable is a component very similar to a button, the difference is that pressable does not have a style, we can it wrap 
+it on an image, for example. We can wrap a pressable on everything
+
+## TextInput
+
+On the TextInput we are using a controlled input, as we would on react, utilize a Text for a label, and the TextInput
+receives the same properties, the ones different is placeholderTextColor, one other difference is the onChange that is
+onChangeText and the keyboardType, which we can change for
+what the input intends to do. Such as e-mail numpad, number, etc.
+
+    
+
 
