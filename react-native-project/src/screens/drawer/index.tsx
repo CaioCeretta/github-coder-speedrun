@@ -10,6 +10,7 @@ import Button from "./Button";
 import Pressable from "./Pressable";
 import Scroll from "./Scroll";
 import Stack from "../stack";
+import Tabs from "../tabs";
 
 
 export default function App() {
@@ -96,6 +97,13 @@ export default function App() {
           icon: 'layers-outline',
           title: 'Stack',
           component: Stack
+        })}
+
+        {screen({
+          name: 'Tabs',
+          icon: 'albums-outline',
+          title: 'Tabs',
+          component: Tabs
         })}
 
 

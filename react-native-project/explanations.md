@@ -155,6 +155,28 @@ onPress={() => navigation.navigate('Screen 3')}
 We can pass options to the Stack.Navigator by passing the options as an attribute, as well as options we can pass to the
 Stack.Screen, such as a different title, a headerShown, for us to define whetherwe want the screen to have a header or not, define a headerBackTitle, and many more
 
+## Tabs
 
+We are using as an example, the same three screens we were using on the example, tabs allow us to define screens that appear
+as tabs, usually displayed at the bottom of the app and unlike stack navigation, which typically pushes a new screen on top
+of the previous one, tab navigation keeps the same navigation context while switching between different tabs.
 
+So for the example we used a 
 
+<Tab.Navigator>
+  <Tabs.Screen
+                name="Tab1"
+                component={Tab1}
+                options={{
+                    title: 'First',
+                    tabBarIcon: ({ focused }: any) => (
+                        <Ionicons
+                            name="home-outline"
+                            size={20}
+                            color={focused ? '#1C80FF' : '#000'}
+                        />
+                    ),
+                }}
+            />
+
+by default the tabs appear at the bottom, but we can cusotmize the tab bar location and style if needed
