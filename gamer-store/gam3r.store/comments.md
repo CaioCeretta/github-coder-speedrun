@@ -55,7 +55,31 @@ Now by successfully running the build, the front end build is already accessing 
 backend also has access to these data/libraries, and now we indeed separated what is the core of our application from that
 which is frontend, and the same to the backend.
 
+## Database
 
+One thing we need to be aware of, is that we're not working with absolutely nothing related to db in the core part of our
+app, we're working with it specially on the backend, it doesn't make sense for us to work with databases outside of the
+backend
+
+For us to import prisma with NestJS, we are simply doing as the db provider, where we create the provider class, extend
+the prisma provider and implement the methods onModuleInit and destroy so we can handle the lifecycle of the db.
+
+Basically the db module has the PrismaProvider which extends the PrismaClient that will disponibilize for us the class
+that will help us to access the db, and do everything by the prisma client. And by it being an @Injectable, we can inject
+him in every file of our code.
+
+
+For us to initially seed a db we create a seed.ts, create a function seed where we will create many rows for a
+specific table and run it with npx prisma seed and then create a new attribute in package.json named prisma
+to tell where it will find this file when we call the npx prisma db seed.
+
+"prisma": {
+        "seed": "ts-node prisma/seed.ts"
+}
+
+after the last property
+
+then call on the terminal with npx prisma db seed
 
 
 
