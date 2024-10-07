@@ -1,5 +1,5 @@
 export * from './product'
-export * from './installments'
+export * from './installment'
 export * from './cart'
 export * from './order'
 export * from './constants'

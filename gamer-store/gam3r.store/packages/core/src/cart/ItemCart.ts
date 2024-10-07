@@ -1,6 +1,6 @@
 import { Product } from '../product'
 
-export default interface ItemCarrinho {
+export default interface ItemCart {
     product: Product
     quantity: number
 }

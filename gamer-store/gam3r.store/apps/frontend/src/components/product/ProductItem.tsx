@@ -5,6 +5,8 @@ import { IconShoppingCartPlus } from "@tabler/icons-react"
 import Image from "next/image"
 import Link from "next/link"
 import RatingReviews from "../shared/RatingReview"
+import useInstallments from "@/data/hooks/useInstallments"
+import useCart from "@/data/hooks/useCart"
 
 export interface ProductItemProps {
   product: Product
@@ -13,6 +15,8 @@ export interface ProductItemProps {
 
 export default function ProductItem(props: ProductItemProps) {
   const { product } = props
+  const { addItem } = useCart()
+  const installments = useInstallments(props.product.promotionalPrice)
 
   return (
     <Link
@@ -45,10 +49,10 @@ export default function ProductItem(props: ProductItemProps) {
             <span className="text-xl font-semibold text-emerald-500">
               for {Currency.format(product.promotionalPrice)}
             </span>
-            {/* <span className="text-zinc-400 text-xs">
-          installments of {installments.installmentsQty}x of {...}
-          {Currency.format(installment.installmentPrice)}
-        </span> */}
+            <span className="text-zinc-400 text-xs">
+          installments of {installments.installmentsQty}x of 
+          {Currency.format(installments.installmentValue)}
+        </span>
           </div>
         </div>
         <button
@@ -56,7 +60,7 @@ export default function ProductItem(props: ProductItemProps) {
         hover:border-2 border-emerald-500"
           onClick={(e) => {
             e.preventDefault();
-            //addItem(product)
+            addItem(product)
           }}
         >
           <IconShoppingCartPlus size={20} />

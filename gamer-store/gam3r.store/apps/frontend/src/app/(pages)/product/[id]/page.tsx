@@ -1,7 +1,10 @@
-import PurchaseBanner from "@/components/product/BannerCompra"
+import PurchaseBanner from "@/components/product/PurchaseBanner"
+import PriceMeasurer from "@/components/product/PriceMeasurer"
 import ProductDetails from "@/components/product/ProductDetails"
 import ProductNotFound from "@/components/product/ProductNotFound"
 import ProductTitle from "@/components/product/ProductTitle"
+import SpecializedReview from "@/components/product/SpecializedReview"
+import UsersRatings from "@/components/product/UsersRatings"
 import { products } from "@gstore/core"
 
 export default function ProductPage(props: any) {
@@ -16,7 +19,10 @@ export default function ProductPage(props: any) {
         <ProductTitle product={product} />
         <ProductDetails product={product}/>
         <PurchaseBanner product={product}/>
+        <PriceMeasurer product={product}/>
       </div>
+      <UsersRatings product={product} />
+      <SpecializedReview product={product} />
     </div>
   ) : (
     <ProductNotFound />

@@ -1,5 +1,8 @@
-import Specifications from "./Specifications";
-import Product from "./Product";
+import ProductsFilter from "./ProductsFilter";
 import Priceable from "./Priceable";
+import Product from "./Product";
+import Specifications from "./Specifications";
 
-export type { Specifications, Priceable, Product}
+export type { Priceable, Product, Specifications };
+
+export { ProductsFilter };

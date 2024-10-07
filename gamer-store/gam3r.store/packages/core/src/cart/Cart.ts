@@ -1,6 +1,5 @@
 
 import { Product } from '../product'
-import ItemCarrinho from './ItemCart'
 import ItemCart from './ItemCart'
 
 export default class Cart {
@@ -43,7 +42,7 @@ export default class Cart {
             .reduce((a, b) => a + b, 0)
     }
 
-    get fullValueFUll() {
+    get fullValue() {
         return this.items
             .map((item) => item.product.basePrice * item.quantity)
             .reduce((a, b) => a + b, 0)
@@ -54,13 +53,13 @@ export default class Cart {
     }
 
     private updateItemQuantity(
-        itens: ItemCarrinho[],
+        items: ItemCart[],
         produto: Product,
-        diferenca: number
-    ): ItemCarrinho[] {
-        return itens
+        difference: number
+    ): ItemCart[] {
+        return items
             .map((i) =>
-                i.product.id === produto.id ? { ...i, quantidade: i.quantity + diferenca } : i
+                i.product.id === produto.id ? { ...i, quantity: i.quantity + difference } : i
             )
             .filter((i) => i.quantity > 0)
     }
