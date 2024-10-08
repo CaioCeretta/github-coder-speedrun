@@ -1,45 +1,45 @@
 import { AntDesign, Ionicons } from '@expo/vector-icons'
-import { Moeda, ItemCarrinho as ItemCarrinhoModel } from '@gstore/core'
+import { Currency, ItemCart as ItemCartModel } from '@gstore/core'
 import { View, Text, Image, StyleSheet, Pressable } from 'react-native'
 
-export interface CarrinhoItemProps {
-    item: ItemCarrinhoModel
-    adicionarItem: () => void
-    removerItem: () => void
-    removerProduto: () => void
+export interface ItemCartProps {
+    item: ItemCartModel
+    addItem: () => void
+    removeItem: () => void
+    removeProduct: () => void
 }
 
-export default function CarrinhoItem(props: CarrinhoItemProps) {
+export default function ItemCart(props: ItemCartProps) {
     return (
         <View style={styles.container}>
             <Image
-                source={{ uri: props.item.produto.imagem }}
-                style={styles.imagem}
-                alt="Imagem do Produto"
+                source={{ uri: props.item.product.image }}
+                style={styles.image}
+                alt="Product Image"
             />
-            <View style={styles.produtoInfo}>
-                <Text style={styles.nome}>{props.item.produto.nome}</Text>
-                <View style={styles.containerQuantidade}>
-                    <View style={styles.quantidade}>
+            <View style={styles.productInfo}>
+                <Text style={styles.name}>{props.item.product.name}</Text>
+                <View style={styles.containerQuantity}>
+                    <View style={styles.quantity}>
                         <Pressable
-                            onPress={props.removerItem}
-                            style={[styles.botaoQuantidade, styles.botaoMenos]}
+                            onPress={props.removeItem}
+                            style={[styles.buttonQuantity, styles.buttonMinus]}
                         >
                             <AntDesign name="minus" size={16} color="#FFF" />
                         </Pressable>
-                        <Text style={styles.quantidadeValor}>
-                            {props.item.quantidade}
+                        <Text style={styles.quantityVal}>
+                            {props.item.quantity}
                         </Text>
                         <Pressable
-                            onPress={props.adicionarItem}
-                            style={[styles.botaoQuantidade, styles.botaoMais]}
+                            onPress={props.addItem}
+                            style={[styles.buttonQuantity, styles.buttonPlus]}
                         >
                             <AntDesign name="plus" size={16} color="#FFF" />
                         </Pressable>
                     </View>
                     <Pressable
-                        onPress={props.removerProduto}
-                        style={styles.botaoExcluir}
+                        onPress={props.removeProduct}
+                        style={styles.buttonDelete}
                     >
                         <Ionicons
                             name="trash-outline"
@@ -49,15 +49,15 @@ export default function CarrinhoItem(props: CarrinhoItemProps) {
                         <Text style={{ color: '#ff2777' }}>Remover</Text>
                     </Pressable>
                 </View>
-                <View style={styles.precoContainer}>
-                    <Text style={styles.precoCheio}>
-                        De {Moeda.formatar(props.item.produto.precoBase)}
+                <View style={styles.containerPrice}>
+                    <Text style={styles.fullPrice}>
+                        De {Currency.format(props.item.product.basePrice)}
                     </Text>
                     <View style={{ flexDirection: 'row', gap: 4 }}>
                         <Text style={{ color: 'white' }}>Por</Text>
-                        <Text style={styles.preco}>
-                            {Moeda.formatar(
-                                props.item.produto.precoPromocional,
+                        <Text style={styles.price}>
+                            {Currency.format(
+                                props.item.product.promotionalPrice,
                             )}
                         </Text>
                     </View>
@@ -87,44 +87,44 @@ const styles = StyleSheet.create({
         backgroundColor: '#333',
         borderRadius: 4,
     },
-    imagem: {
+    image: {
         width: 120,
         height: 120,
         marginRight: 15,
     },
-    produtoInfo: {
+    productInfo: {
         flex: 1,
         justifyContent: 'space-between',
         gap: 6,
     },
-    nome: {
+    name: {
         fontSize: 16,
         fontWeight: 'bold',
         color: '#FFF',
         marginBottom: 5,
     },
-    precoCheio: {
+    fullPrice: {
         fontSize: 10,
         color: '#AAA',
         textDecorationLine: 'line-through',
         marginBottom: 5,
     },
-    precoContainer: {
+    containerPrice: {
         flexDirection: 'row',
         alignItems: 'baseline',
         justifyContent: 'space-between',
         gap: 4,
     },
-    preco: {
+    price: {
         fontSize: 14,
         color: '#FFF',
         fontWeight: 'bold',
     },
-    containerQuantidade: {
+    containerQuantity: {
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
-    quantidade: {
+    quantity: {
         alignSelf: 'flex-start',
         flexDirection: 'row',
         alignItems: 'center',
@@ -132,25 +132,25 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 6,
     },
-    botaoQuantidade: {
+    buttonQuantity: {
         justifyContent: 'center',
         alignItems: 'center',
         width: 25,
         height: 25,
         borderColor: '#FFF',
     },
-    botaoMenos: {
+    buttonMinus: {
         borderRightWidth: 1,
     },
-    botaoMais: {
+    buttonPlus: {
         borderLeftWidth: 1,
     },
-    botaoExcluir: {
+    buttonDelete: {
         flexDirection: 'row',
         alignItems: 'center',
         gap: 6,
     },
-    quantidadeValor: {
+    quantityVal: {
         marginHorizontal: 10,
         fontSize: 16,
         color: '#FFF',

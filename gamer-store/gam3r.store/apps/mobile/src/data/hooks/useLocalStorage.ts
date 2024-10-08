@@ -2,14 +2,14 @@ import { useCallback } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function useLocalStorage() {
-    const obterItem = useCallback(async (chave: string) => {
-        const valorLocal = await AsyncStorage.getItem(chave)
-        return valorLocal ? JSON.parse(valorLocal) : null
+    const getItem = useCallback(async (key: string) => {
+        const localValue = await AsyncStorage.getItem(key)
+        return localValue ? JSON.parse(localValue) : null
     }, [])
 
-    const salvarItem = useCallback(async (chave: string, valor: any) => {
-        await AsyncStorage.setItem(chave, JSON.stringify(valor))
+    const saveItem = useCallback(async (key: string, value: any) => {
+        await AsyncStorage.setItem(key, JSON.stringify(value))
     }, [])
 
-    return { obterItem, salvarItem }
+    return { getItem, saveItem }
 }

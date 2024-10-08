@@ -5,7 +5,7 @@ export default function CarrinhoVazio() {
     return (
         <View style={styles.container}>
             <Ionicons name="cart-outline" size={60} color="#999" />
-            <Text style={styles.texto}>Carrinho está Vazio</Text>
+            <Text style={styles.text}>Your Cart is Empty</Text>
         </View>
     )
 }
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         padding: 50,
         marginVertical: 10,
     },
-    texto: {
+    text: {
         color: '#999',
         fontWeight: '400',
     },

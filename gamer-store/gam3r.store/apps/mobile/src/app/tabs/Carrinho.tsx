@@ -2,8 +2,8 @@ import { StyleSheet, SafeAreaView, ScrollView, Pressable, Text } from 'react-nat
 import { Ionicons } from '@expo/vector-icons'
 import { ItemCarrinho } from '@gstore/core'
 import CabecalhoCheckout from '@/src/components/checkout/CabecalhoCheckout'
-import CarrinhoItem from '../../components/checkout/carrinho/CarrinhoItem'
-import CarrinhoVazio from '@/src/components/checkout/carrinho/CarrinhoVazio'
+import CarrinhoItem from '../../components/checkout/cart/CarrinhoItem'
+import CarrinhoVazio from '@/src/components/checkout/cart/CarrinhoVazio'
 import Cores from '@/src/data/constants/Cores'
 import useCarrinho from '@/src/data/hooks/useCarrinho'
 

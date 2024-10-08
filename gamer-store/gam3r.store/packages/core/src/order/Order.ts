@@ -8,7 +8,7 @@ export default interface Order {
     id: number
     date: Date
     items: OrderItem[]
-    totalValue: number
+    totalPrice: number
     status: Status
     paymentMethod: PaymentMethod
     delivery: DeliveryOrder
