@@ -1,5 +1,5 @@
 import CalculateInstallment from "./CalculateInstallments";
-import Installment from "./Installments";
+import Installment from "./Installment";
 
 /* To export a class we simply write export and its name between curly braces */
 export { CalculateInstallment}

@@ -25,7 +25,7 @@ const PaymentContext = createContext<PaymentContextProps>({} as any)
 
 export function PaymentProvider(props: any) {
     const { httpPost } = useAPI()
-    const { items, totalValue, clearCart } = useCart()
+    const { items, totalPrice, clearCart } = useCart()
     const { saveItem, fetchItem } = useLocalStorage()
     const router = useRouter()
 
@@ -48,7 +48,7 @@ export function PaymentProvider(props: any) {
         const pedido: Partial<Order> = {
             date: new Date(),
             paymentMethod,
-            totalValue,
+            totalPrice,
             delivery: delivery as DeliveryOrder,
             status: Status.RECEIVED,
             items: items.map(

@@ -3,7 +3,7 @@ represent the logic of our business, so it shoudln't be "tangled" to the backend
 utilize only the programming languages, and as lower the dependency of frameworks, better, because in this way we isolate */
 
 import { MAX_INSTALLMENTS_NUMBER, MONTHLY_INTEREST_RATE } from '../constants'
-import Installments from './Installments'
+import Installments from './Installment'
 
 export default class CalculateInstallment {
   execute(
@@ -18,8 +18,8 @@ export default class CalculateInstallment {
     const totalWithInterest = this.calculateCompoundInterest(value, interestRate, installmentsQty)
 
     return {
-      installmentValue: this.withTwoDecimalCases(totalWithInterest / installmentsQty),
-      totalValue: this.withTwoDecimalCases(totalWithInterest),
+      installmentPrice: this.withTwoDecimalCases(totalWithInterest / installmentsQty),
+      totalPrice: this.withTwoDecimalCases(totalWithInterest),
       installmentsQty,
       interestRate
 

@@ -1,38 +1,38 @@
+import COLOR from '@/src/data/constants/Colors'
 import { Fontisto, Ionicons } from '@expo/vector-icons'
+import { Product } from '@gstore/core'
 import { LinearGradient } from 'expo-linear-gradient'
-import { Produto } from '@gstore/core'
-import { View, Text, StyleSheet } from 'react-native'
-import Cores from '@/src/data/constants/Cores'
+import { StyleSheet, Text, View } from 'react-native'
 
-export interface MedidorDePrecoProps {
-    produto: Produto
+export interface PriceMeasurerProps {
+    product: Product
 }
 
-export default function MedidorDePreco(props: MedidorDePrecoProps) {
+export default function PriceMeasurer(props: PriceMeasurerProps) {
     const {
-        menorPreco: minimo,
-        maiorPreco: maximo,
-        precoPromocional: atual,
-        precoMedio: media,
-    } = props.produto
+        lowestPrice: minimum,
+        highestPrice: maximum,
+        promotionalPrice: current,
+        averagePrice: average,
+    } = props.product
 
-    let percentual
-    if (atual > media) {
-        percentual = ((atual - media) / (maximo - media)) * 50 + 50
+    let percentage
+    if (current > average) {
+        percentage = ((current - average) / (maximum - average)) * 50 + 50
     } else {
-        percentual = (1 - (media - atual) / (media - minimo)) * 50
+        percentage = (1 - (average - current) / (average - minimum)) * 50
     }
 
     return (
         <View style={styles.container}>
-            <View style={styles.statusPreco}>
-                {percentual >= 40 && percentual < 60 ? (
+            <View style={styles.statusPrice}>
+                {percentage >= 40 && percentage < 60 ? (
                     <Fontisto
                         name="confused"
                         size={40}
                         style={{ color: '#eab308' }}
                     />
-                ) : percentual >= 60 ? (
+                ) : percentage >= 60 ? (
                     <Fontisto
                         name="mad"
                         size={40}
@@ -52,13 +52,13 @@ export default function MedidorDePreco(props: MedidorDePrecoProps) {
                         </Text>
                         <Text
                             style={{
-                                color: Cores.TEXTO_DESTAQUE_1,
+                                color: COLOR.HIGHLIGHT_TEXT_1,
                                 fontWeight: 'bold',
                             }}
                         >
-                            {percentual >= 40 && percentual < 60
+                            {percentage >= 40 && percentage < 60
                                 ? 'na média'
-                                : percentual >= 60
+                                : percentage >= 60
                                   ? 'acima da média'
                                   : 'abaixo da média'}
                         </Text>
@@ -73,18 +73,18 @@ export default function MedidorDePreco(props: MedidorDePrecoProps) {
                     colors={['#22c55e', '#facc15', '#ef4444']}
                     start={{ x: 0, y: 0.75 }}
                     end={{ x: 1, y: 0.25 }}
-                    style={styles.barraPreco}
+                    style={styles.priceBar}
                 ></LinearGradient>
                 <View
-                    style={{ ...styles.posicaoPreco, left: `${percentual}%` }}
+                    style={{ ...styles.positionPrice, left: `${percentage}%` }}
                 >
                     <Ionicons
                         name="chevron-down"
                         size={20}
-                        style={{ color: Cores.TEXTO_DESTAQUE_1 }}
+                        style={{ color: COLOR.HIGHLIGHT_TEXT_1 }}
                     />
-                    <View style={styles.circuloPrecoExterno}>
-                        <View style={styles.circuloPrecoInterno} />
+                    <View style={styles.circuleExernalPrice}>
+                        <View style={styles.circleInternalPrice} />
                     </View>
                 </View>
             </View>
@@ -98,22 +98,22 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
         paddingHorizontal: 30,
     },
-    statusPreco: {
+    statusPrice: {
         flexDirection: 'row',
         alignItems: 'center',
         gap: 10,
     },
-    barraPreco: {
+    priceBar: {
         position: 'relative',
         height: 7,
         borderRadius: 9999,
     },
-    posicaoPreco: {
+    positionPrice: {
         position: 'absolute',
         alignItems: 'center',
         top: -25,
     },
-    circuloPrecoExterno: {
+    circuleExernalPrice: {
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'white',
@@ -121,8 +121,8 @@ const styles = StyleSheet.create({
         width: 18,
         borderRadius: 9999,
     },
-    circuloPrecoInterno: {
-        backgroundColor: Cores.TEXTO_DESTAQUE_1,
+    circleInternalPrice: {
+        backgroundColor: COLOR.HIGHLIGHT_TEXT_1,
         height: 13,
         width: 13,
         borderRadius: 9999,

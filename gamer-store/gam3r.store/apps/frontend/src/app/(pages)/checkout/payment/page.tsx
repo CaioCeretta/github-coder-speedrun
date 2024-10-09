@@ -8,7 +8,7 @@ import useCart from '@/data/hooks/useCart'
 import usePayment from '@/data/hooks/usePayment'
 
 export default function Page() {
-  const { installments, itemsQty, totalValue, fullTotalValue } = useCart()
+  const { installments, itemsQty, totalPrice, fullTotalPrice } = useCart()
   const { delivery, paymentMethod, updateDelivery, updatePaymentMethod, completePurchase } =
     usePayment()
 
@@ -25,8 +25,8 @@ export default function Page() {
         </div>
         <PaymentSummary
           itemsQty={itemsQty}
-          totalPrice={totalValue}
-          fullTotalPrice={fullTotalValue}
+          totalPrice={totalPrice}
+          fullTotalPrice={fullTotalPrice}
           installment={installments}
           completePurchase={completePurchase}
           className="mt-12"

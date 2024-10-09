@@ -1,22 +1,22 @@
 import { StyleSheet, View, Image, Text } from 'react-native'
 import React from 'react'
 
-export interface PerfilProps {
-    nome: string
+export interface ProfileProps {
+    name: string
     email: string
-    telefone: string
+    phone: string
 }
 
-export default function Perfil(props: PerfilProps) {
+export default function Profile(props: ProfileProps) {
     return (
         <View style={styles.container}>
             <Image
                 source={require('../../../assets/images/avatar.png')}
                 style={styles.avatar}
             />
-            <Text style={styles.destaque}>Fala, {props.nome}!</Text>
-            <Text style={styles.texto}>E-mail: {props.email}</Text>
-            <Text style={styles.texto}>Telefone: {props.telefone}</Text>
+            <Text style={styles.highlight}>Fala, {props.name}!</Text>
+            <Text style={styles.text}>E-mail: {props.email}</Text>
+            <Text style={styles.text}>Telefone: {props.phone}</Text>
         </View>
     )
 }
@@ -33,19 +33,19 @@ const styles = StyleSheet.create({
         height: 134,
         marginRight: 12,
     },
-    destaque: {
+    highlight: {
         fontSize: 28,
         fontWeight: '600',
         color: '#fff',
         margin: 5,
     },
-    texto: {
+    text: {
         marginTop: 2,
         fontSize: 18,
         fontWeight: '400',
         color: '#A9A9A9',
     },
-    botao: {
+    button: {
         margin: 30,
         width: '35%',
         height: 45,
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30,
         borderRadius: 5,
     },
-    textoBotao: {
+    buttonText: {
         fontSize: 16,
         color: 'white',
         fontWeight: 'bold',

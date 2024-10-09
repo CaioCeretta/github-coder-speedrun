@@ -1,43 +1,43 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-interface CabecalhoCheckoutProps {
-    passo: 'carrinho' | 'pagamento'
+interface CheckoutHeaderProps {
+    step: 'cart' | 'payment'
 }
 
-export default function CabecalhoCheckout(props: CabecalhoCheckoutProps) {
-    function renderizarItem(
-        passo: 'carrinho' | 'pagamento',
-        indice: number,
-        titulo: string,
+export default function CheckoutHeader(props: CheckoutHeaderProps) {
+    function renderItem(
+        step: 'cart' | 'payment',
+        index: number,
+        title: string,
     ) {
         return (
-            <View style={styles.containerEtapa}>
+            <View style={styles.containerStep}>
                 <View
                     style={
-                        props.passo === passo
-                            ? styles.circuloAtivo
-                            : styles.circuloInativo
+                        props.step === step
+                            ? styles.activeCircle
+                            : styles.inactiveCircle
                     }
                 >
                     <Text
                         style={
-                            props.passo === passo
-                                ? styles.circuloAtivoTexto
-                                : styles.circuloInativoTexto
+                            props.step === step
+                                ? styles.activeCircleText
+                                : styles.inactiveCircleText
                         }
                     >
-                        {indice}
+                        {index}
                     </Text>
                 </View>
                 <Text
                     style={
-                        props.passo === passo
-                            ? styles.textoAtivo
-                            : styles.textoInativo
+                        props.step === step
+                            ? styles.activeText
+                            : styles.inactiveText
                     }
                 >
-                    {titulo}
+                    {title}
                 </Text>
             </View>
         )
@@ -45,9 +45,9 @@ export default function CabecalhoCheckout(props: CabecalhoCheckoutProps) {
 
     return (
         <View style={styles.container}>
-            {renderizarItem('carrinho', 1, 'Carrinho')}
-            <View style={styles.separador} />
-            {renderizarItem('pagamento', 2, 'Pagamento')}
+            {renderItem('cart', 1, 'Cart')}
+            <View style={styles.separator} />
+            {renderItem('payment', 2, 'Payment')}
         </View>
     )
 }
@@ -60,11 +60,11 @@ const styles = StyleSheet.create({
         marginVertical: 20,
         paddingHorizontal: 20,
     },
-    containerEtapa: {
+    containerStep: {
         flexDirection: 'row',
         alignItems: 'center',
     },
-    circuloAtivo: {
+    activeCircle: {
         width: 20,
         height: 20,
         borderRadius: 10,
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    circuloInativo: {
+    inactiveCircle: {
         width: 20,
         height: 20,
         borderRadius: 10,
@@ -80,25 +80,25 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    circuloAtivoTexto: {
+    activeCircleText: {
         color: 'white',
         fontSize: 12,
     },
-    circuloInativoTexto: {
+    inactiveCircleText: {
         color: '#000',
         fontSize: 12,
     },
-    textoAtivo: {
+    activeText: {
         color: '#FF57A0',
         marginLeft: 10,
         fontWeight: '400',
     },
-    textoInativo: {
+    inactiveText: {
         color: '#888',
         marginLeft: 10,
         fontWeight: '400',
     },
-    separador: {
+    separator: {
         width: 40,
         height: 1,
         backgroundColor: '#888',

@@ -11,7 +11,7 @@ export class OrderPrisma {
       data: {
         date: order.date,
         status: order.status,
-        totalValue: order.totalValue,
+        totalPrice: order.totalPrice,
         paymentMethod: order.paymentMethod,
         delivery: { create: { ...order.delivery } },
         items: {

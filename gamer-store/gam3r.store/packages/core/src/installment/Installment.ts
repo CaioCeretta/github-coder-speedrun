@@ -1,6 +1,6 @@
 export default interface Installment {
-  totalValue: number;
-  installmentValue: number;
+  totalPrice: number;
+  installmentPrice: number;
   installmentsQty: number
   interestRate: number
 }

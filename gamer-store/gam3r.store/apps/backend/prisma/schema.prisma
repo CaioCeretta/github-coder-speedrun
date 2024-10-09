@@ -39,7 +39,7 @@ model Product {
 model Order {
   id            Int      @id @default(autoincrement())
   date          DateTime
-  totalValue    Float
+  totalPrice    Float
   status        String
   paymentMethod String
 

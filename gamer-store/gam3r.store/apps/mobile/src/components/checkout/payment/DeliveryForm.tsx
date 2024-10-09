@@ -1,19 +1,19 @@
-import { PedidoEntrega } from '@gstore/core'
+import { DeliveryOrder } from '@gstore/core'
 import { TextInput, StyleSheet, View } from 'react-native'
 import React from 'react'
 
-export interface FormularioEntregaProps {
-    entrega: Partial<PedidoEntrega>
-    entregaMudou: (entrega: Partial<PedidoEntrega>) => void
+export interface DeliveryFormProps {
+    delivery: Partial<DeliveryOrder>
+    deliveryChanged: (delivery: Partial<DeliveryOrder>) => void
     className?: string
 }
 
-export default function FormularioEntrega(props: FormularioEntregaProps) {
-    const { entrega, entregaMudou } = props
+export default function DeliveryForm(props: DeliveryFormProps) {
+    const { delivery, deliveryChanged } = props
 
-    function alterarAtributo(atributo: string) {
+    function updateAttribute(attribute: string) {
         return (valor: any) => {
-            entregaMudou({ ...entrega, [atributo]: valor })
+            deliveryChanged({ ...delivery, [attribute]: valor })
         }
     }
 
@@ -22,51 +22,51 @@ export default function FormularioEntrega(props: FormularioEntregaProps) {
             <TextInput
                 style={styles.input}
                 placeholder="Nome Completo"
-                value={entrega.nome}
-                onChangeText={alterarAtributo('nome')}
+                value={delivery.name}
+                onChangeText={updateAttribute('nome')}
                 placeholderTextColor="#999"
             />
             <TextInput
                 style={styles.input}
                 placeholder="E-mail"
-                value={entrega.email}
-                onChangeText={alterarAtributo('email')}
+                value={delivery.email}
+                onChangeText={updateAttribute('email')}
                 placeholderTextColor="#999"
             />
             <TextInput
                 style={styles.input}
                 placeholder="CPF"
-                value={entrega.cpf}
-                onChangeText={alterarAtributo('cpf')}
+                value={delivery.cpf}
+                onChangeText={updateAttribute('cpf')}
                 keyboardType="numeric"
                 placeholderTextColor="#999"
             />
             <TextInput
                 style={styles.input}
                 placeholder="Logradouro"
-                value={entrega.logradouro}
-                onChangeText={alterarAtributo('logradouro')}
+                value={delivery.logradouro}
+                onChangeText={updateAttribute('logradouro')}
                 placeholderTextColor="#999"
             />
             <TextInput
                 style={styles.input}
                 placeholder="Complemento"
-                value={entrega.complemento}
-                onChangeText={alterarAtributo('complemento')}
+                value={delivery.complemento}
+                onChangeText={updateAttribute('complemento')}
                 placeholderTextColor="#999"
             />
             <TextInput
                 style={styles.input}
                 placeholder="Cidade"
-                value={entrega.cidade}
-                onChangeText={alterarAtributo('cidade')}
+                value={delivery.city}
+                onChangeText={updateAttribute('cidade')}
                 placeholderTextColor="#999"
             />
             <TextInput
                 style={styles.input}
                 placeholder="Estado"
-                value={entrega.estado}
-                onChangeText={alterarAtributo('estado')}
+                value={delivery.state}
+                onChangeText={updateAttribute('estado')}
                 placeholderTextColor="#999"
             />
         </View>

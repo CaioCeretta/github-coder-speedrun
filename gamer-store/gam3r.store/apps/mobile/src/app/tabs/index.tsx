@@ -1,24 +1,24 @@
 import { Ionicons } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { StyleSheet, Text, View } from 'react-native'
-import Inicio from './Inicio'
-import Carrinho from './Carrinho'
-import Usuario from './Usuario'
+import Carrinho from './Cart'
+import Initial from './Initial'
+import User from './User'
 
 const Tab = createBottomTabNavigator()
 
 export default function Tabs() {
-    function tab(nome: string, componente: any, label: string, icone: string) {
+    function tab(name: string, component: any, label: string, icon: string) {
         return (
             <Tab.Screen
-                name={nome}
-                component={componente}
+                name={name}
+                component={component}
                 options={{
                     unmountOnBlur: true,
                     tabBarIcon: ({ focused }) => (
                         <View style={styles.tabScreen}>
                             <Ionicons
-                                name={icone as any}
+                                name={icon as any}
                                 size={22}
                                 color={focused ? '#FFF' : '#CCC'}
                             />
@@ -50,9 +50,9 @@ export default function Tabs() {
                 },
             }}
         >
-            {tab('Inicio', Inicio, 'Início', 'home-outline')}
+            {tab('Inicio', Initial, 'Início', 'home-outline')}
             {tab('Carrinho', Carrinho, 'Carrinho', 'cart-outline')}
-            {tab('Usuario', Usuario, 'Usuário', 'person-outline')}
+            {tab('Usuario', User, 'Usuário', 'person-outline')}
         </Tab.Navigator>
     )
 }

@@ -1,29 +1,30 @@
+import Profile from '@/src/components/perfil/Profile'
+import COLORS from '@/src/data/constants/Colors'
 import { Ionicons } from '@expo/vector-icons'
-import { Text, StyleSheet, SafeAreaView, Pressable, Alert } from 'react-native'
-import Cores from '@/src/data/constants/Cores'
-import Perfil from '@/src/components/perfil/Perfil'
+import React from 'react'
+import { Alert, Pressable, SafeAreaView, StyleSheet, Text } from 'react-native'
 
-export default function Usuario({ navigation }: any) {
+export default function User({ navigation }: any) {
     return (
         <SafeAreaView style={styles.container}>
-            <Perfil nome="Usuário" email="teste@teste.com" telefone="9 9999-9999" />
+            <Profile name="Usuário" email="teste@teste.com" phone="9 9999-9999" />
             <Pressable
-                style={styles.botao}
+                style={styles.button}
                 onPress={() => {
                     navigation.navigate('UltimasCompras')
                 }}
             >
-                <Ionicons name="cart-outline" size={22} style={styles.botaoTexto} />
-                <Text style={styles.botaoTexto}>Últimas compras</Text>
+                <Ionicons name="cart-outline" size={22} style={styles.buttonText} />
+                <Text style={styles.buttonText}>Últimas compras</Text>
             </Pressable>
             <Pressable
-                style={styles.botaoLogout}
+                style={styles.logoutButton}
                 onPress={() => {
                     Alert.alert('Logout', 'Logout feito com sucesso!', [{ text: 'OK' }])
                 }}
             >
-                <Ionicons name="log-out-outline" size={22} style={styles.botaoTexto} />
-                <Text style={styles.botaoTexto}>Logout</Text>
+                <Ionicons name="log-out-outline" size={22} style={styles.buttonText} />
+                <Text style={styles.buttonText}>Logout</Text>
             </Pressable>
         </SafeAreaView>
     )
@@ -37,12 +38,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#0E001D',
         width: '100%',
     },
-    botao: {
+    button: {
         color: '#FFF',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: Cores.PRIMARIA,
+        backgroundColor: COLORS.PRIMARY,
         alignSelf: 'center',
         borderRadius: 9999,
         height: 40,
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 50,
         gap: 8,
     },
-    botaoLogout: {
+    logoutButton: {
         color: '#FFF',
         flexDirection: 'row',
         justifyContent: 'center',
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 50,
         gap: 8,
     },
-    botaoTexto: {
+    buttonText: {
         color: '#FFF',
     },
 })

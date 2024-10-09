@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export interface TotalCartProps {
     itemsQty: number
-    totalValue: number
+    totalPrice: number
 }
 
 export default function TotalCart(props: TotalCartProps) {
@@ -16,7 +16,7 @@ export default function TotalCart(props: TotalCartProps) {
                     {props.itemsQty === 1 ? 'item' : 'itens'}):
                 </span>
                 <span className="text-emerald-500 text-2xl font-semibold">
-                    {Currency.format(props.totalValue ?? 0)}
+                    {Currency.format(props.totalPrice ?? 0)}
                 </span>
             </div>
             <Link href="/checkout/payment" className="button bg-indigo-700">

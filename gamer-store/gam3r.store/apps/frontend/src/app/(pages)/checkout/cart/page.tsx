@@ -11,7 +11,7 @@ export default function Page() {
   const {
     items,
     itemsQty,
-    totalValue,
+    totalPrice,
     addItem,
     removeItem,
     removeProduct
@@ -32,7 +32,7 @@ export default function Page() {
           />
         ))}
       </div>
-      <TotalCart itemsQty={itemsQty} totalValue={totalValue} />
+      <TotalCart itemsQty={itemsQty} totalPrice={totalPrice} />
     </div>
   )
 }

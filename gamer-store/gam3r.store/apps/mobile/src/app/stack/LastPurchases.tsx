@@ -1,6 +1,6 @@
 import { StyleSheet, SafeAreaView, Text } from 'react-native'
 
-export default function UltimasCompras({ navigation }: any) {
+export default function LastPurchases({ navigation }: any) {
     return (
         <SafeAreaView style={styles.container}>
             <Text style={{ color: 'white' }}>Últimas Compras</Text>

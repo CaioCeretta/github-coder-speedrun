@@ -1,13 +1,14 @@
-import { Produto } from '@gstore/core'
+import { Product } from '@gstore/core'
 import { View, Text } from 'react-native'
-import Cores from '@/src/data/constants/Cores'
-import NotaReview from '../shared/NotaReview'
+import Colors from '@/src/data/constants/Colors'
+import ReviewRating from '../shared/ReviewRating'
+import React from 'react'
 
-export interface AvaliacoesUsuariosProps {
-    produto: Produto
+export interface UsersRatingsProps {
+    product: Product
 }
 
-export default function AvaliacoesUsuarios(props: AvaliacoesUsuariosProps) {
+export default function UsersRatings(props: UsersRatingsProps) {
     return (
         <View
             style={{
@@ -44,14 +45,14 @@ export default function AvaliacoesUsuarios(props: AvaliacoesUsuariosProps) {
                 <View style={{ alignItems: 'center' }}>
                     <Text
                         style={{
-                            color: Cores.TEXTO_DESTAQUE_2,
+                            color: Colors.HIGHLIGHT_TEXT_2,
                             fontSize: 48,
                             fontWeight: 'bold',
                         }}
                     >
-                        {props.produto.nota.toFixed(1).replace('.', ',')}
+                        {props.product.rating.toFixed(1).replace('.', ',')}
                     </Text>
-                    <NotaReview nota={props.produto.nota} tamanho={18} />
+                    <ReviewRating rating={props.product.rating} size={18} />
                     <Text>(198 Comentários)</Text>
                 </View>
                 <View>

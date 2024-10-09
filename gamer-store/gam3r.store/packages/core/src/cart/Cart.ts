@@ -36,13 +36,13 @@ export default class Cart {
         return this.items.map((item) => item.quantity).reduce((a, b) => a + b, 0)
     }
 
-    get totalValue() {
+    get totalPrice() {
         return this.items
             .map((item) => item.product.basePrice * item.quantity)
             .reduce((a, b) => a + b, 0)
     }
 
-    get fullValue() {
+    get fullPrice() {
         return this.items
             .map((item) => item.product.basePrice * item.quantity)
             .reduce((a, b) => a + b, 0)

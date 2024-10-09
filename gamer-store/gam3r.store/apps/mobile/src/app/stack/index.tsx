@@ -1,20 +1,21 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationContainer, DarkTheme } from '@react-navigation/native'
-import { ProvedorCarrinho } from '@/src/data/contexts/ContextoCarrinho'
-import { ProvedorPagamento } from '@/src/data/contexts/ContextoPagamento'
-import { ProvedorProdutos } from '@/src/data/contexts/ContextoProdutos'
-import Pagamento from './Pagamento'
-import ProdutoDetalhes from './ProdutoDetalhes'
+import CartProvider from '@/src/data/contexts/CartContext'
+import { PaymentProvider } from '@/src/data/contexts/PaymentContext'
+import { ProductsProvider } from '@/src/data/contexts/ProductsContext'
+import Payment from './Payment'
+import ProductDetails from './ProductDetails'
 import Tabs from '../tabs'
-import UltimasCompras from './UltimasCompras'
+import LastPurchases from './LastPurchases'
+import React from 'react'
 
 const Stack = createNativeStackNavigator()
 
 export default function App() {
     return (
-        <ProvedorProdutos>
-            <ProvedorCarrinho>
-                <ProvedorPagamento>
+        <ProductsProvider>
+            <CartProvider>
+                <PaymentProvider>
                     <NavigationContainer theme={DarkTheme}>
                         <Stack.Navigator initialRouteName="Tabs">
                             <Stack.Screen
@@ -26,7 +27,7 @@ export default function App() {
                             />
                             <Stack.Screen
                                 name="ProdutoDetalhes"
-                                component={ProdutoDetalhes}
+                                component={ProductDetails}
                                 options={{
                                     title: 'Detalhes do Produto',
                                     headerBackTitle: 'Voltar',
@@ -37,7 +38,7 @@ export default function App() {
                             />
                             <Stack.Screen
                                 name="Pagamento"
-                                component={Pagamento}
+                                component={Payment}
                                 options={{
                                     title: 'Detalhes do Pagamento',
                                     headerBackTitle: 'Voltar',
@@ -48,7 +49,7 @@ export default function App() {
                             />
                             <Stack.Screen
                                 name="UltimasCompras"
-                                component={UltimasCompras}
+                                component={LastPurchases}
                                 options={{
                                     title: 'Últimas Compras',
                                     headerBackTitle: 'Voltar',
@@ -59,8 +60,8 @@ export default function App() {
                             />
                         </Stack.Navigator>
                     </NavigationContainer>
-                </ProvedorPagamento>
-            </ProvedorCarrinho>
-        </ProvedorProdutos>
+                </PaymentProvider>
+            </CartProvider>
+        </ProductsProvider>
     )
 }

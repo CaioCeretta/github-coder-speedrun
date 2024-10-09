@@ -2,7 +2,7 @@
 import {
     CalculateInstallment,
     Cart,
-    Installments,
+    Installment,
     ItemCart,
     Product
 } from '@gstore/core'
@@ -12,8 +12,8 @@ import useLocalStorage from '../hooks/useLocalStorage'
 export interface CartContextProps {
     items: ItemCart[]
     itemsQty: number
-    fullTotalValue: number
-    totalValue: number
+    fullTotalPrice: number
+    totalPrice: number
     installments: Installments
     addItem: (produto: Product) => void
     removeItem: (produto: Product) => void
@@ -58,10 +58,10 @@ export function CartProvider(props: any) {
             value={{
                 items: cart.items,
                 itemsQty: cart.itemsQty,
-                totalValue: cart.totalValue,
-                fullTotalValue: cart.fullValue,
+                totalPrice: cart.totalPrice,
+                fullTotalPrice: cart.fullTotalPrice,
                 installments: new CalculateInstallment().execute(
-                    cart.totalValue,
+                    cart.totalPrice,
                 ),
                 addItem,
                 removeItem,

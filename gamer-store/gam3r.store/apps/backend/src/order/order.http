@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {
     "date": "2021-09-01T00:00:00.000Z",
-    "totalValue": 200.00,
+    "totalPrice": 200.00,
     "status": "RECEIVED",
     "paymentMethod": "CARD",
     "delivery": {

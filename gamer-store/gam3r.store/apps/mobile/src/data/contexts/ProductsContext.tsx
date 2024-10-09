@@ -11,13 +11,13 @@ export interface ProductsContextProps {
 
 const ProductsContext = createContext<ProductsContextProps>({} as any)
 
-export function ProvedorProdutos(props: any) {
+export function ProductsProvider(props: any) {
     const { httpGet } = useAPI()
     const [search, setSearch] = useState<string>('')
     const [products, setProducts] = useState<Product[]>([])
 
     const loadProducts = useCallback(async () => {
-        const products = await httpGet('/produtos')
+        const products = await httpGet('/products')
         setProducts(Array.isArray(products) ? products : [])
     }, [httpGet])
 
