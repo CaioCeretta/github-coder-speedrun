@@ -28,7 +28,7 @@ export default function PurchaseBanner(props: PurchaseBannerProps) {
             </div>
             <div className="flex-1 flex flex-col text-2xl font-semibold text-zinc-400 pl-5">
                 <span className="text-base text-zinc-300">{installments.installmentsQty}x de</span>
-                {Currency.format(installments.installmentValue)}{' '}
+                {Currency.format(installments.installmentPrice)}{' '}
             </div>
             <div className="flex gap-2 items-center">
                 <button

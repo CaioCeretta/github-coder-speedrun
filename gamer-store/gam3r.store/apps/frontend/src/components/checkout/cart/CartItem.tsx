@@ -77,7 +77,7 @@ export default function CartItem(props: CartItemProps) {
                     </span>{' '}
                     de{' '}
                     <span className="text-white font-semibold">
-                        {Currency.format(installment.installmentValue)}
+                        {Currency.format(installment.installmentPrice)}
                     </span>
                 </div>
             </div>

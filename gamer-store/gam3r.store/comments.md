@@ -11,6 +11,36 @@ frameworks, and everything we'll manage in our applications.
 
 ## What is Turbo Repo?
 
+A monorepo, is basically a collection of many different apps and packages in the same codebase, the alternative setup 
+would be a polyrepo and that's where we will have multiple code bases, which are published and versioned separately.
+
+Imagine we have three different repositories, one for the app, one for the docs and one for a shared utility package, be
+it, for example, a shared UI package that's used both in the apps and the docs kind of repositories, or it can be shared
+configs. And when we want to make a change in the shared utility that's used by app and doc, we'd need to publish that
+change to npm and then need to update the app and docs and bumup the version in their dependencies and then make a commit
+so our apps are now synchronized with the new feature in this shared utility.
+
+
+
+If we want to do the same thing as above, but in a monorepo, they would all live in the same single codebase, so we would
+make any changes that we want to the utilities and then it's already been shared between the apps and the docs, and that's
+all we need to do, they are not depending on a specific version of this shared ui, they're just depending on the local version
+in that same code base. 
+
+The main building block of a mono repo is workspaces, each application and package we build will be it's own work space...
+A workspace is basically a folder containing a package.json file, each workspace can declare its own dependencies, they can
+depend on each other, they can export code for the other to use and they can have their own scripts. 
+
+For example, if we are using pnpm as our package manager, in the package.json for our documents, or docs app, we will
+declare a dependency on the "shared.utils" with the value of "workspace:*", this is how we would denote that this is a 
+local library or package in our workspace. If we are in yarn or npm value wound only be *.
+
+On top of the wor spaces we would have in our applications, there is a root workspace which will be containing all those
+packages and apps together, and this is a good place for us to specify dependencies that are present across our entire
+monorepo, such as tasks that belongs to the whole monorepo as opposed to individual workspaces.
+
+
+
 Now we are using turborepo,turbo repo is a high-performance build system designed for managing monorepos. A monorepo is a
 single repository that holds the code for multiple applications or packages, rather than having a separate repository for
 each project. This setup is often used in large-scale projects or teams that maintain several related apps or libraries, such

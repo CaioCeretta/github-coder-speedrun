@@ -13,8 +13,8 @@ import useAPI from '../hooks/useAPI'
 export interface PaymentContextProps {
     paymentMethod: PaymentMethod
     delivery: Partial<DeliveryOrder>
-    updatePaymentMethod: (formaPagamento: PaymentMethod) => void
-    updateDelivery: (entrega: Partial<DeliveryOrder>) => void
+    updatePaymentMethod: (paymentMethod: PaymentMethod) => void
+    updateDelivery: (delivery: Partial<DeliveryOrder>) => void
     completePurchase: () => void
 }
 

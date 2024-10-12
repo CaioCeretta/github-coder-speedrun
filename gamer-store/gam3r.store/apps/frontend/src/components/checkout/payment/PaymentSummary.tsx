@@ -54,7 +54,7 @@ export default function PaymentSummary(props: PaymentSummaryProps) {
                     </span>{' '}
                     de{' '}
                     <span className="text-white font-semibold">
-                        {Currency.format(props.installment.installmentValue)}
+                        {Currency.format(props.installment.installmentPrice)}
                     </span>
                 </div>
             </div>

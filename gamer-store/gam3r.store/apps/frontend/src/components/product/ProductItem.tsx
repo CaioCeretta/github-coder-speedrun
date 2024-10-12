@@ -51,7 +51,7 @@ export default function ProductItem(props: ProductItemProps) {
             </span>
             <span className="text-zinc-400 text-xs">
           installments of {installments.installmentsQty}x of 
-          {Currency.format(installments.installmentValue)}
+          {Currency.format(installments.installmentPrice)}
         </span>
           </div>
         </div>

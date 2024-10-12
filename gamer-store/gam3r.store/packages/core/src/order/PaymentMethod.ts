@@ -1,5 +1,5 @@
 export enum PaymentMethod {
     PIX = 'PIX',
-    BOLETO = 'PAYMENT SLIP',
+    BANK_SLIP = 'BOLETO',
     CARD = 'CARD',
 }
