@@ -8,7 +8,7 @@ import { ItemCart } from '@gstore/core'
 import React from 'react'
 import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text } from 'react-native'
 
-export default function Carrinho({ navigation }: any) {
+export default function Cart({ navigation }: any) {
     const { items, itemsQty, addItem, removeItem, removeProduct } = useCart()
 
     return (

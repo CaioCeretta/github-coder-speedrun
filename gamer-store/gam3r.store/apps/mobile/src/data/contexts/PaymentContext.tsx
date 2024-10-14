@@ -66,7 +66,7 @@ export function PaymentProvider(props: any) {
             setDelivery(delivery ?? {})
         })
         getItem('pagamento').then((formaPagamento) => {
-            setPaymentMethod(formaPagamento ?? PaymentMethod.PIX)
+            setPaymentMethod(formaPagamento ?? PaymentMethod.CARD)
         })
     }, [getItem])
 

@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { StyleSheet, Text, View } from 'react-native'
-import Carrinho from './Cart'
+import Cart from './Cart'
 import Initial from './Initial'
 import User from './User'
 
@@ -51,7 +51,7 @@ export default function Tabs() {
             }}
         >
             {tab('Inicio', Initial, 'Início', 'home-outline')}
-            {tab('Carrinho', Carrinho, 'Carrinho', 'cart-outline')}
+            {tab('Carrinho', Cart, 'Carrinho', 'cart-outline')}
             {tab('Usuario', User, 'Usuário', 'person-outline')}
         </Tab.Navigator>
     )
