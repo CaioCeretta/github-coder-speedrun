@@ -1,4 +1,5 @@
 
+version: '3.8'
 
 # Services defines the various containers will be run, in this case, only the postgres
 services:
