@@ -21,10 +21,39 @@ body {
 }
 
 @layer components {
-  .container {
     .container {
       @apply mx-auto px-4 max-w-7xl
     }
+
+    .botao {
+      @apply flex justify-center items-center;
+      @apply gap-2 rounded-md px-9 h-9;
+      @apply text-sm font-semibold
+    }
+
+    .botao.azul {
+      @apply bg-blue-500 text-white
+    }
+
+    .botao.azul:hover {
+      @apply bg-blue-600
+    }
+
+    .botao.green {
+      @apply bg-green-500 text-white
+    }
+
+    .botao.green:hover {
+      @apply bg-green-600 text-white
+    }
+
+    .botao.red {
+      @apply bg-red-500 text-white
+    }
+
+    .botao.red:hover {
+      @apply bg-red-600 text-white
+    }
   }
-}
+
 
