@@ -19,4 +19,4 @@ export default class Senha {
 
 }
 
-console.log(Senha.criar())
+// console.log(Senha.novaqu())
