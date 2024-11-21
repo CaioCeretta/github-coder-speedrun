@@ -1,13 +1,38 @@
-import type { Evento } from "@/core"
+import type { Evento } from "@/core";
+import Informacao from "../shared/Informacao";
 
 export interface InformacoesEventosProps {
   evento: Evento
+  className: string
 }
 
-export default function InformacoesEventos (props: InformacoesEventosProps) {
+export default function InformacoesEventos(props: InformacoesEventosProps) {
+  const { evento } = props;
+
   return (
-    <div>
-      <span>Informações Evento {props.evento.nome}</span>
+    <div className={`flex flex-col ${props.className}`}>
+      <div className="flex-1 flex items-center gap-4 border border-zinc-800 px-6 py-3">
+        <span>
+          <span className="text-2xl font-black">{evento.alias}</span>
+        </span>
+        <span>
+        <span className="text-xl text-zinc-300">{evento.nome}</span>
+        </span>
+      </div>
+
+      <div className="flex gap-2">
+        <Informacao label="Data:">
+          <span>
+            {new Date(evento.data!).toLocaleDateString()}
+            {" às "}
+            {new Date(evento.data!).toLocaleTimeString()}
+          </span>
+        </Informacao>
+        <Informacao label="Local:">{evento.local}</Informacao>
+      </div>
+      
+        <Informacao label="Descrição:">{evento.descricao}</Informacao>
+      
     </div>
   )
 }
