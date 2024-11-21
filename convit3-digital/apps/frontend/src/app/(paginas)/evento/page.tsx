@@ -1,8 +1,6 @@
-export interface PageProps {
-  
-}
 
-export default function PaginaEvento(props: PageProps) {
+
+export default function PaginaEvento() {
   return (
     <div>
       <span>Evento</span>
