@@ -3,9 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import QRCode from "react-qr-code";
 
-export interface EventosProps { }
 
-export default function PaginaEventos(props: EventosProps) {
+export default function PaginaEventos(props: any) {
+
+  console.log(props)
 
   return (
     // <div className="flex flex-col gap-5 items-center ">

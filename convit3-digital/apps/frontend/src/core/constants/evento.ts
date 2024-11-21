@@ -1,9 +1,10 @@
 import { Evento } from '../evento'
 import { Id } from '../shared'
 
+
 const eventos: Evento[] = [
     {
-        id: Id.novo(),
+        id:'ldk0dwhee4n-cik62vgdh7r-z9e2r0isgs',
         alias: 'evento-fullstack',
         senha: 'senha123',
         nome: 'Evento de Desenvolvimento Fullstack',
@@ -44,7 +45,7 @@ const eventos: Evento[] = [
         ],
     },
     {
-        id: Id.novo(),
+        id: 'jydo42s930i-f76kgbo9ux-2ewkf37wvxs',
         alias: 'evento-js-avancado',
         senha: 'js2024',
         nome: 'Workshop Avançado de JavaScript',
@@ -75,7 +76,7 @@ const eventos: Evento[] = [
         ],
     },
     {
-        id: Id.novo(),
+        id: 'dtd8ua084ql-csi8yviof44-ji76riynb4q',
         alias: 'evento-dev-frontend',
         senha: 'front123',
         nome: 'Bootcamp de Desenvolvimento Frontend',
@@ -114,7 +115,7 @@ const eventos: Evento[] = [
         ],
     },
     {
-        id: Id.novo(),
+        id: 'cvnrnkb789e-oobhzanrfza-wq9obx19cm',
         alias: 'casamento-alberto-marina',
         senha: 'casamento2024',
         nome: 'Casamento do Alberto e Marina',
@@ -146,7 +147,7 @@ const eventos: Evento[] = [
         ],
     },
     {
-        id: Id.novo(),
+        id: 'vtndk2jl0mo-ysagpgam21j-8sp45reda4p',
         alias: 'aniversario-joao',
         senha: 'joao2024',
         nome: 'Aniversário do João - 30 Anos',
@@ -178,7 +179,7 @@ const eventos: Evento[] = [
         ],
     },
     {
-        id: Id.novo(),
+        id: '5zl5iafnifc-ljqatfoihes-jtp2vooret',
         alias: 'inauguracao-loja-estrela',
         senha: 'estrela2024',
         nome: 'Inauguração da Loja Estrela',
@@ -210,7 +211,7 @@ const eventos: Evento[] = [
         ],
     },
     {
-        id: Id.novo(),
+        id: 'j15ef1esblk-nexvvwvv51c-8t2aoopv5o5',
         alias: 'reuniao-familia-oliveira',
         senha: 'familia2024',
         nome: 'Reunião da Família Oliveira',
