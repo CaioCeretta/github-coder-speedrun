@@ -1,9 +1,8 @@
-export interface ConviteProps {}
 
-export default function Convite(props: ConviteProps) {
+export default function Convite(props: any) {
   return (
     <div>
-      <span>Convite</span>
+      <span>{props}</span>
     </div>
   );
 }

@@ -19,7 +19,7 @@ export default function PaginaEventos(props: EventosProps) {
           bg-zinc-800 rounded-lg
           ">
 
-            <div className="h-44 w-full relative">
+            <div className="h-52 w-full relative">
 
               <Image
                 src={evento.imagem}
