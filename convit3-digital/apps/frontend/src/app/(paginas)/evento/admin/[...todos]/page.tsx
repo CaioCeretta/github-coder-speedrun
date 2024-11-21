@@ -19,11 +19,10 @@ export default function PaginaAdminEvento(props: any) {
   const [evento, setEvento] = useState<Evento | null>(null)
   const [senha, setSenha] = useState<string | null>(params.todos[1])
 
+  const presentes = evento?.convidados.filter((c) => c.confirmado) ?? [];
+  const ausentes = evento?.convidados.filter((c) => !c.confirmado) ?? [];
 
-  const presentes = evento?.convidados.filter(c => c.confirmado).length ?? []
-  const ausentes = evento?.convidados.filter(c => !c.confirmado).length ?? []
-
-  const totalGeral = evento?.convidados.reduce((total: number, convidado: Convidado) => {
+  const totalGeral = presentes.reduce((total: number, convidado: Convidado) => {
     return total + convidado.qtdeAcompanhantes + 1;
   }, 0)
 
@@ -45,7 +44,12 @@ export default function PaginaAdminEvento(props: any) {
   return (
     <div className="flex flex-col items-center" >
       {evento ? (
-        <DashboardEvento evento={evento}/>
+        <DashboardEvento
+          evento={evento}
+          presentes={presentes}
+          ausentes={ausentes}
+          totalGeral={totalGeral ?? 0}
+         />
       ) : (
         <FormSenhaEvento />
       )
