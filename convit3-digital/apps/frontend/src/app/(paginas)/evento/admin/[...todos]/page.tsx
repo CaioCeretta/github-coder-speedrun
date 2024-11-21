@@ -1,7 +1,7 @@
 'use client'
 import DashboardEvento from "@/components/evento/DashboardEvento";
 import FormSenhaEvento from "@/components/evento/FormSenhaEvento";
-import { eventos, type Convidado, type Evento } from "@/core";
+import { type Convidado, type Evento, eventos } from "core";
 /* The spreading in the folder name, indicated that we are going to receive more than one parameter, in this case, the
 id and possibly its password, the spread return the params in key values, and we can access them by doing like so */
 

@@ -1,4 +1,4 @@
-import type { Convidado } from "@/core";
+import type { Convidado } from "core";
 
 export interface ConvidadoItemProps {
   convidado: Convidado

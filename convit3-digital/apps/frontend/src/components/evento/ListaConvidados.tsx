@@ -1,4 +1,4 @@
-import type { Convidado } from "@/core";
+import type { Convidado } from "core";
 import ConvidadoItem from "./ConvidadoItem";
 
 export interface ListaConvidadosProps {
@@ -12,7 +12,6 @@ export default function ListaConvidados(props: ListaConvidadosProps) {
       <ul className="flex flex-col gap-2">
       {props.convidados.map((convidado) => (
         <ConvidadoItem key={convidado.id} convidado={convidado}>
-
           </ConvidadoItem>
       ))}
       </ul>

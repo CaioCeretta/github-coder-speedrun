@@ -1,4 +1,4 @@
-import type { Convidado, Evento } from "@/core";
+import type { Convidado, Evento } from "core";
 import Estatistica from "../shared/Estatistica";
 import AcessarViaQrCode from "./AcessarViaQrCode";
 import InformacoesEventos from "./InformacoesEvento";
