@@ -39,19 +39,19 @@ body {
       @apply bg-blue-600
     }
 
-    .botao.green {
+    .botao.verde {
       @apply bg-green-500 text-white
     }
 
-    .botao.green:hover {
+    .botao.verde:hover {
       @apply bg-green-600 text-white
     }
 
-    .botao.red {
+    .botao.vermelho {
       @apply bg-red-500 text-white
     }
 
-    .botao.red:hover {
+    .botao.vermelho:hover {
       @apply bg-red-600 text-white
     }
   }
