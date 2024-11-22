@@ -34,6 +34,27 @@ that module unless we explictly declare that this resource will be visible outsi
 
 ## Controllers
 
+In the example above we've just created the eventos module, changed to its folder, and executed the command to generate a
+controller with the --flat flag, which means that it won't create another folder, but place this controller inside the
+folder where we are.
+
+And now that we have our controller, its through the controller that we are going to map our end points inside of it, the
+urls of our api to then, we start integrating it with our frontend. 
+
+## API End Points
+
+and endpoint is created as, every method can be used to here,
+
+on methods that require body arguments, 
+
+@MethodName()
+async functionName() {
+  // Code for the method
+}
+
+The first endpoint we created is for the eventos controller, a @Get(), an empty parameter means that we don't have a specific
+name for that, so it will be reached with the url/eventos, then, we are simply returning the eventos we have on our constants
+inside core folder
 
 
 
