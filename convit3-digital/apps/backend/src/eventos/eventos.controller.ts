@@ -1,4 +1,24 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
+import { Data, eventos, type Evento } from 'core';
 
 @Controller('eventos')
-export class EventosController {}
+export class EventosController {
+  @Get()
+  async buscarEventos() {
+    return eventos.map(this.serializar);
+  }
+
+  private serializar(evento: Evento) {
+    return {
+      ...evento,
+      data: Data.formatar(evento.data),
+    };
+  }
+
+  private deserializar(evento: any): Evento {
+    return {
+      ...evento,
+      data: Data.desformatar(evento.data),
+    };
+  }
+}

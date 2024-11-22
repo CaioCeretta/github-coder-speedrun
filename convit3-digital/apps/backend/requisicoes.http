@@ -2,4 +2,6 @@ GET http://localhost:4000/ping
 
 ###
 
-GET http://localhost:4000/ping
+GET http://localhost:4000/eventos
+
+
