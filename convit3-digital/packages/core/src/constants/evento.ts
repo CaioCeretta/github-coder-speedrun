@@ -1,10 +1,9 @@
 import { Evento } from '../evento'
 import { Id } from '../shared'
 
-
 const eventos: Evento[] = [
     {
-        id:'ldk0dwhee4n-cik62vgdh7r-z9e2r0isgs',
+        id:'0da054a5-91ef-4ad6-ae2f-bd30ba0f5f0d',
         alias: 'evento-fullstack',
         senha: 'senha123',
         nome: 'Evento de Desenvolvimento Fullstack',
@@ -45,7 +44,7 @@ const eventos: Evento[] = [
         ],
     },
     {
-        id: 'jydo42s930i-f76kgbo9ux-2ewkf37wvxs',
+        id: 'cfe1eabc-df67-40a2-8295-1e6dd48c3a15',
         alias: 'evento-js-avancado',
         senha: 'js2024',
         nome: 'Workshop Avançado de JavaScript',
@@ -76,7 +75,7 @@ const eventos: Evento[] = [
         ],
     },
     {
-        id: 'dtd8ua084ql-csi8yviof44-ji76riynb4q',
+        id: '346e2aa1-ad66-4de7-96db-e3cb353f77e4',
         alias: 'evento-dev-frontend',
         senha: 'front123',
         nome: 'Bootcamp de Desenvolvimento Frontend',
@@ -115,7 +114,7 @@ const eventos: Evento[] = [
         ],
     },
     {
-        id: 'cvnrnkb789e-oobhzanrfza-wq9obx19cm',
+        id: 'a15b6b40-19ae-4ee3-bbe1-4d4c030042d0',
         alias: 'casamento-alberto-marina',
         senha: 'casamento2024',
         nome: 'Casamento do Alberto e Marina',
@@ -147,7 +146,7 @@ const eventos: Evento[] = [
         ],
     },
     {
-        id: 'vtndk2jl0mo-ysagpgam21j-8sp45reda4p',
+        id: 'f9b5bd0f-ca80-47ca-9b71-8241652100e8',
         alias: 'aniversario-joao',
         senha: 'joao2024',
         nome: 'Aniversário do João - 30 Anos',
@@ -179,7 +178,7 @@ const eventos: Evento[] = [
         ],
     },
     {
-        id: '5zl5iafnifc-ljqatfoihes-jtp2vooret',
+        id: '632f7e34-a6d6-43e8-abf2-fbf7b0b4ad6f',
         alias: 'inauguracao-loja-estrela',
         senha: 'estrela2024',
         nome: 'Inauguração da Loja Estrela',
@@ -211,7 +210,7 @@ const eventos: Evento[] = [
         ],
     },
     {
-        id: 'j15ef1esblk-nexvvwvv51c-8t2aoopv5o5',
+        id: '74218168-ba50-4196-9c37-1247bde7433b',
         alias: 'reuniao-familia-oliveira',
         senha: 'familia2024',
         nome: 'Reunião da Família Oliveira',
