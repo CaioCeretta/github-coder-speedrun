@@ -56,5 +56,16 @@ The first endpoint we created is for the eventos controller, a @Get(), an empty 
 name for that, so it will be reached with the url/eventos, then, we are simply returning the eventos we have on our constants
 inside core folder
 
+## Endpoints with decorators
+
+Now we'll create an api end point, that fetches an 'evento' based on its id or alias, so in this case we will create a function
+but in this case, we are passing as a parameter the 'idOuAlias' and mark this method as @Get(':idOuAlias') and on the parameter
+we pass a @Param('sameNameAsTheGetParameter'), and after that decorator, we are saying that the url will have a parameter,
+based on the : in the @Get(':idOuAlias') that will be modified according to our url, and then, pass that as a parameter to
+our method. and we'll call the method with the get params e.g.
+
+GET http://localhost:4000/eventos/evento-fullstack
+
+
 
 
