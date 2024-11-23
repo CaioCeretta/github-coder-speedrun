@@ -89,6 +89,36 @@ should be something like this
     "senha": "senha123"
   }
 
+## Db, Injectable, Global
+
+To start integrating our prisma db, we'll generate a new module, named db.
+
+Inside this db module, we will create a provider for prisma, and on this provider we will extend the PrismaClient and implement
+the methods to deal with the lifecycle of this class, so it will implement the onModuleDestroy and the OnModuleInit.
+Inside this object, we'll say to connect to the db, whenever this component is instantiated, and disconnect whenever it stops,
+we are doing this because we want all the behavior to be done by the framework, so who is instantiating and who is destroying
+the class, is the framework, so basically we'll have the framework managing this lifecycle
+
+We'll also say that it is @Injectable() and @Global(), because we want to inject that provider in another classes
+and want it to be available globally.
+
+Then we'll need to do some changes for, starting from our event module, we'll be able to access this prisma class we just
+created.
+
+To do this, inside our db.module, we'll export the PrismaProvider, so it's not enough for us to just create the class, but
+we need to explictly say that this SHOULD be visible outside the module and that's why there is this modularizing idea
+inside next, because this way, it helps us to protect the code to not be used in an improper manner in another folder of
+our app, but when we say that we're creating a module or file, and this file will be visible to the outside, we are saying
+that other codes can depend on this file.
+
+Now on our eventos module, we need to say that we're importing this other module, because the db module, exports the prisma
+provider and in nest the communication is between modules, a module depends on another module.
+
+Now, as the last step, we will create another provider named eventos.prisma, inside the eventos module folder, and inside
+it, we'll say that this is injectable, and in the constructor, it will have an object as a readonly prisma of the type Prisma
+Provider, now, whenever we call prisma, it will know that we are talking about that class, and we will be able to run commands
+to communicate with the DB
+
 
 
 
