@@ -66,6 +66,34 @@ our method. and we'll call the method with the get params e.g.
 
 GET http://localhost:4000/eventos/evento-fullstack
 
+## POST Endpoint
+
+For the post endpoint, we'll need to receive and pass the parameters in the body, the first change is on the end point, it
+should be something like this
+
+  async acessarEvento(@Body() dados: { id: string; senha: string }) {
+    ...
+  }
+
+  in this case we don't pass any dynamic value to the @Post decorator, and on the function parameters, and the data we
+  are receiving in the body, we are naming it based on the @Body()
+  and on the post method, we'll do it like: 
+
+  Beneath the POST endpoint, we'll set the endpoint as application/json, then, we'll pass the required data to it, e.g
+
+  POST http://localhost:4000/eventos/acessar
+  Content-Type: application/json
+
+  {
+    "id": "0da054a5-91ef-4ad6-ae2f-bd30ba0f5f0d",
+    "senha": "senha123"
+  }
+
+
+
+
+
+
 
 
 
