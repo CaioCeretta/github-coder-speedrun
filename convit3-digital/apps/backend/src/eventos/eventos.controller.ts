@@ -1,8 +1,23 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { Data, eventos, Id, type Evento } from 'core';
+import { Data, eventos, Id, type Convidado, type Evento } from 'core';
 
 @Controller('eventos')
 export class EventosController {
+  @Post(':alias/convidado')
+  async salvarConvidado(
+    @Param('alias') alias: string,
+    @Body() convidado: Convidado,
+  ) {
+    const evento = eventos.find((evento) => evento.alias === alias);
+
+    if (!evento) {
+      throw new Error('Senha não corresponde ao evento.');
+    }
+
+    evento.convidados.push(convidado);
+    return this.serializar(evento);
+  }
+
   @Post('acessar')
   async acessarEvento(@Body() dados: { id: string; senha: string }) {
     const evento = eventos.find(

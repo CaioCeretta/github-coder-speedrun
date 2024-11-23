@@ -27,4 +27,16 @@ Content-Type: application/json
   "senha": "senha1123"
 }
 
+###
 
+POST http://localhost:4000/eventos/reuniao-familia-oliveira/convidado
+Content-Type: application/json
+
+{
+  "id": "7a33a412-2597-4e57-97fb-66a4a7c1f55f",
+  "nome": "Caio Ceretta",
+  "email": "caioceretta@gmail.com",
+  "confirmado": true,
+  "possuiAcompanhantes": true,
+  "qtdeAcompanhantes": 2
+}
