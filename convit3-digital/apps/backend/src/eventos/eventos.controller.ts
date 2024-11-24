@@ -59,7 +59,7 @@ export class EventosController {
     }
 
     if (evento.senha !== dados.senha) {
-      throw new Error('Senha não corresponde ao evento.');
+      throw new HttpException('Senha não corresponde ao evento.', 400);
     }
 
     return this.serializar(evento);

@@ -131,6 +131,25 @@ constructor(readonly repo: EventoPrisma) for the controller to understand that t
 and pass it through. Now, we need to simply change the behavior of our methods by saying that they will use the repo constant
 to make the db comm.
 
+## Error Filter
+
+Here, in the root of our src, we created an error.filter.ts, in this file we'll export as default a class named ErroFilter,
+which will implements an ExceptionFilter that comes from nestjs/common, and we will use a decorator named @Catch, that also
+comes from nest, and we'll pass exactly which error that we want to handle.
+So to start, we will use a generic Error for the @Catch() decorator, then, we will implement the required function when
+we implement the ExceptionFilter, that is a catch, which receives an exception and a host. The exception is the error we
+are getting, and the host are the arguments we can get, like the request and the response.
+After we create the context, and get the request and response from that context, we are going to get the status of the
+exception. That in the end, we check if the exception has a status, otherwide its 500, and we return the response the
+statusCode, the time, where did this error originate, and the message of the exception.
+
+Now we need to register this filter inside our main.ts, so we'll add an app.useGlobalFilters(new ErroFilter());
+to it.
+
+But there are other options to this, we could simply, where we throw the error, instead of using the Error class, we could
+use the HttpException that nest offers us, but there is another addendum regarding this function, we must not use the Error
+offered by Nest, in our business rules, because the ideal is that we isolate as much as possible our business rules, so it
+won't be tied to nothing.
 
 
 
