@@ -119,8 +119,17 @@ it, we'll say that this is injectable, and in the constructor, it will have an o
 Provider, now, whenever we call prisma, it will know that we are talking about that class, and we will be able to run commands
 to communicate with the DB
 
+## Integrating our backend app with our database
 
+To do so, we'll utilize this Evento.Prisma class, so because this class, is an injectable class, the lifecycle management 
+of this class will be done by the framework, the framework will be the one to create this class, and pass this class as a
+parameter to our controller, will be the done from it, so we do not need to worry about it.
 
+The only thing we need to do is, on the EventosController, that one of the parameters of the constructor is
+
+constructor(readonly repo: EventoPrisma) for the controller to understand that this class is required for our controller
+and pass it through. Now, we need to simply change the behavior of our methods by saying that they will use the repo constant
+to make the db comm.
 
 
 

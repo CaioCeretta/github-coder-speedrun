@@ -76,9 +76,6 @@ var Id = class {
     return (0, import_uuid.validate)(id);
   }
 };
-for (let i = 0; i < 100; i++) {
-  console.log(Id.novo());
-}
 
 // src/shared/Senha.ts
 var Senha = class {

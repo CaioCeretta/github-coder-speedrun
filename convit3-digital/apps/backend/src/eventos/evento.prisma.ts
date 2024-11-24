@@ -8,7 +8,10 @@ export class EventoPrisma {
 
   async salvar(evento: Evento) {
     return this.prisma.evento.create({
-      data: evento as any,
+      data: {
+        ...(evento as any),
+        convidados: { create: evento.convidados },
+      },
     });
   }
 
@@ -49,10 +52,13 @@ export class EventoPrisma {
    It's actually a good practice to avoid as any, because it bypasses ts type-checking capabilities, making our code prone
    and ts's goal is to provide us with static guarantees, whereas as any undermines that purpose.
    */
-  async buscarPorId(id: string): Promise<Evento | null> {
+  async buscarPorId(
+    id: string,
+    completo: boolean = false,
+  ): Promise<Evento | null> {
     return this.prisma.evento.findUnique({
       where: { id },
-      include: { convidados: true },
+      include: { convidados: completo },
     }) as any;
   }
 
