@@ -1,4 +1,4 @@
-import { bgRed500, centerGrow, textWhite, textXL } from "@/style";
+import { bgRed500, centerGrow, textWhite, textXl } from "@/style";
 import { Text, View } from "react-native";
 
 export default function Index() {
@@ -8,7 +8,7 @@ export default function Index() {
         centerGrow
       ]}
     >
-      <Text style={[textXL, textWhite, bgRed500]}>React Native Configurado!</Text>
+      <Text style={[textXl, textWhite, bgRed500]}>React Native Configurado!</Text>
     </View>
   )
 }
