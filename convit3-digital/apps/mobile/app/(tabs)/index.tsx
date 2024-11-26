@@ -2,7 +2,7 @@ import Logo from "@/components/template/Logo";
 import { bgBlack, centerGrow } from "@/style";
 import { ImageBackground } from "react-native";
 
-export default function Index() {
+export default function TelaInicio() {
   return (
     <ImageBackground
       source={require("@/assets/images/background.png")}
