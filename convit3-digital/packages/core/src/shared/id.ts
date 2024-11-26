@@ -1,8 +1,9 @@
-import { v4 as uuid, validate } from 'uuid'
+import "react-native-get-random-values";
+import { v4 as uuid, validate } from "uuid";
+
 
 export default class Id {
   static novo(): string {
-    /* toString(36) quer dizer que irá criar uma string com base em todas letras e numeros*/
     return uuid()
   }
 

@@ -1,5 +1,15 @@
-import { Stack } from 'expo-router'
 
+import { ProvedorEventos } from '@/data/contexts/ContextoEventos';
+import { Stack } from 'expo-router';
 export default function RootLayout() {
-  return <Stack />
+  return (
+    <ProvedorEventos>
+    <Stack>
+      <Stack.Screen name="(tabs)" options={{
+        headerShown: false
+      }}
+      />
+    </Stack>
+    </ProvedorEventos>
+  )
 }
