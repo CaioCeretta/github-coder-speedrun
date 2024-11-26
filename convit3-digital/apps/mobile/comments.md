@@ -236,6 +236,9 @@ will be dynamic passed on click.
 The difference between the folder being named as [id] and have a page.tsx inside it, is merely user preference, both will
 have the same result
 
+For the routing of the event detail page, as we are working with stacks in the RootLayout, we'll go to that file and create
+a new <Stack.Screen> with the name of the routes we are going in, in this case name="(stack)/eventos/[id]". 
+
 
 
   

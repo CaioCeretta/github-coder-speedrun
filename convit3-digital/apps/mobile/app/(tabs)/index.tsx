@@ -1,3 +1,5 @@
+import "react-native-get-random-values";
+
 import Logo from "@/components/template/Logo";
 import { bgBlack, centerGrow } from "@/style";
 import { ImageBackground } from "react-native";
