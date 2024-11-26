@@ -1,6 +1,5 @@
 # React Native Comments
 
-
 ## Init
 First things first, when we create an expo project, it will start with a few hooks and components, and also a script to
 reset the project. So the first thing we'll do is to run this script with node, and if there is any folder named hooks,
@@ -18,6 +17,50 @@ EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start
 
 this code is saying that our project will be inside a workspace, to expo understand that we are using a workspace inside
 our project.
+
+## How is this code working?
+
+On the RootLayout we utilize the component <Stack>, that defines a stack navigation to manage the main routes of the app.
+The Stack.Screen with the name (tabs), its maping to a folder named tabes inside the file structure, so react native
+understands that the content inside the folder (tabs) will be rendered when the main route is accessed. The (tabs) is treated
+like a specific routes layout, where it encapsulates the screens or sub routes associated.
+
+We'll have specific cases, where we, for example, inside the tabs folder, link to a file /eventos/${evento.id} and this
+eventos is located in the stack folder, even though we are in the tabs.
+
+Expo Router understands this route like this:
+
+1 - Main Stack, in our root layout we defined a Stack, and the Stack.Screen is pointing to the folder (tabs), this mean
+that any folder inside the (tabs) will be managed by the Stack layout.
+
+2 - Link dynamic on /eventos/$id
+
+When we create a link like this, what is happening here, is that expo-router tries to find the corresponding route on the
+file structure, the route /eventos/${id} maps to (tabs)/eventos/[id].tsx, but we got to stack, because the tabs behavior
+was configured in the Stack, so he understands that the tabs routes also pass through there
+
+3 - Link working without the prefix /tabs/
+
+In our project, expo-router doesn't require us to include explictly the full path /tabs/eventos because he automatically
+resolves relative routes to the folder structure and the context of current layout.
+Because we declared the RootLayout as a Stack and inside we configured (tabs) as a subroute, and the route /eventos/${id}
+even though it is located in tabs, all the routes inside tabs will automatically be nested in the Stack. So even if (tabs)
+is a tabs layout, he is "inside" the Stack.
+
+So basically, even if we are on the eventos.tsx inside (tabs), stack is encapsulating everything, so he is configured as
+the main layout that wraps (tabs), and expo router resolves the routes in the higher level, so he doesn't consider
+automatically that a route like /eventps/${id} belongs exclusively to (tabs) or at the local context where the link is defined.
+He searches the route in the context of the global hierarchy, and because Stack is on the top, the route is resolved into it.
+
+So if we had two folders eventos, one in stack and one in eventos and we want to target the eventos, we would have to pass it as
+
+<Link href="/tabs/eventos/${id}" />
+
+
+
+
+
+
 
 ## Styling
 
@@ -184,7 +227,14 @@ We must not forget that we are using as a dependency of our app, the core packag
 the package.json
 
 
+## Event Details Page
 
+The event detail page, differently from the events page, is located in the stack folder, where we'll change a bit how it
+is done, so we have an eventos folder inside of stack and inside the eventos we have an [id].tsx file, whese the [id]
+will be dynamic passed on click.
+
+The difference between the folder being named as [id] and have a page.tsx inside it, is merely user preference, both will
+have the same result
 
 
 
