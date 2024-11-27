@@ -1,4 +1,4 @@
-import { Evento, eventos as eventosMock } from 'core';
+import { Evento } from 'core';
 import { createContext, useState } from "react";
 
 interface ContextoEventosProps {
@@ -14,7 +14,7 @@ export const ContextoEventos = createContext<ContextoEventosProps>({} as Context
 
 export function ProvedorEventos(props: any) {
   const [evento, setEvento] = useState<Evento | null>(null)
-  const [eventos, setEventos] = useState<Evento[]>(eventosMock)
+  const [eventos, setEventos] = useState<Evento[]>([])
   
   // const [qrCode, setQrCode] = useState<
   function selecionarEvento(id: string) {
