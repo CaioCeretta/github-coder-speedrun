@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 
 export default function useLocalStorage() {
 
-  const salvarItem = useCallback(async function (chave: string, valor: string) {
+  const salvarItem = useCallback(async function (chave: string, valor: any) {
     await AsyncStorage.setItem(chave, JSON.stringify(valor));
   }, [])
 
