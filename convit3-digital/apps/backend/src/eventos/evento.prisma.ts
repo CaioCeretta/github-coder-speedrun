@@ -6,7 +6,7 @@ import { PrismaProvider } from 'src/db/prisma';
 export class EventoPrisma {
   constructor(readonly prisma: PrismaProvider) {}
 
-  async salvar(evento: Evento) {
+  salvar(evento: Evento) {
     return this.prisma.evento.create({
       data: {
         ...(evento as any),
@@ -15,7 +15,7 @@ export class EventoPrisma {
     });
   }
 
-  async salvarConvidado(evento: Evento, convidado: Convidado) {
+  salvarConvidado(evento: Evento, convidado: Convidado) {
     /* The connect field inside the data object is where the relationship is defined. it tells prisma to associate the Convidado
     being created with an already existing Evento who id matches evento.id */
 

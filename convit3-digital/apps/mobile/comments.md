@@ -239,6 +239,28 @@ have the same result
 For the routing of the event detail page, as we are working with stacks in the RootLayout, we'll go to that file and create
 a new <Stack.Screen> with the name of the routes we are going in, in this case name="(stack)/eventos/[id]". 
 
+## Add Event Via QrCode
 
+so the first thing is that we have a function in our context which holds the events state that when we read a qrcode, this
+function will be triggered with that read code, in the function implementation, we are assigning to a constant idESenha
+the value of the json parsing of that qrcode.
 
-  
+We are using a qrcode, which we firstly defined in the eventos, the content of it is that it has an id and a password, after
+we successfully read that qrcode, we'll do as follows.
+
+The id and the senha are the required data to access the event, and now we are
+firstly importing the httpPost from our useAPI hook, we previously created for
+accessing the database
+
+So in this function we will pass the eventos/acessar, that is an endpoint on our API, which receives the id and the senha
+of the event, this endpoint checks if the id passed exists in a persisted event, and if the senha is equal to the evento
+returned column senha. If there isn't an evento, we will exclude the event locally, in case it does not exist.
+
+Now we create a constant novosEventos that holds every event, that does not have the same id as the evento fetched
+
+We push that evento to that novosEventos array, save the item locally as the key eventos using the localStorage function
+we created,
+
+Now we are creating a carregarEventos function, where we'll get the eventos array saved in the localStorage, and for each
+of them saved on the localStorage, we'll execute the function a carregarEvento function, which will simply check if the id
+e senha of the eventos being passed are consistent, and will run the current one on the function
