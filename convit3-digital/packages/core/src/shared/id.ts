@@ -1,16 +1,13 @@
 import "react-native-get-random-values";
 import { v4 as uuid, validate } from "uuid";
 
-
 export default class Id {
   static novo(): string {
-    return uuid()
+    return uuid();
   }
 
   static valido(id: string): boolean {
-    return validate(id)
+    return validate(id);
   }
-
 }
-
 
