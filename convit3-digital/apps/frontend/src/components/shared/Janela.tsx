@@ -11,7 +11,7 @@ export interface JanelaProps {
 
 export default function Janela(props: JanelaProps) {
   return (
-    <div className='relative'>
+    <div className='relative rounded-xl overflow-hidden border border-zinc-800'>
       <Image src={
         props.background
           ? props.background
