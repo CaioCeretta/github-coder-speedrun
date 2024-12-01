@@ -28,7 +28,6 @@ export default function Janela(props: JanelaProps) {
       In summary with object cover the image will maintain its aspect ratio, but it might overflow the container, getting
       cropped to ensure no empty space is left, and without it, the default behavior is object: contain, which resizes the
       image to fit entirely inside the container, but it may leave empty spaces if the ar doesn't match
-
       */}
       <div className='bg-black/80'>
         <div className='flex gap-7 p-6 items-center'>

@@ -1,5 +1,6 @@
 'use client'
 
+import FormEvento from "@/components/evento/FormEvento";
 import Janela from "@/components/shared/Janela";
 import useEvento from "@/data/hooks/useEvento";
 
@@ -14,19 +15,12 @@ export default function PaginaEvento() {
   return (
     <div>
       <Janela
-      label="Qual evento vamos criar?"
-      titulo={evento?.nome ? evento?.nome : 'Novo Evento'}
-      imagem={evento?.imagem}
-      background={evento?.imagemBackground}
+        label="Qual evento vamos criar?"
+        titulo={evento?.nome ? evento?.nome : 'Novo Evento'}
+        imagem={evento?.imagem}
+        background={evento?.imagemBackground}
       >
-        <span>evento</span>
-        <span>evento</span>
-        <span>evento</span>
-        <span>evento</span>
-        <span>evento</span>
-        <span>evento</span>
-        <span>evento</span>
-        <span>evento</span>
+        <FormEvento />
       </Janela>
     </div>
   );
