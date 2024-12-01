@@ -6,16 +6,26 @@ export interface PassosProps {
   labels: string[]
   labelAcao: string
   acao: () => void
+  permiteProximoPasso?: boolean[];
+  /*
+    permiteProximoPasso will be an attribute so we can validate if the step can go on, based on what we have validated
+    on the form.
 
+    So for example, if we have 3 steps and 3 children elements being passed, we also need to send three boolean values
+    to say if each one of them has been concluded
+  */
   children: any
 }
+
+
 
 export default function Passos(props: PassosProps) {
   const [passoAtual, setPassoAtual] = useState(0)
 
+
   function renderizarLabels() {
     return (
-      <div  className='flex gap-4 select-none'>
+      <div className='flex gap-4 select-none'>
         {props.labels.map((label, i) => {
           const selecionado = passoAtual === i
 
@@ -26,7 +36,7 @@ export default function Passos(props: PassosProps) {
                   h-9 w-9 rounded-full
                   ${selecionado ? "bg-white text-black" : "bg-zinc-700 text-zinc-400"}
                 `}
-                >{i + 1}</span>
+              >{i + 1}</span>
               <span className={`
                   ${selecionado ? "text-white" : "text-zinc-600"}
                 `}
@@ -77,6 +87,9 @@ export default function Passos(props: PassosProps) {
   React will call it when the button is clicked.
   */
 
+  /* This is basically saying that if we don't pass this props, it will allow */
+  const permiteProximoPasso = props.permiteProximoPasso?.[passoAtual] ?? true;
+
   return (
     <div className='flex-1 flex flex-col gap-10 w-full'>
       <div className='self-center'>
@@ -91,7 +104,7 @@ export default function Passos(props: PassosProps) {
           onClick={passoAnterior}
           className={`botao ${semPassoAnterior()
             ? 'bg-zinc-400 cursor-not-allowed opacity-50'
-            : 'bg-green-700 hover:bg-green-600 text-white'} 
+            : 'bg-zinc-700 hover:bg-zinc-600 text-white'} 
             `}
         >
           <span>Anterior</span>
@@ -100,17 +113,22 @@ export default function Passos(props: PassosProps) {
         {!semProximoPasso() ? (
           <button
             onClick={proximoPasso}
-            disabled={semProximoPasso()}
+            disabled={!permiteProximoPasso || semProximoPasso()}
             className={`botao ${semProximoPasso()
               ? 'bg-zinc-400 cursor-not-allowed opacity-50'
               : 'bg-green-700 hover:bg-green-600 text-white'} 
             `}
           >
             Próximo
-          </button> ) : (
+          </button>) : (
           <button
+            disabled={!permiteProximoPasso}
             onClick={props.acao}
-            className={`botao bg-green-700 hover:bg-green-600 text-white `}>
+            className={`botao bg-green-700 hover:bg-green-600 text-white
+            ${!permiteProximoPasso
+                ? 'bg-zinc-400 cursor-not-allowed opacity-50'
+                : 'bg-green-700 hover:bg-green-600 text-white'} 
+            }`}>
             {props.labelAcao}
           </button>
         )}
