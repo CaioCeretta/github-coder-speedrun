@@ -13,6 +13,31 @@ export interface PassosProps {
 export default function Passos(props: PassosProps) {
   const [passoAtual, setPassoAtual] = useState(0)
 
+  function renderizarLabels() {
+    return (
+      <div  className='flex gap-4 select-none'>
+        {props.labels.map((label, i) => {
+          const selecionado = passoAtual === i
+
+          return (
+            <div key={i} className='flex items-center gap-2'>
+              <span className={`
+                  flex items-center justify-center
+                  h-9 w-9 rounded-full
+                  ${selecionado ? "bg-white text-black" : "bg-zinc-700 text-zinc-400"}
+                `}
+                >{i + 1}</span>
+              <span className={`
+                  ${selecionado ? "text-white" : "text-zinc-600"}
+                `}
+              >{label}</span>
+            </div>
+          )
+        })}
+      </div>
+    )
+  }
+
   function semPassoAnterior() {
     return passoAtual === 0
   }
@@ -54,8 +79,8 @@ export default function Passos(props: PassosProps) {
 
   return (
     <div className='flex-1 flex flex-col gap-10 w-full'>
-      <div>
-        Labels
+      <div className='self-center'>
+        {renderizarLabels()}
       </div>
       <div>
         {props.children[passoAtual]}
