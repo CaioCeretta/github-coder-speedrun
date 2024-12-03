@@ -36,6 +36,8 @@ export function ProvedorContextoEvento(props: any) {
     criarConvidadoVazio()
   );
 
+
+
   const salvarEvento = useCallback(
     async function () {
       try {
@@ -93,6 +95,8 @@ export function ProvedorContextoEvento(props: any) {
 
   useEffect(() => {
     if (evento?.alias) validarAlias();
+
+    console.log(evento)
   }, [evento?.alias, validarAlias]);
 
   return (
