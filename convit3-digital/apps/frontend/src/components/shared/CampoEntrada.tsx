@@ -50,12 +50,16 @@ export default function CampoEntrada(props: CamposEntradaProps) {
 
       */}
       <div className='flex flex-col'>
-      {props.label && <label>{props.label}</label>}
-      {props.descricao && <p>{props.descricao}</p>}
+      {props.label && <label className='text-lg font-black text-white'>{props.label}</label>}
+      {props.descricao && ( <p className='text-sm font-light text-zinc-400 -mt-1'>
+      
+        {props.descricao}
+      </p> ) }
       </div>
       
       <input {...props} type={props.type ?? "text"}
-        className='w-full px-3 py-2 border rounded '
+        className='w-full px-3 py-2 border border-white/20 rounded-md bg-black/50
+          focus:border-white/50 co '
       />
       {props.erro && (
         <span className='pl-2 text-sm text-red-500'>
@@ -63,7 +67,7 @@ export default function CampoEntrada(props: CamposEntradaProps) {
         </span>
       )}
 
-      {props.observacao && (
+      {!props.erro && props.observacao && (
         <span className='text-xs pl-2 text-yellow-300'>{props.observacao}</span>
       )}
 

@@ -97,7 +97,7 @@ export function ProvedorContextoEvento(props: any) {
     if (evento?.alias) validarAlias();
 
     console.log(evento)
-  }, [evento?.alias, validarAlias]);
+  }, [evento?.alias, validarAlias, evento]);
 
   return (
     <ContextoEvento.Provider
