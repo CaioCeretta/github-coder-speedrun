@@ -65,3 +65,17 @@ Content-Type: application/json
         }
     ]
 }
+
+###
+
+POST http://localhost:4000/eventos/aniversario-joao/convidado
+Content-Type: application/json
+
+{
+  "nome": "Caioooooooooooooooo",
+  "email": "caio@caio.caio",
+  "confirmado": true,
+  "possuiAcompanhantes": true,
+  "qtdeAcompanhantes": 10 
+}
+
