@@ -54,6 +54,10 @@ body {
     .botao.vermelho:hover {
       @apply bg-red-600 text-white
     }
+
+    input {
+      color-scheme: dark;
+    }
   }
 
 
