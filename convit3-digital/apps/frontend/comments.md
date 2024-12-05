@@ -70,7 +70,7 @@ validarAlias function, what this function will do, at first it will call the bac
 with that alias and that id stored in the db and set the alias to the evento state, for true or false, then on the component
 on the value it receives as props, we are passing it with a function we have on the core folder, which is shared by all 
 components, named formatar, and it'll take any blank space, uppercase characters, and transform it to a way the db wants
-so 'React Native Course 2024' will turn out to be 'react-native-course-2024'.
+so 'React Native Course 2024' will turn out to be 'react-native-course-2024' automatically.
 
 
 
