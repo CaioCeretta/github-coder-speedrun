@@ -69,13 +69,13 @@ export class EventoPrisma {
     return this.prisma.evento.findUnique({
       select: {
         id: true,
-        alias: true,
         nome: true,
         descricao: true,
         data: true,
         local: true,
         imagem: true,
         imagemBackground: true,
+        alias: true,
         senha: completo,
         publicoEsperado: completo,
         convidados: completo,

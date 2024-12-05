@@ -2,6 +2,7 @@ import React from 'react'
 import Passos from '../shared/Passos'
 import useEvento from '@/data/hooks/useEvento'
 import CampoEntrada from '../shared/CampoEntrada'
+import { Alias } from 'core'
 
 export default function FormEvento() {
   const { evento, salvarEvento, aliasValido, alterarEvento } = useEvento()
@@ -21,20 +22,25 @@ export default function FormEvento() {
   return (
     <div>
       <Passos
-        
         labels={labels}
         labelAcao='Salvar'
         acao={salvarEvento}
         permiteProximoPasso={permiteProximoPasso}
       >
-        <div>
+        <div className='flex flex-col '>
           <CampoEntrada
             descricao='Identificador único e exclusivo para o evento (usado na URL)'
             label='Identificador'
             observacao='O identificador não pode ser alterado'
-            erro={"Identificador já está em uso"}
-            value={evento.alias ?? ''}
-            onChange={(e) => alterarEvento({alias: e.target.value})}
+            value={Alias.formatar(evento.alias ?? '')}
+            erro={aliasValido ? "" : "Identificador já está em uso"}
+            onChange={(e) => alterarEvento({...evento, alias: e.target.value})}
+          />
+          <CampoEntrada
+            descricao='Nome do evento (ex.: "Festa de aniversário do João")'
+            label='Nome'
+            value={evento.nome ?? ''}
+            onChange={(e) => alterarEvento({...evento, nome: e.target.value})}
           />
         </div>
         <div>Passo 2</div>

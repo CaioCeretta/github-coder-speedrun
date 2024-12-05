@@ -88,7 +88,7 @@ export function ProvedorContextoEvento(props: any) {
         );
         setAliasValido(valido);
       } catch (error: any) {
-        console.error(error)      }
+        console.error(error.mensagem)      }
     },
     [httpGet, evento]
   );
@@ -96,8 +96,7 @@ export function ProvedorContextoEvento(props: any) {
   useEffect(() => {
     if (evento?.alias) validarAlias();
 
-    console.log(evento)
-  }, [evento?.alias, validarAlias, evento]);
+  }, [evento?.alias, validarAlias]);
 
   return (
     <ContextoEvento.Provider
