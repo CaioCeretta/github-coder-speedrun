@@ -48,7 +48,7 @@ export function ProvedorContextoEvento(props: any) {
           data: Data.desformatar(eventoCriado.data),
         });
       } catch (error: any) {
-        console.error(error)
+        console.log(error)
       }
     },
     [evento, httpPost, router]

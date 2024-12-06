@@ -16,7 +16,7 @@ export default function FormEvento() {
   const permiteProximoPasso: boolean[] = [
     !!evento.alias && !!evento.nome && aliasValido,
     !!evento.data && !!evento.local,
-    false
+    !!evento.imagem && (evento.publicoEsperado ?? 0) > 0 &&  !!evento.descricao
   ]
 
   return (
@@ -67,18 +67,30 @@ export default function FormEvento() {
         </div>
         <div className='flex flex-col gap-5'>
           <CampoEntrada
-            label='Data'
-            descricao='Identificador único e exclusivo para o evento (usado na URL)'
-            observacao='O identificador não pode ser alterado'
-            value={Alias.formatar(evento.alias ?? '')}
-            erro={aliasValido ? "" : "Identificador já está em uso"}
-            onChange={(e) => alterarEvento({...evento, alias: e.target.value})}
+            label='Descrição'
+            descricao='Descrição do evento (ex.: Só entra se tiver presente)'
+            value={evento.descricao ?? ''}
+            onChange={(e) => alterarEvento({...evento, descricao: e.target.value})}
           />
           <CampoEntrada
-            descricao='Nome do evento (ex.: "Festa de aniversário do João")'
-            label='Nome'
-            value={evento.nome ?? ''}
-            onChange={(e) => alterarEvento({...evento, nome: e.target.value})}
+            label='Imagem' 
+            descricao='URL da imagem que será exibida no convite'
+            value={evento.imagem ?? ''}
+            onChange={(e) => alterarEvento({...evento, imagem: e.target.value})}
+          />
+          <CampoEntrada
+            label='Background'
+            descricao='URL da imagem que será exibida como plano de fundo no convite'
+            value={evento.imagemBackground ?? ''}
+            onChange={(e) => alterarEvento({...evento, imagemBackground: e.target.value})}
+          />
+          <CampoEntrada
+            label='Público Esperado'
+            descricao='Total de convidados e acompanhantes esperados'
+            value={evento.publicoEsperado ?? 1}
+            onChange={(e) => alterarEvento({...evento, publicoEsperado: e.target.value})}
+            type='number'
+            min={1}
           />
         </div>
       </Passos>
