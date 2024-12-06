@@ -59,7 +59,7 @@ export default function CampoEntrada(props: CamposEntradaProps) {
       
       <input {...props} type={props.type ?? "text"}
         className='w-full px-3 py-2 border border-white/20 rounded-md bg-black/50
-          focus:border-white/50 co '
+          focus:border-white/'
       />
       {props.erro && (
         <span className='pl-2 text-sm text-red-500'>

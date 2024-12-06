@@ -114,7 +114,9 @@ export default function Passos(props: PassosProps) {
           <button
             onClick={proximoPasso}
             disabled={!permiteProximoPasso || semProximoPasso()}
-            className={`botao ${semProximoPasso()
+            className={`
+              botao
+              ${semProximoPasso() || !permiteProximoPasso
               ? 'bg-zinc-400 cursor-not-allowed opacity-50'
               : 'bg-green-700 hover:bg-green-600 text-white'} 
             `}
