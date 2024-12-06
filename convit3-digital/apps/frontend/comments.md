@@ -72,8 +72,8 @@ on the value it receives as props, we are passing it with a function we have on 
 components, named formatar, and it'll take any blank space, uppercase characters, and transform it to a way the db wants
 so 'React Native Course 2024' will turn out to be 'react-native-course-2024' automatically.
 
-
-
+And all the changes we are making, are on the state from the context, so every property we check, such as evento.alias
+or evento.data, and changes on these values, are made directly to the context we are retrieving from the useEvento
 
 
 
