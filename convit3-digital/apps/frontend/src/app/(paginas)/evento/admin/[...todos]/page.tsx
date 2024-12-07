@@ -51,10 +51,6 @@ export default function PaginaAdminEvento(props: any) {
     carregarEvento();
   }, [id, senha])
 
-  useEffect(() => {
-    obterEvento()
-  }, [obterEvento])
-
 
   return (
     <div className="flex flex-col items-center" >
