@@ -5,7 +5,7 @@ import React from 'react'
 When we create an input field, inside react, is ideal that we do not supress the properties of an input
 */
 export interface CamposEntradaProps extends React.InputHTMLAttributes<HTMLInputElement>{
-  label: string;
+  label?: string;
   value: string | number;
   descricao?: string
   observacao?: string
@@ -50,8 +50,11 @@ export default function CampoEntrada(props: CamposEntradaProps) {
 
       */}
       <div className='flex flex-col'>
-      {props.label && <label className='text-lg font-black text-white'>{props.label}</label>}
+      {props.label && ( 
+        <label className='text-lg font-black text-white'>{props.label}</label>
+      )} 
       {props.descricao && ( <p className='text-sm font-light text-zinc-400 -mt-1'>
+
       
         {props.descricao}
       </p> ) }

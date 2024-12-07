@@ -75,7 +75,14 @@ so 'React Native Course 2024' will turn out to be 'react-native-course-2024' aut
 And all the changes we are making, are on the state from the context, so every property we check, such as evento.alias
 or evento.data, and changes on these values, are made directly to the context we are retrieving from the useEvento
 
+## Area administrativa do evento
 
+Here we had one curious thing, inside the dynamic page inside the admin evento page, we have a state for the senha, a setter, for the senha, aswell for the evento  and the guests.
+
+This page works by, if there is no event, there is a form for us to input the password, where we'll pass as props the senha
+state, the setter, and the function to access the evento, if we pass a senha, that will be past for the parent to fire a
+API call to check if that senha is related to some event, if yes, it will set the evento, reload the page, and then, if
+there is an event, a dashboard for that event will instantly open
 
 
 
