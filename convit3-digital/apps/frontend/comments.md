@@ -84,17 +84,36 @@ state, the setter, and the function to access the evento, if we pass a senha, th
 API call to check if that senha is related to some event, if yes, it will set the evento, reload the page, and then, if
 there is an event, a dashboard for that event will instantly open
 
+## Use
+
+In our dynamic page, we added the constant
+
+const params: any = use(props.params)
+
+The use keyword is used in React Server Components (RSC) to resolve async values within a React component. It allows you
+to work directly with asynchronous data inside components, instead of managing the resolution with hooks like useEffect
+or explicitly using .then() in functional components.
+We'll use it when we need something to be fetched or generated dynamically, and `use` can ensure us that we can safely
+access a resolved state.
+
+Without use, react will require us that we explictly handle asynchronous behavior, so for example
+
+const params = await props.params;
+return <div>{params.alias}</div>;
+
+The use function simplifies this by letting you directly work with the asynchronous props.params inline, like:
+
+const params: any = use(props.params);
+
+So in our example, props.params is assumed to be a promise (or async source)
+
+use(props.params) ensures that params contains the resolved value of props.params before proceeding.
+
+So we'll usually opt to utilize the use when we are working with react server components and the data we need is asynchronous.
+
+If props.params or other data sources in our component, return a promise, we can `use`them directly without needing extra
+state or lifecycle management
+
+if we are not using rsc, or we don't need to resolve promises inline, we tipically wouldn't use the use.
 
 
-
-
-
-
-
-
-
-
-
-
-
-## 
