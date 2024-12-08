@@ -13,9 +13,9 @@ export default function FormSenhaEvento(props: FormSenhaEventoProps) {
       rounded-lg shadow-lg w-[500px] border border-zinc-800"
     >
       <h1 className="text-3xl font-black">Bem-vindo(a)</h1>
-      <h2>Administrador</h2>
+      <h2 className="text-lg font-semibold -mt-3">Administrador</h2>
 
-      <p>
+      <p className="text-sm text-zinc-400">
         Insira sua senha para gerenciar o evento
       </p>
       <CampoEntrada
@@ -23,6 +23,7 @@ export default function FormSenhaEvento(props: FormSenhaEventoProps) {
         onChange={(e) => props.setSenha(e.target.value)}
         placeholder="Digite sua senha"
         type="password"
+        outerClassName="w-full"
       />
       <button className="botao azul" onClick={props.acessarEvento}>
         Acessar Evento

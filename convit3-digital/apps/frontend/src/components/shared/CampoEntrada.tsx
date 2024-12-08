@@ -10,6 +10,8 @@ export interface CamposEntradaProps extends React.InputHTMLAttributes<HTMLInputE
   descricao?: string
   observacao?: string
   erro?: string
+  outerClassName?: string;
+
 
   onChange: (event: any) => void
 
@@ -17,7 +19,7 @@ export interface CamposEntradaProps extends React.InputHTMLAttributes<HTMLInputE
 
 export default function CampoEntrada(props: CamposEntradaProps) {
   return (
-    <div className='flex flex-col gap-2 '>
+    <div className={`flex flex-col ${props.outerClassName ?? ""}`}>
       {/*
         At first glance, it might look a little unnecessary the creation of another div with similar stylings but there
         are some key reasons
