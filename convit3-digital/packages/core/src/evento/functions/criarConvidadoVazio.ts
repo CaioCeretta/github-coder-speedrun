@@ -6,7 +6,7 @@ export default function criarConvidadoVazio():Partial<Convidado> {
     id: Id.novo(),
     nome: '',
     email: '',
-    confirmado: true,
+    confirmado: false,
     possuiAcompanhantes: true,
     qtdeAcompanhantes: 0
   }
