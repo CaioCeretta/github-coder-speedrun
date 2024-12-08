@@ -114,6 +114,6 @@ So we'll usually opt to utilize the use when we are working with react server co
 If props.params or other data sources in our component, return a promise, we can `use`them directly without needing extra
 state or lifecycle management
 
-if we are not using rsc, or we don't need to resolve promises inline, we tipically wouldn't use the use.
+if we are not using rsc, or we don't need to resolve promises inline, we tipically wouldn't use the use. 
 
 
