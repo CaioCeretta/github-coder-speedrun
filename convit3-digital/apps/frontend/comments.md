@@ -117,3 +117,34 @@ state or lifecycle management
 if we are not using rsc, or we don't need to resolve promises inline, we tipically wouldn't use the use. 
 
 
+## Componente SimNao explicação
+
+Here is an example of a component call:
+
+
+``ts
+<CampoSimNao
+          label="Presença Confirmada?"
+          value={props.convidado.confirmado ?? true}
+          onChange={(valor) => 
+            props.convidadoMudou({
+              ...props.convidado,
+              confirmado: valor
+            })
+          }
+          className="flex-1"
+        />
+``
+
+First, the value being passed corresponds to props.convidado.confirmado, where convidado is stored in the context. The
+SimNao component renders two <span> elements, each triggering a call to the function that updates the state of the convidado.
+These act as two buttons, one for true and another for false, depending on what the user clicks.
+
+A function named renderizarItem will be created, with a boolean parameter. This function will return a <span> where the
+onClick event will call the onChange function, which in this case is alterarConvidado, passing the clicked value. If the
+user clicks on the "true" span, it sends true to onChange, and if they click on "false," it sends false. The content of
+the span will simply display "true" or "false."
+
+When the user clicks a button, for example, with the value false, it sends this value to the parent component. The onChange
+return will carry the value false. If false is received, the root state will be updated, indicating that the convidado in
+the context has confirmado set to false. This change will automatically update props.convidado.confirmado to false as well.
