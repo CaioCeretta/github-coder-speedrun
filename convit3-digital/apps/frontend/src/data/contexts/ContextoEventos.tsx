@@ -86,9 +86,11 @@ export function ProvedorContextoEvento(props: any) {
         const { valido } = await httpGet(
           `/eventos/validar/${evento.alias}/${evento.id}`
         );
+        console.log(evento.alias, evento.id)
         setAliasValido(valido);
       } catch (error: any) {
-        console.error(error.mensagem)      }
+      console.error(error.mensagem)
+    }
     },
     [httpGet, evento]
   );

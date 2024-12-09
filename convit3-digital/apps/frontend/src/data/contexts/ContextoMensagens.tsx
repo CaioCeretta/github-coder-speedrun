@@ -1,3 +1,5 @@
+'use client'
+
 import { useToast } from "@/data/hooks/useToast";
 import { createContext, useCallback } from "react";
 
