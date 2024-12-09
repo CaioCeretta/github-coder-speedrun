@@ -9,6 +9,7 @@ import {
 import { createContext, useCallback, useEffect, useState } from "react";
 import useAPI from "../hooks/useAPI";
 import { useRouter } from "next/navigation";
+import useMensagens from "../hooks/useMensagens";
 
 export interface ContextoEventoProps {
   evento: Partial<Evento>;
@@ -28,6 +29,9 @@ const ContextoEvento = createContext<ContextoEventoProps>({} as any);
 
 export function ProvedorContextoEvento(props: any) {
   const { httpGet, httpPost } = useAPI();
+
+  const {adicionarErro} = useMensagens()
+
   const router = useRouter();
 
   const [aliasValido, setAliasValido] = useState(true);
@@ -48,10 +52,10 @@ export function ProvedorContextoEvento(props: any) {
           data: Data.desformatar(eventoCriado.data),
         });
       } catch (error: any) {
-        console.log(error)
+        adicionarErro(error.mensagem ?? 'Ocorreu um eror inesperado')
       }
     },
-    [evento, httpPost, router]
+    [evento, httpPost, router, adicionarErro]
   );
 
   const carregarEvento = useCallback(
@@ -64,9 +68,10 @@ export function ProvedorContextoEvento(props: any) {
           data: Data.desformatar(evento.data),
         });
       } catch (error: any) {
-        console.error(error)      }
+        adicionarErro(error.mensagem ?? 'Ocorreu um eror inesperado')
+      }
     },
-    [httpGet, setEvento]
+    [httpGet, setEvento, adicionarErro]
   );
 
   const adicionarConvidado = useCallback(
@@ -75,9 +80,10 @@ export function ProvedorContextoEvento(props: any) {
         await httpPost(`/eventos/${evento.alias}/convidado`, convidado);
         router.push("/convite/obrigado");
       } catch (error: any) {
-        console.error(error)      }
+        adicionarErro(error.mensagem ?? 'Ocorreu um eror inesperado')
+      }
     },
-    [httpPost, evento, convidado, router]
+    [httpPost, evento, convidado, router, adicionarErro]
   );
 
   const validarAlias = useCallback(
@@ -89,10 +95,10 @@ export function ProvedorContextoEvento(props: any) {
         console.log(evento.alias, evento.id)
         setAliasValido(valido);
       } catch (error: any) {
-      console.error(error.mensagem)
-    }
+        adicionarErro(error.mensagem ?? 'Ocorreu um eror inesperado')
+      }
     },
-    [httpGet, evento]
+    [httpGet, evento, adicionarErro]
   );
 
   useEffect(() => {

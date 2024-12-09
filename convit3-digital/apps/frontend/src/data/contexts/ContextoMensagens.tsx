@@ -14,12 +14,15 @@ export function ProvedorContextoMensagem(props: any) {
   const { toast } = useToast()
 
   const adicionarMensagem = useCallback((tipo: 'sucesso' | 'erro', texto: string) => {
-    toast({
-      title: tipo === 'sucesso' ? 'Tudo certo por aqui' : 'Ops, algo deu errado',
-      description: texto,
-      variant: tipo === 'sucesso' ? 'default' : 'destructive'
-
+    texto.split("/\n/").forEach(linha => {
+      toast({
+        title: tipo === 'sucesso' ? 'Tudo certo por aqui' : 'Ops, algo deu errado',
+        description: texto,
+        variant: tipo === 'sucesso' ? 'default' : 'destructive'
+  
+      })
     })
+
   }, [toast]);
 
   return (
