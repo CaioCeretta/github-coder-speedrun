@@ -18,6 +18,23 @@ export interface CamposEntradaProps extends React.InputHTMLAttributes<HTMLInputE
 }
 
 export default function CampoEntrada(props: CamposEntradaProps) {
+
+  /* This is just in cases where react/ts complain that, if we pass all the rest properties for an element, it might say
+  that some properties do not exist in InputHTMLAttributes, for exampke, so here we'll remove the properties of our interface
+  and pass the propsInput call to the {...propsInput()} */ 
+
+  function propsInput() {
+    const propsInput = {...props};
+    delete propsInput.label
+    delete propsInput.descricao
+    delete propsInput.observacao
+    delete propsInput.erro
+    delete propsInput.outerClassName
+
+    return propsInput
+
+  }
+
   return (
     <div className={`flex flex-col ${props.outerClassName ?? ""}`}>
       {/*
@@ -62,7 +79,7 @@ export default function CampoEntrada(props: CamposEntradaProps) {
       </p> ) }
       </div>
       
-      <input {...props} type={props.type ?? "text"}
+      <input {...propsInput()} type={props.type ?? "text"}
         className='w-full px-3 py-2 border border-white/20 rounded-md bg-black/50
           focus:border-white/'
       />

@@ -9,6 +9,7 @@ export interface DashboardEventoProps {
   presentes: Convidado[];
   ausentes: Convidado[];
   totalGeral: number;
+  atualizarLIstaConvidados: () => void
 }
 
 export default function DashboardEvento(props: DashboardEventoProps) {
@@ -40,7 +41,8 @@ export default function DashboardEvento(props: DashboardEventoProps) {
 
       {/* The default behavior of an element, in a flexbox, would be to be expanded in its all width, but with the self-end,
        the button will simply go to the end of the container and occupy the width of its content */ }
-      <button className="botao azul self-end mt-12">
+      <button className="botao azul self-end mt-12"
+        onClick={props.atualizarLIstaConvidados}>
         <span>Atualizar Lista de Convidados</span>
       </button>
 
