@@ -1,6 +1,2 @@
-<div
-  class="bg-black min-h-screen flex
-justify-center items-center text-white"
->
-  <h1 class="text-3xl font-bold">Bem vindo ao Svelte</h1>
-</div>
+<h1 class="text-3xl font-bold">Ordem dos livros</h1>
+<a href="/autores">Autores</a>
