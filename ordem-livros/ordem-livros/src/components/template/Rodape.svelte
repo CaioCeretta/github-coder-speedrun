@@ -1,4 +1,4 @@
-<div
+<footer
   class="h-16 bg-zinc-800
   flex justify-end items-center
   text-lg font-black px-20
@@ -8,4 +8,4 @@
   <span class="font-thin text-zinc-400"
     >Todos os direitos reservados &copy; {new Date().getFullYear()}</span
   >
-</div>
+</footer>
