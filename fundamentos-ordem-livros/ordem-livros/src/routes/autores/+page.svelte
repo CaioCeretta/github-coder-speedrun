@@ -1,5 +1,5 @@
 <script>
-	import ItemAutor from '../../components/author/ItemAutor.svelte'
+	import ItemAutor from '../../components/autor/ItemAutor.svelte'
 	import Titulo from '../../components/shared/Titulo.svelte'
 
 	import autores from '../../constants/autores'
