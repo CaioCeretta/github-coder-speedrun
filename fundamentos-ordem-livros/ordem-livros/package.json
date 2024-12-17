@@ -22,6 +22,8 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
-		"@tailwindcss/typography": "^0.5.15"
+		"@tabler/icons-svelte": "^3.26.0",
+		"@tailwindcss/typography": "^0.5.15",
+		"marked": "^15.0.4"
 	}
 }
