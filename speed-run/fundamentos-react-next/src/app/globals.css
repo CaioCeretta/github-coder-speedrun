@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--background: #ffffff;
+	--foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background: #0a0a0a;
+		--foreground: #ededed;
+	}
+}
+
+body {
+	color: var(--foreground);
+	background: var(--background);
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+/* .bg-azul-500 {
+	background-color: #3e3ea5;
+}
+
+.bg-azul-600 {
+	background-color: #1b1bb0;
+}
+
+.pady-8 {
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+}
+
+.padx-4 {
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+.arredondado {
+	border-radius: 10px;
+} */
+
+.botao {
+	@apply flex gap-2 items-center justify-center bg-blue-500 px-6 py-2.5 rounded-md;
+}
+
+.botao.azul {
+	@apply bg-blue-500 hover:bg-blue-600;
+	@apply text-white;
+}
+
+.botao.vermelho {
+	@apply bg-red-500 hover:bg-red-600;
+	@apply text-white;
+}
+
+.container {
+	@apply flex flex-col justify-center items-center;
+	@apply h-screen;
+}
+
+.exercicio {
+	@apply bg-zinc-900 rounded-lg;
+	@apply overflow-hidden;
+}
+
+.exercicio h1 {
+	@apply text-3xl font-black;
+	@apply px-10 py-5 bg-zinc-800;
+}
+
+.exercicio .conteudo {
+	@apply p-5;
+	@apply flex flex-col justify-start;
+	@apply text-xl;
+}
