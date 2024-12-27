@@ -2,8 +2,11 @@ import { IconBrandReact } from '@tabler/icons-react'
 
 export default function Logo() {
 	return (
-		<div>
-			<IconBrandReact />
+		<div className="flex items-center gap-3">
+			<IconBrandReact size={40} stroke={1} />
+			<span className="text-lg font-thin">
+				React & Next
+			</span>
 		</div>
 	)
 }
