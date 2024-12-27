@@ -1,4 +1,4 @@
-import Aprovado from '@/components/aprovado'
+import Aprovado from '@/components/exercicios/aprovado'
 import React from 'react'
 
 export default function CriandoComponentes01() {
