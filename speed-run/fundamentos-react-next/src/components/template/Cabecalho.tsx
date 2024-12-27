@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Image from 'next/image'
 import React from 'react'
-import Logo from './LogoAlt'
+import Logo from './Logo'
 
 export interface CabecalhoProps {}
 
