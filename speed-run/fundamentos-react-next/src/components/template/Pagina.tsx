@@ -1,4 +1,9 @@
-import { IconHome, IconSquare1 } from '@tabler/icons-react'
+import {
+	IconCode,
+	IconComponents,
+	IconHome,
+	IconSquare1,
+} from '@tabler/icons-react'
 import { type ReactNode } from 'react'
 import AreaLateral from './AreaLateral'
 import Cabecalho from './Cabecalho'
@@ -28,17 +33,32 @@ export default function Pagina(props: PaginaProps) {
 							texto="Primeiro"
 						/>
 						<MenuItem
+							icone={IconCode}
 							link="/basico/jsx-01"
 							texto="JSX #01"
 						/>
-						<MenuItem link="/basico/" texto="JSX #02" />
-						<MenuItem link="/basico/" texto="JSX #03" />
-						<MenuItem link="/basico/" texto="JSX #04" />
 						<MenuItem
+							icone={IconCode}
+							link="/basico/"
+							texto="JSX #02"
+						/>
+						<MenuItem
+							icone={IconCode}
+							link="/basico/"
+							texto="JSX #03"
+						/>
+						<MenuItem
+							icone={IconCode}
+							link="/basico/"
+							texto="JSX #04"
+						/>
+						<MenuItem
+							icone={IconComponents}
 							link="/basico/comp-01"
 							texto="Componentes #01"
 						/>
 						<MenuItem
+							icone={IconComponents}
 							link="/basico/comp-02"
 							texto="Componentes #02"
 						/>
