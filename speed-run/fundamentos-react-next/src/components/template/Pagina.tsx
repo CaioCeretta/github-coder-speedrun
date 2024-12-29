@@ -1,4 +1,5 @@
 import {
+	IconArrowDown,
 	IconCode,
 	IconComponents,
 	IconHome,
@@ -65,6 +66,11 @@ export default function Pagina(props: PaginaProps) {
 							texto="Componentes #02"
 						/>
 						<MenuLabel>Árvore de Componentes</MenuLabel>
+						<MenuItem
+							icone={IconArrowDown}
+							link="/arvore/direta"
+							texto="Comunicação Direta"
+						/>
 					</Menu>
 				</AreaLateral>
 				<main className="p-6 flex-1">{props.children}</main>
