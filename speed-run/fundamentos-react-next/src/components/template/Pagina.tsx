@@ -2,6 +2,7 @@ import {
 	IconArrowDown,
 	IconCode,
 	IconComponents,
+	IconFunction,
 	IconHome,
 	IconSquare1,
 } from '@tabler/icons-react'
@@ -36,6 +37,11 @@ export default function Pagina(props: PaginaProps) {
 							texto="Primeiro"
 						/>
 						<MenuItem
+							icone={IconFunction}
+							link="/basico/botao"
+							texto="Botao #01"
+						/>
+						<MenuItem
 							icone={IconCode}
 							link="/basico/jsx-01"
 							texto="JSX #01"
@@ -65,6 +71,7 @@ export default function Pagina(props: PaginaProps) {
 							link="/basico/comp-02"
 							texto="Componentes #02"
 						/>
+
 						<MenuLabel>Árvore de Componentes</MenuLabel>
 						<MenuItem
 							icone={IconArrowDown}
