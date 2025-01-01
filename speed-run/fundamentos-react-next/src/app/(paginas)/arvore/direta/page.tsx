@@ -1,4 +1,4 @@
-import Pai from '@/components/arvore/direta/pai'
+import Pai from '@/components/arvore/direta/Pai'
 import Titulo from '@/components/template/Titulo'
 
 export default function ComunicacaoDireta() {

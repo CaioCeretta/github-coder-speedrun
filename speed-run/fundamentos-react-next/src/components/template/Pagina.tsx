@@ -1,9 +1,11 @@
 import {
 	IconArrowDown,
+	IconArrowUp,
 	IconCode,
 	IconComponents,
 	IconFunction,
 	IconHome,
+	IconNumbers,
 	IconSquare1,
 } from '@tabler/icons-react'
 import { type ReactNode } from 'react'
@@ -11,8 +13,8 @@ import AreaLateral from './AreaLateral'
 import Cabecalho from './Cabecalho'
 import Menu from './Menu'
 import MenuItem from './MenuItem'
-import Rodape from './Rodape'
 import MenuLabel from './MenuLabel'
+import Rodape from './Rodape'
 
 interface PaginaProps {
 	children?: ReactNode
@@ -77,6 +79,18 @@ export default function Pagina(props: PaginaProps) {
 							icone={IconArrowDown}
 							link="/arvore/direta"
 							texto="Comunicação Direta"
+						/>
+
+						<MenuItem
+							icone={IconArrowUp}
+							link="/arvore/indireta"
+							texto="Comunicação Indireta"
+						/>
+						<MenuLabel>Gerenciamento de Estados</MenuLabel>
+						<MenuItem
+							icone={IconNumbers}
+							link="/estado/basico-01"
+							texto="Usando Estado #01"
 						/>
 					</Menu>
 				</AreaLateral>

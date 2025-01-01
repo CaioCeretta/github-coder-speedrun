@@ -1,4 +1,4 @@
-import Filho from './filho'
+import Filho from './Filho'
 
 export interface PaiProps {
 	nome: string
