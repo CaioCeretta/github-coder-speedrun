@@ -7,6 +7,7 @@ import {
 	IconHome,
 	IconNumbers,
 	IconSquare1,
+	IconUsers,
 } from '@tabler/icons-react'
 import { type ReactNode } from 'react'
 import AreaLateral from './AreaLateral'
@@ -73,6 +74,12 @@ export default function Pagina(props: PaginaProps) {
 							link="/basico/comp-02"
 							texto="Componentes #02"
 						/>
+						<MenuLabel>Gerenciamento de Estados</MenuLabel>
+						<MenuItem
+							icone={IconNumbers}
+							link="/estado/basico-01"
+							texto="Usando Estado #01"
+						/>
 
 						<MenuLabel>Árvore de Componentes</MenuLabel>
 						<MenuItem
@@ -86,11 +93,11 @@ export default function Pagina(props: PaginaProps) {
 							link="/arvore/indireta"
 							texto="Comunicação Indireta"
 						/>
-						<MenuLabel>Gerenciamento de Estados</MenuLabel>
+
 						<MenuItem
-							icone={IconNumbers}
-							link="/estado/basico-01"
-							texto="Usando Estado #01"
+							icone={IconUsers}
+							link="/arvore/crud"
+							texto="Cadastro de Usuário - CRUD"
 						/>
 					</Menu>
 				</AreaLateral>
