@@ -23,3 +23,5 @@ export const usuarios: Usuario[] = [
   { id: uuidv4(), nome: "Isabela Castro", email: "isabela.castro@email.com", senha: "senhaIsabela616" },
   { id: uuidv4(), nome: "Eduardo Vieira", email: "eduardo.vieira@email.com", senha: "senhaEduardo717" }
 ];
+
+export default usuarios
