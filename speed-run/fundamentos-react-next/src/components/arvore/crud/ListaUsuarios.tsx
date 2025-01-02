@@ -1,7 +1,7 @@
 'use client'
 
 import type Usuario from '@/data/model/Usuario'
-import { IconPencil, IconX } from '@tabler/icons-react'
+import { IconPencil, IconTrash } from '@tabler/icons-react'
 
 export interface ListaUsuariosProps {
 	usuarios: Usuario[]
@@ -10,54 +10,32 @@ export interface ListaUsuariosProps {
 export default function ListaUsuarios(
 	props: ListaUsuariosProps
 ) {
+	function renderizarUsuario(usuario: Usuario) {
+		return (
+			<div className="flex items-center py-3 px-6 rounded-md bg-zinc-900">
+				<div className="flex flex-col flex-1">
+					<span className="font-semibold text-zinc-400">
+						{usuario.nome}
+					</span>
+					<span>{usuario.email}</span>
+				</div>
+				<div className="flex gap-2">
+					<button className="botao azul">
+						<IconPencil />
+					</button>
+					<button className="botao vermelho">
+						<IconTrash />
+					</button>
+				</div>
+			</div>
+		)
+	}
+
 	return (
-		<div>
-			<table className="w-100 border-separate border-spacing-y-2">
-				<thead>
-					<tr className="bg-gray-100 text-zinc-600">
-						<th className="p-4 text-justify border-b border-gray-300 text-sm">
-							ID
-						</th>
-						<th className="p-4 text-justify border-b border-gray-300 text-sm">
-							Nome
-						</th>
-						<th className="p-4 text-justify border-b border-gray-300 text-sm">
-							Email
-						</th>
-						<th className="p-4 text-justify border-b border-gray-300 text-sm">
-							Senha
-						</th>
-						<th className="p-4 text-justify border-b border-gray-300 text-sm">
-							Ações
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					{props.usuarios.map((usuario) => (
-						<tr className="" key={usuario.id}>
-							<td className="p-4 text-sm text-zinc-500 border-b border-gray-300">
-								{usuario.id}
-							</td>
-							<td className="p-4 text-sm text-zinc-500 border-b border-gray-300">
-								{usuario.nome}
-							</td>
-							<td className="p-4 text-sm text-zinc-500 border-b border-gray-300">
-								{usuario.email}
-							</td>
-							<td className="p-4 text-sm text-zinc-500 border-b border-gray-300">
-								XXXXXX
-							</td>
-							<td
-								className="p-4 text-sm text-zinc-500 border-b border-gray-300
-    flex justify-start space-x-2 items-center"
-							>
-								<IconPencil className="h-[5rem] w-8" />
-								<IconX className="h-[5rem] w-8" />
-							</td>
-						</tr>
-					))}
-				</tbody>
-			</table>
-		</div>
+		<ul className="flex flex-col gap-2">
+			{props.usuarios.map((usuario) =>
+				renderizarUsuario(usuario)
+			)}
+		</ul>
 	)
 }
