@@ -3,19 +3,28 @@ import React from 'react'
 
 interface FormUsuarioProps {
 	usuario: Partial<Usuario>
+	alterarUsuario: (usuario: Partial<Usuario>) => void
 	cancelar: () => void
 }
 
 export default function FormUsuario(
 	props: FormUsuarioProps
 ) {
+	const { usuario, alterarUsuario, cancelar } = props
+
 	return (
 		<div className="flex flex-col gap-4">
 			<div className="flex flex-col gap-1">
 				<span>Nome:</span>
 				<input
-					value={props.usuario.nome}
+					value={usuario.nome ?? ''}
 					className="input"
+					onChange={(e) =>
+						props.alterarUsuario({
+							...usuario,
+							nome: e.target.value,
+						})
+					}
 					type="text"
 				/>
 			</div>
@@ -24,7 +33,13 @@ export default function FormUsuario(
 				<div className="flex flex-col gap-1">
 					<span>Email:</span>
 					<input
-						value={props.usuario.email}
+						value={usuario.email ?? ''}
+						onChange={(e) =>
+							alterarUsuario({
+								...usuario,
+								email: e.target.value,
+							})
+						}
 						className="input"
 						type="text"
 					/>
@@ -33,7 +48,13 @@ export default function FormUsuario(
 				<div className="flex flex-col gap-1">
 					<span>Senha:</span>
 					<input
-						value={props.usuario.senha}
+						value={usuario.senha ?? ''}
+						onChange={(e) =>
+							alterarUsuario({
+								...usuario,
+								senha: e.target.value,
+							})
+						}
 						className="input"
 						type="password"
 					/>
@@ -42,10 +63,7 @@ export default function FormUsuario(
 
 			<div className="flex justify-center gap-2">
 				<button className="botao azul">Salvar</button>
-				<button
-					className="botao cinza"
-					onClick={props.cancelar}
-				>
+				<button className="botao cinza" onClick={cancelar}>
 					Cancelar
 				</button>
 			</div>

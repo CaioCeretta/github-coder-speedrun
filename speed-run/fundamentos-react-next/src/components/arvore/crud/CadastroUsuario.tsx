@@ -21,6 +21,10 @@ export default function CadastroUsuario() {
 		setUsuarios(novosUsuarios)
 	}
 
+	function alterarUsuario(usuario: Partial<Usuario>) {
+		setUsuarioAtual(usuario)
+	}
+
 	function selecionarUsuario(usuario: Partial<Usuario>) {
 		setUsuarioAtual(usuario)
 	}
@@ -42,6 +46,7 @@ export default function CadastroUsuario() {
 				<FormUsuario
 					usuario={usuarioAtual}
 					cancelar={cancelar}
+					alterarUsuario={alterarUsuario}
 				/>
 			) : (
 				<ListaUsuarios
