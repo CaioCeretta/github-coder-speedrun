@@ -56,6 +56,17 @@ body {
 	@apply text-white;
 }
 
+.botao.cinza {
+	@apply bg-zinc-500 hover:bg-zinc-600;
+	@apply text-white;
+}
+
+.input {
+	@apply bg-zinc-900;
+	@apply px-4 py-2;
+	@apply border border-zinc-700 rounded-md;
+}
+
 .container {
 	@apply flex flex-col justify-center items-center;
 }
