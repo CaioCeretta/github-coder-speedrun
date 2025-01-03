@@ -5,12 +5,14 @@ interface FormUsuarioProps {
 	usuario: Partial<Usuario>
 	alterarUsuario: (usuario: Partial<Usuario>) => void
 	cancelar: () => void
+	salvar: () => void
 }
 
 export default function FormUsuario(
 	props: FormUsuarioProps
 ) {
-	const { usuario, alterarUsuario, cancelar } = props
+	const { salvar, usuario, alterarUsuario, cancelar } =
+		props
 
 	return (
 		<div className="flex flex-col gap-4">
@@ -62,7 +64,9 @@ export default function FormUsuario(
 			</div>
 
 			<div className="flex justify-center gap-2">
-				<button className="botao azul">Salvar</button>
+				<button className="botao azul" onClick={salvar}>
+					Salvar
+				</button>
 				<button className="botao cinza" onClick={cancelar}>
 					Cancelar
 				</button>
