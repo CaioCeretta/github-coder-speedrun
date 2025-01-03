@@ -1,11 +1,7 @@
 'use client'
 
 import type Usuario from '@/data/model/Usuario'
-import {
-	IconPencil,
-	IconTrash,
-	IconX,
-} from '@tabler/icons-react'
+import { IconPencil, IconTrash } from '@tabler/icons-react'
 
 export interface ListaUsuariosProps {
 	usuarios: Usuario[]
