@@ -3,6 +3,7 @@ import React from 'react'
 
 interface FormUsuarioProps {
 	usuario: Partial<Usuario>
+	cancelar: () => void
 }
 
 export default function FormUsuario(
@@ -41,7 +42,12 @@ export default function FormUsuario(
 
 			<div className="flex justify-center gap-2">
 				<button className="botao azul">Salvar</button>
-				<button className="botao cinza">Cancelar</button>
+				<button
+					className="botao cinza"
+					onClick={props.cancelar}
+				>
+					Cancelar
+				</button>
 			</div>
 		</div>
 	)

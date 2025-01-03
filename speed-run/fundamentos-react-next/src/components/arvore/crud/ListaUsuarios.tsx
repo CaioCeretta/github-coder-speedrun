@@ -14,6 +14,7 @@ import { IconPencil, IconTrash } from '@tabler/icons-react'
 export interface ListaUsuariosProps {
 	usuarios: Usuario[]
 	removerUsuario: (usuario: Usuario) => void
+	selecionarUsuarioAtual: (usuario: Usuario) => void
 }
 
 export default function ListaUsuarios(
@@ -32,7 +33,12 @@ export default function ListaUsuarios(
 					<span>{usuario.email}</span>
 				</div>
 				<div className="flex gap-2">
-					<button className="botao azul">
+					<button
+						onClick={() =>
+							props.selecionarUsuarioAtual(usuario)
+						}
+						className="botao azul"
+					>
 						<IconPencil />
 					</button>
 					<button
