@@ -4,6 +4,7 @@ import type Usuario from '@/data/model/Usuario'
 import { useState } from 'react'
 import todosUsuarios from '@/data/constants/usuarios'
 import ListaUsuarios from './ListaUsuarios'
+import FormUsuario from './FormUsuario'
 
 export default function CadastroUsuario() {
 	const [usuarios, setUsuarios] =
@@ -19,10 +20,11 @@ export default function CadastroUsuario() {
 
 	return (
 		<div className="flex flex-col gap-7">
-			<ListaUsuarios
+			{/* <ListaUsuarios
 				usuarios={usuarios}
 				removerUsuario={removerUsuario}
-			/>
+			/> */}
+			<FormUsuario usuario={usuarios[0]} />
 		</div>
 	)
 }
