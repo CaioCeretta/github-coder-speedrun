@@ -61,6 +61,11 @@ body {
 	@apply text-white;
 }
 
+.botao.verde {
+	@apply bg-green-500 hover:bg-green-600;
+	@apply text-white;
+}
+
 .input {
 	@apply bg-zinc-900;
 	@apply px-4 py-2;
