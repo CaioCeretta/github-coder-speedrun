@@ -1,63 +1,63 @@
 ## Documentation is important but we should not look it as a limiting factor
 
-For example, the instructor had a case where he needed to create an accountability system where the insurance plans and
-other bills needed to have a regulation, because these services need to follow certain rules.
+For example, an instructor once worked on a system responsible for managing accountability in insurance plans and other billing processes that needed to follow strict regulatory rules.
 
-The system was responsible to receive these balances and inside of it a file with all the accounts with their respective
-rules.
+The system received financial balances and used a file containing all accounts and their respective rules. He began by writing the application code itself because the messages presented to clients had to be highly specific and accurate.
 
-He started by doing the code of the whole application, and because the messages for the client had to be very specific.
+At the company, the requirements gathering process and use case documentation were handled very formally. However, developers faced significant difficulties trying to reverse-engineer the code into documentation. At one point, a client even suggested worsening the quality of the application messages just to align better with the documentation, since the team couldn't map all the system messages effectively.
 
-The company where he worked on, the idea of requirements gathering, and the use cases documents were very formal, and the
-developers were facing difficulties of doing the "reverse engineering" the code into documentation, and the client
-suggested that he would make the messages worse because the team was not being able to map all the system messages.
+This highlights a critical point: documentation should help clarify business rules and define useful interfaces for understanding flows, but it shouldn't constrain development. The real source of truth is the code itself. Documentation, especially at a high level, can increase the chances of misunderstanding or misalignment if overly relied upon.
 
-So in short, every time we go to the project documentation, the details level should not be even close to the coding level,
-the coding is in fact "where the truth is encoded", so there was this poor suggestion of worsening the application so it
-adjusts to the documentation.
+## Problem vs. Solution
 
-With this we end in the conclusion that we indeed use the docs to clarify some business rules, or defining an interface
-that make sense to us, for our understanding of the flows, but they go only to a certain point, we end up reaching some
-point that it does not make so much sense for us to "tie" so much to the docs, because there is some gap of what is going
-to be implemented and what is going to be documented, sometimes documenting, because it's on a high level, which increases
-the chances of making mistakes.
+### Understanding the Problem
 
-## Problem vs Solution
+At the heart of any problem lies a domain—every organization operates within a specific domain that shapes its processes and data.
 
-### Problem
+Take social security, for example. Its core domain revolves around providing benefits like retirement, disability, or other social assistance. Within this domain, there are subdomains, such as one focused on workplace injury cases. In these cases, clients go through medical evaluations, and the outcome determines whether they're eligible for benefits.
 
-Inside the problem, we have a great "domain", which consists of, for example, every company has an area of activity, meaning
-that it have different flows and data that it manipulates, and that is part of the domain, what the company solves in the
-real world. The social security, for example, is the "granting of social security benefits" (retirement benefits, disability
-benefits, social benefits, etc), which is a series of benefits that the social security makes available for the clients.
+### Focusing on the Right Thing First
 
-We then end up dividing them into specific parts, for example, there is a specific part for when the client suffers an
-accident in the job. They need to through a medical expertise, that will then make the anamnesis to define if the user
-has the right for a benefit.
+When tackling a large-scale application, the initial focus should not be on the technical solution. At the beginning, we don’t need to worry about which framework to use—whether it’s React, Vue.js, Angular, etc.—or where to host the app.
 
-### Solution Pt 1.
+Instead, the priority must be understanding the problem deeply.
 
-We can now understand that inside a big problem, we have specific sub domains, and when we work in a big application, the
-first thing we need to focus is not in the solution, in the first moment we do not need to know if we are going to use
-react, vue.js, angular, etc, to solve it.
+Each subdomain—such as requirements gathering, medical expertise, or benefit eligibility—should be understood clearly. Developers must work closely with subject-matter experts and analysts to create a shared understanding of the domain. This is where the concept of Ubiquitous Language comes in: a common vocabulary used by both technical and non-technical team members, specific to each subdomain.
 
-There is no problem for us to think about which framework we'll use, where we will host it, etc. However, more important
-than this, is focusing on understanding the problem.
+### Organizing the Solution
 
-### Solution Pt 2.
+Eventually, we create Bounded Contexts, which are sections of the system that encapsulate a specific part of the domain. Within each bounded context, the ubiquitous language helps teams communicate effectively.
 
-When we think that each of the subdomains, such as requirements, expertise, rights, and so on, let's say we as developers
-answer to the experts, which is the people that together with the technical team (that like project patterns, but does not
-like to talk with clients), and together with the devs and these experts, we'll create the "ubiquitous language", that is
-basically an universal language, which does not work on the whole project, but will be useful for one specific part of the
-project that the developers use and the business analysts utilize to talk with each other.
+While you could create documentation and glossaries upfront, in practice, the language and understanding evolve naturally over time through collaboration between developers, specialists, and stakeholders.
 
-In the end, we'll create a limited context to work with all the minor projects
+Once we define the problem, identify the subdomains, and understand how they relate, we can move to the next strategic tool: the Context Map.
 
-### Solution Pt 3.
+A context map visualizes the relationships between different bounded contexts. These connections should mirror how the business actually operates—unless the business itself is disorganized or inefficient. For instance, if modules within the system have circular dependencies (e.g., Module 1 depends on Module 2, and vice versa), this leads to complexity and delays in development. In such cases, we may need to decouple these modules during implementation to avoid the "big ball of mud" scenario.
 
-SO we end up having two strategies, one is the "ubiquitous language" and the other one is the "Bounded Context", which
-inside of it, there is a ubiquitous language that have its terms, its phrases, its verbs, and so on.
+### Mapping Dependencies
 
-We might think that we need to create a doc, and a glossary to it, we can do it, but in the day to day of the project
-it will arise in a natural way, and after the interaction of the user with the clients, specialists, developers, and so on.
+Let’s say we have three bounded contexts: Medical Expertise, Requirements, and Eligibility Recognition.
+
+We then examine their relationships. If they connect linearly (e.g., Requirements → Medical Expertise → Eligibility Recognition), and there are no circular dependencies, that’s a good sign.
+
+In this example:
+
+Requirements is upstream—it provides the data.
+
+Medical Expertise is downstream—it consumes the data and provides new insights for the next stage.
+
+Eligibility Recognition uses the results from the medical evaluations to make a final determination.
+
+Just like YouTube uploads and streams videos to users, who consume them without affecting the platform itself, we want to understand which parts of the system are upstream (data providers) and which are downstream (data consumers).
+
+### Summary
+
+We covered three key strategic tools for managing complex systems:
+
+Ubiquitous Language: A shared language between developers and domain experts that ensures clear communication within each subdomain.
+
+Bounded Context: A defined section of the application that encapsulates a specific domain or subdomain.
+
+Context Map: A visual tool to represent how bounded contexts relate to one another, showing dependencies and ensuring the system reflects business processes.
+
+These tools help us build systems that are not only technically sound but also aligned with real-world business logic and workflows.
