@@ -86,3 +86,33 @@ compact way
 
 In any application, it's worth dividing the system into subdomains, even small ones. We just need to understand that even
 something like authentication can be treated as a separate subdomain from the rest of the application.
+
+## Financing Problem
+
+There is a request that only makes sense if a person is making it, and that person will register their data.
+During registration, they will upload a series of documents to the system.
+
+After that, let’s assume we have another sub‑domain (or even a separate system) dedicated solely to documentation.
+For example, when someone uploads a PDF, this system performs OCR to convert the document or image into text and then asks
+a human to validate whether the extracted information is correct and represents a valid document.
+
+Uploading the documents might be a manual process in which someone later reviews and approves them, or it might be sophisticated enough to justify a dedicated sub‑domain for it.
+
+Another part of the problem concerns credit analysis. The system takes the person’s record; if there is no property, it simply analyzes the registration data, suggests an amount likely to be approved, and generates a report.
+However, other factors related to the customer’s profile come into play, and there could be a separate system for property registration. A property might already be registered, might already have been financed, the inspection process might no longer be necessary, and hiring an engineer might be unnecessary, and so on.
+Hence, we could end up with one sub‑system for registering properties and another for registering clients.
+
+When examining this problem, we face several decisions:
+
+1. "Is the domain we are focusing on the core of the application we are building?"
+
+2. "Every application must have one most important domain; even if it is only 1 % more important than the rest, it becomes the core domain".
+
+3. Between the core and the generic layers, we find supporting sub‑domains. These are essential to deliver value to the core domain and include some company‑specific logic, but they are not the main competitive differentiator.
+
+4. After the support domain, we have generic sub‑domains: features that are necessary but not unique to our business. Because
+   they carry no domain‑specific rules, we can often adopt third‑party solutions instead of building them from scratch.
+
+5. "As an exercise, imagine implementing something like Uber or Netflix. Which sub‑domains would be interesting? Which would you choose as the core domain and which as supporting domains? Obviously, these companies deal with high complexity and have created sub‑domains to solve a variety of problems—some purely software, others infrastructure‑related. We, too, might face new issues and create additional sub‑domains."
+
+None of these companies started out as complex as they are today. Thinking about probable future problems—and classifying core versus supporting sub‑domains—helps when modeling our own projects and making architectural decisions.
