@@ -63,8 +63,8 @@ warn us when invalid dependency appear, this can become a serious issue.
 
 Here's the problem we're trying to solve:
 
-1. When someone applies for financing, they initiate a request. This request is the the entry point and includes multiple
-   steps. Depending on what is being requested, some parts of the process might be optional.
+1. When someone applies for financing, they initiate a request domain. This request domain is the the entry point and includes multiple
+   steps. Depending on what is being request domained, some parts of the process might be optional.
 
 2. For example, let's say i want to finance a house, and like many people, i might be anxious and prefer to go straight
    to 'Caixa', show my income statements, and have a pre-approved credit, before i even start looking for a house just to
@@ -73,8 +73,8 @@ Here's the problem we're trying to solve:
 3. In some cases, a client applies for a credit certificate without even visiting any properties. This certificate remains
    valid for three months, allowing them to purchase a property during that time.
 
-So we start with a request which assumes there's a person, or a group of people, associated with it. From there, the person
-fills out their registration as part of the request, which includes other related records.
+So we start with a request domain which assumes there's a person, or a group of people, associated with it. From there, the person
+fills out their registration as part of the request domain, which includes other related records.
 
 At first, we might be tempted to handle everything in a single model. But that's not ideal, because it's a complex process
 with many rules and possible integrations we may not even be aware of yet.
@@ -89,7 +89,7 @@ something like authentication can be treated as a separate subdomain from the re
 
 ## Financing Problem
 
-There is a request that only makes sense if a person is making it, and that person will register their data.
+There is a request domain that only makes sense if a person is making it, and that person will register their data.
 During registration, they will upload a series of documents to the system.
 
 After that, let’s assume we have another sub‑domain (or even a separate system) dedicated solely to documentation.
@@ -116,3 +116,77 @@ When examining this problem, we face several decisions:
 5. "As an exercise, imagine implementing something like Uber or Netflix. Which sub‑domains would be interesting? Which would you choose as the core domain and which as supporting domains? Obviously, these companies deal with high complexity and have created sub‑domains to solve a variety of problems—some purely software, others infrastructure‑related. We, too, might face new issues and create additional sub‑domains."
 
 None of these companies started out as complex as they are today. Thinking about probable future problems—and classifying core versus supporting sub‑domains—helps when modeling our own projects and making architectural decisions.
+
+## Mapping the Solution
+
+### Part 1.
+
+Here the context map will be applied, the map context is basically defining the contexts we are going to implement that
+are normally one to one; one sub-domain will generate a delimited context, or we can have a one to two relation or two to
+one.
+
+However, we don't need to focus on this, because depending on the situation we can have many to many, one to many, or so.
+
+But, as a rule, we will always want to map this relation one to one. The number of sub domains, is usually
+the same number of the bounded contexts, which mean that when we are talking about bounded contexts we are talking about
+the solution, while sub domains are part of the problem.
+
+Let's assume that the entry point is the request domain itself. This request domain will rely on a system responsible for registering
+a client, which will likely be a separate project due to complexity involved — such as verifying whether the person's
+income tax was filled correctly, checking documentation, interpreting information, and more.
+
+Is not just simply a matter of stating "this person lives here, is married to person X, both will be part of the request domain,
+and he earns y". There is also a research component that includes verifying the person has credit status, checking for
+legal issues, and confirming whether they voted — If they didn't vote, they may not be eligible for registration.
+
+All of this complexity belongs to just one sub domain, and combining it with others would make the whole system, too large
+and unwieldy.
+
+The request domain sub domain inside the application, should just worry with appointments, when the person is going to be fill
+this request domain, and so on.
+
+The request domain uses the person register but the person register does not know if there is one, but eventually, the request domain
+can ask it if the person is using, for example, a micro front-end, this would open a pop up, but maintaining the context
+and insert all the registration information. As soon as the person is registered, it returns an unique identifier and we
+attach it to the request domain. Making the dependency to never be cyclic, to avoid this, we can turn it to be a processing
+line and when it finishes, we get notified.
+
+In the map made by the instructor, the request domain eventually will interact with the property register part, which has
+complexity, use-cases, integrations different from the person register.
+
+We'll notice that request domain, contract, inspection, person register, property register are support subdomains, while the
+core one, of a system that deals with the financing filter, is the credit analysis. We could think that the core one is
+related to the payment of the financed amount, but this part is not going to be part of the system, it's probably going
+to be made by the bank itself, so the core of the application is the credit analysis.
+
+For the documentation and finance, we'll use a generic sub domain, because it's very common that other applications can
+use the same one.
+
+Once the request domain received the property, the person, made the analysis, the contract has been signed, eventually, the
+request domain domain can ask for a queue to simulate, or even to verify if the credit analysis went ok or not and returns
+the answer for future processing.
+
+The instructor believes that for this project, in order to turn all these relationships into a real-world implementation,
+he would physically separate the projects. They would still live in the same repository, but by doing this, any dependency
+between projects would require more effort to establish. We would need to talk to the other team, so they can expose an API,
+and there would be a conversation to determine whether that relation really makes sense. If not, it's a sign that maybe
+we need to create a new subdomain to properly solve the issue.
+
+When we use a single project, separated only by folders, it might work if the developer is extremely organized and disciplined.
+In that case, it's possible to maintain it for a longer period. However, in practice, this often leads to invalid relationships
+forming between modules, and eventually, we end up with a big ball of mud — as if everything were thrown into a single bag.
+
+For example, the inspection domain might need access to something in the request because there's a piece of information
+the inspection team needs. But the data only exists in the request domain, which accesses the survey domain, which in turn
+accesses the property registry, and so on. These cascading dependencies become very confusing and hard to maintain.
+
+### Explanation of the case above
+
+The instructor is saying that if we separate subdomains into independent projects (even in the same repo), it forces teams
+to communicate and define clear boundaries through APIs. This helps avoid messy dependencies.
+
+But if everything is in a single project and only separated by folders, it’s easy to create shortcuts — one domain accessing
+another directly. Over time, this leads to a “big ball of mud,” where everything is tangled and hard to maintain.
+
+His main point: separate concerns, avoid hidden dependencies, and communicate clearly between teams to keep the system
+clean and scalable.
