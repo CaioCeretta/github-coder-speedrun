@@ -63,8 +63,8 @@ warn us when invalid dependency appear, this can become a serious issue.
 
 Here's the problem we're trying to solve:
 
-1. When someone applies for financing, they initiate a request domain. This request domain is the the entry point and includes multiple
-   steps. Depending on what is being request domained, some parts of the process might be optional.
+1. When someone applies for financing, they initiate a request domain. This request domain is the entry point and includes multiple
+   steps. Depending on what is being request, some parts of the process might be optional.
 
 2. For example, let's say i want to finance a house, and like many people, i might be anxious and prefer to go straight
    to 'Caixa', show my income statements, and have a pre-approved credit, before i even start looking for a house just to
@@ -190,3 +190,47 @@ another directly. Over time, this leads to a “big ball of mud,” where everyt
 
 His main point: separate concerns, avoid hidden dependencies, and communicate clearly between teams to keep the system
 clean and scalable.
+
+### Part 2.
+
+When it comes to tools for this kind of work, it's uncommon to proceed without using a method based on 'Domain-Driven Design (DDD)'
+. This approach involves talking to the client, defining the subdomains, and understanding how they relate to each other.
+Only after that do we begin to look at the problem from a more technical perspective.
+
+Understanding the details won't necessarily lead us use a different strategic tool than the three main ones. Talking
+to the client, defining subdomains, understanding their relationships, and then analyzing the application in more detail,
+won't change the overall strategy.
+
+The relation between the tools is exactly this: a `bounded context` represents a specific part of the business we've
+isolated. A business may have ten sub domains, but we might implement them all within one bounded context. What matters
+is how we implement and define the boundaries. A bounded context is a clearly separated project, with well-defined
+architectural limits. These boundaries are fundamental — violating them can lead to serious issues in the application.
+
+Each bounded context also has its communication style and domain language, specific to subject-matter expert. For example,
+an inspection professional or engineer will have specific terms they always use. We extract this `ubiquitous language`
+by talking to those people — it acts as a contract that defines consistent terminology for flows, issues and processes.
+
+If we choose not to align terms — for example, using one name for an entity in the inspection system and the same name
+inspect, and utilize the same name in the property registration system — everything can become confusing.
+
+It's important to avoid mixing terms unless the two subdomains are so tightly coupled that merging them into one makes
+sense. But even then, we need to be careful not to share the same ubiquitous language across multiple bounded contexts.
+
+The `context map` is a high-level view of the application. It shows the relationships between core, supporting and generic
+subdomains.
+
+If we "zoom in" on a bounded context, we'll often find it includes its own front-end (e.g specific to the inspection system)
+its own back-end, and possibly asynchronous communication like queues instead of direct API calls. The architecture depends
+on the business needs — how real-time the system must be and how much failure it can tolerate.
+
+For instance, consider the person registration scenario: a person is standing in front of us with all the necessary documents,
+but the registration service is offline. Should other systems go offline as well? Or should we queue the data and process
+it later? This depends on the requirements defined by the client.
+
+Inside the bounded context, we typically have a domain layer (with use cases and models), and this context might have a
+dedicated or shared back-end and front-end.
+
+In conclusion, a context map is a macro view of the application, When a business expert looks at it, they should be able
+to say that "Yes, that's how our business works". The bounded contexts in the solution are derived from the sub domain
+identified through conversations. This way, the client can recognize their own business structure reflected in the system
+architecture.
