@@ -237,62 +237,70 @@ architecture.
 
 ## Architectural Decisions
 
-Going out from the level where we already made the strategic plan, mapped the subdomains, understood the relations, what
-are now the architectural decisions we have to take?
+After completing the strategic planning, mapping the subdomains, and understanding their relationships, what architectural
+decisions need to be made next? Should architectural decisions come before design decisions? It depends. Some architectural
+decisions benefit from being delayed, while others must be made as early as possible.
 
-Do we have to take the architectural decisions before the design ones? Depend on the architectural decision, there are
-some cases that the longer we take, the better, however, there are some decisions we need to make as soon as possible.
-For example, which database are going to use? This is an expensive decision because, let's take X (Twitter) as an example,
-it used a MySQL database and after a certain time, it had to change its architecture to comply with the changes needed by
-the growth of the app, and because of the changes caused by the DB (e.g. more intermediate servers for some process that
-were more costly, synchronizations, replicas, etc), which caused a big impact in the app architecture.
+For example, deciding which database to use is a critical decision. Choosing poorly can have lasting consequences. Take
+X (Twitter) as an example: it initially used a MySQL database but eventually had to evolve its architecture to meet
+scalability needs. This transition introduced complexity—such as additional intermediate servers, costly processes,
+synchronizations, and replicas—which heavily impacted the system's architecture.
 
-Sometimes, having a monolith application — one that holds the whole code in one project, and having an app with
-micro-services — instead of having everything in one code, the application is divided in many projects with small separate
-services that communicate with each other, in some applications, it may not be an architectural decision, but simply deciding
-to break down a monolith, in different modules and if it didn't caused any impact on the code or performance, that was
-simply broken down for load balancing (e.g. one part of the system has a big demand but is not so critic and another one
-has a lower demand but is more critic than other, but both of them need to be isolated), eventually, we end up changing
-this architecture but it didn't cause any big impact.
+Choosing between a monolithic application and a microservices architecture is another example. In some cases, splitting
+a monolith into modules is not truly an architectural change if it doesn't affect code or performance significantly. It
+could simply be a load balancing decision—for instance, isolating a high-demand but less critical component from a lower-demand
+yet more critical one. In these cases, architecture evolves without major disruption.
 
-Basically it's not: "A B C options are architectural decisions and if it is D E F options it is design decision". It's not
-so 'Black in White', those decision are not so clear. For example, defining asynchronous processes like a message events
-queueing can be architectural (and normally is, because there is a one based in events, called event driven architecture
-, let's take a shopping cart as an example, they all work if messaging systems, meaning that they are long and complex
-processes, using these systems to model these flows in an order finish process).
+In short, it's not as simple as saying, "A, B, and C are architectural decisions, and D, E, and F are design decisions."
+The distinction isn't black and white. For example, defining asynchronous processing through message queues can be considered
+an architectural decision, especially when following an event-driven architecture—common in complex flows like a shopping
+cart checkout process.
 
-To choose a program language is also an important architectural decision, because it's going to influence the paradigm,
-architecture and code artifacts we are going to use, all of this is going to be impacted by the chosen languages.
+Choosing a programming language is also a major architectural decision because it impacts the coding paradigm, design patterns,
+and artifacts you'll use.
 
-However, delaying infrastructure decision can be interesting, such as choosing a database — if we delay to choose it, we
-bring the question of "How am i going to develop my application without choosing a database?". This would make us think in
-the question of "Why do i need the database to define how the business work?", because the client is going to describe
-the business to us, and won't even mention the MySQL, for example, he doesn't even know that non relational dbs exist,
-he just knows about how the business work. By talking to the client and model the business, we are modelling how the
-business work and not how the data is going to be stored in the entity relationship model. Therefore, delaying the db
-choice, we can delay its inclusion into the project and work with a model that is not necessarily bounded to the persistence
-framework.
+On the other hand, delaying infrastructure decisions, like selecting a database, can be advantageous. It forces us to
+reflect: "How can I develop the business logic without tying it directly to a specific database?" After all, the client
+won't tell us, "Use MySQL"—they'll describe their business processes. Modeling the business should focus on behavior,
+not on how the data will be stored.
 
-Doing this, can arise some questions, like "How am i going to do the hibernate mapping", and maybe we do not do this mapping
-inside of our model, maybe we can create a separate model, only with public attributes, even without a getters or setters,
-just to throw random data inside this "dumb" model and send to the database.
+Delaying database decisions encourages a cleaner separation between business logic and persistence. Instead of immediately
+thinking about Hibernate mappings, we might design a separate, simple model with public attributes—no getters, setters,
+or database dependencies—just to transfer data to the persistence layer.
 
-Therefore, delaying infrastructure choice, may "bring us a light" of how much we should implement parts of the business
-without having a dependency from the infrastructure or a specific database model. By taking an example app as an example,
-let's say we have an A module, and a B module, one architectural restriction would be saying that the A module depends on
-the B module, meaning that inside the A module, we have imports that point to classes or elements that are inside the
-b module. However, inside the B module, we can't have imports that point to A, and this would be a defined restriction of
-"In any circumstances we can have, inside module B, imports that point to A". Not creating a physical barrier that prevent
-this from happening, would increase the chances of this happening, so creating one, is a good choice.
+This way, we implement business processes without being tightly coupled to infrastructure concerns.
 
-That is an example of architectural decision, and a guideline one is, for example, telling the team "Guys, we are going to
-work in a project with anemic models, where we create classes with private attributes, and getters and setters methods",
-this is anemic because it's a project practically without business logic, simple, registrations and for us doesn't make
-sense bringing into the model, rules that simply does not exist for working with it. Even if the name "anemic" is ugly,
-for this project makes sense.
+Another example of an architectural decision is setting module dependency rules. Suppose we have module A and module B.
+We might establish a rule that A can depend on B, but B must never depend on A. Creating physical barriers (such as separate
+build artifacts) can help enforce this rule and prevent accidental violations.
 
-Another case is, saying that we'll work with a rich model, that have business rules inside of it. Architectural guidelines
-can be the language, the paradigm, rich model or anemic model, if it's an architecture oriented to use cases, the direction
-of the dependencies (e.g. who depends in what? a on b or b on a?)
+Similarly, architectural guidelines might define whether the project will use an anemic domain model (simple classes with
+private attributes, getters, and setters, and little to no business logic) or a rich domain model (classes encapsulating
+oth data and behavior). Even though "anemic" sounds negative, for simple CRUD applications, it might make perfect sense.
 
-If we start looking in the design level, we'll start entering in aspects that are tu
+Other architectural guidelines include choosing the programming language, paradigm, domain model style, use-case-driven
+development, and dependency directions (e.g., A depends on B, not vice versa).
+
+When we move into the design level, we focus on more practical concerns:
+
+. Which architectural patterns will we adopt? Layered architecture? Hexagonal architecture? CQRS (Command Query Responsibility
+Segregation)?
+
+. Which design patterns best suit the project?
+
+All these choices are applied within the bounded contexts, where each bounded context defines its own rules and decisions.
+Some projects might benefit from CQRS; others won't.
+
+In the tactical phase, we leave the global view behind and dive deep into each bounded context. For example, in the Inspection
+context, we might have an Engineer entity and a RevisionInspection entity. We model data and business flows based on
+real-world operations.
+
+For instance, an engineer might tell us:
+
+. The first inspection covers all items.
+
+. A second, follow-up inspection should only check previously non-compliant items.
+
+This real-world input affects our design. Instead of reloading all inspection data, we create a flow that loads only the
+non-compliant items, saving the engineer time. We design these flows into application services (AS) inside the bounded
+context, reflecting real business practices.
