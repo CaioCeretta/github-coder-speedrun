@@ -304,3 +304,24 @@ For instance, an engineer might tell us:
 This real-world input affects our design. Instead of reloading all inspection data, we create a flow that loads only the
 non-compliant items, saving the engineer time. We design these flows into application services (AS) inside the bounded
 context, reflecting real business practices.
+
+## Complexity
+
+One of the big philosophies in the way of thinking about DDD, is that we should address complexity from the inside-out.
+This means pacing and solving the complexity where it appears, rather than leaving that place empty, and handling it somewhere
+else.
+
+Why? Because, physically, the part where the complexity appears (the inside), is much smaller than the outer parts, the
+surface can involve many different systems. If we have a rule that should be implemented inside the model/entity, and we
+simply don't solve it there, we'll likely end up implementing the same rule across all layer of the application.
+
+Imagine we have a function that needs to be called, and because we didn't implement it on the core, it has to be implemented
+four different times on the outer layers. If we had created it at the core, we would just call it once. That's better—
+but even then, there might be a flow that forgets to call the rule, leading to it not being enforced when it should. If
+the rule had been implemented inside, at the point it naturally belongs, there would be a much lower chance of missing it
+elsewhere.
+
+Understanding that complexity must be addressed from the inside out is the best path to follow when thinking in an
+object-oriented manner — specially when embedding rules inside the data. If we have a rule that depends on two pieces of
+information that an inspection already has, then this rule should be implemented within the inspection context or very close
+to it.
