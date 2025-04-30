@@ -35,6 +35,8 @@ In this chapter, we're talking about a project that has been made
 
 Every code has the strategic part, it consist of three specific tools that help us organizing our code.
 
+### First Tool
+
 1 - Bounded Context: Basically is the "divide-and-conquer" rule, when we have a big business and even if it's an "distance
 learning" platform, which is still in the beginning when compared to bigger applications, we still can notice bounded contexts,
 within the application that can consist of different parts which can be developed independently. Let's use a forum as an
@@ -69,3 +71,30 @@ like auth, educational, and forum represent distinct domains of business rules. 
 direct database interactions—there are no DB imports, no language-specific constructs, and no third party libraries, being
 the only exception is an UUID library, which, instead of letting the application framework or the database to generate the
 IDs, is used to ensure that the application itself has control over ID generation.
+
+### Second Tool
+
+2 - On the example above, the strategic part is not complicated, but many people can jump that part for finding it hard.
+But it is simply divided in these three tools that we talked about. It's basically talking to the experts that will explain
+us the hard part because it depends on the business, so it's a business complexity and not an accidental one.
+
+The difference between what is accidental and what's a complexity inherent to the business. When we choose to use micro-services
+inside our application, that is a structural choice which will bring with it a series of accidental complexities to our
+project, they are complexities inherent to the technology chosen, and because of this, we need to going to bear the consequences
+of the complexities brought by this choice.
+
+One example of complexity that is commonly introduced unnecessarily is the decision to program in English. The client speaks
+portuguese, the team speaks portuguese, and the business is specific to Brazil —yet the team chooses to use English. This
+can be problematic if neither te team nor the client speaks English, neither. If often leads to a mix of English and Portuguese
+in the codebase, introducing accidental complexity into the project. As a result, someone who doesn't understand English may
+struggle to comprehend parts of the system due to the language barrier.
+
+However, when we do choose to use English — and some times there are valid reasons for that — we need to be aware that this
+choice introduces additional complexity and cost. In some cases, it may be justified by the inherent complexity of the
+business itself, which would make the use of English necessary and appropriate.
+
+With that being said, the second tool is the creation of a ubiquitous language — a shared language used consistently across
+all project communications. This means the same terminology should be used in the code, messages, emails, and all interactions
+with the client. This language is not invented by the developers alone; it is co-created with a domain expert — someone
+who deeply understands the business, such as a lawyer in the case of a system. Together, the domain expert and the developers
+define this shared vocabulary, which is tailored to each bounded context within the project.
