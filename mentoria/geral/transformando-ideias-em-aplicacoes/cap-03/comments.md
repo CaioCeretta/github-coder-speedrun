@@ -74,7 +74,8 @@ IDs, is used to ensure that the application itself has control over ID generatio
 
 ### Second Tool
 
-2 - On the example above, the strategic part is not complicated, but many people can jump that part for finding it hard.
+2 - Ubiquitous Language: On the example above, the strategic part is not complicated, but many people can jump that part
+for finding it hard.
 But it is simply divided in these three tools that we talked about. It's basically talking to the experts that will explain
 us the hard part because it depends on the business, so it's a business complexity and not an accidental one.
 
@@ -98,3 +99,54 @@ all project communications. This means the same terminology should be used in th
 with the client. This language is not invented by the developers alone; it is co-created with a domain expert — someone
 who deeply understands the business, such as a lawyer in the case of a system. Together, the domain expert and the developers
 define this shared vocabulary, which is tailored to each bounded context within the project.
+
+## Third Tool
+
+3 - Context Map: It's the way we'll relate all the bounded contexts — who depends of who? — Forum depends on educational
+or vice versa? forum depends on auth or vice versa?
+
+By establishing the relation between the parts, the application will start working passing through all the integrated flows.
+
+In an hospital example, let's say we have a hospitalized patient, there will be flows that are going to speak with the
+surgery context, that will need to interact with the legal context of the company — some procedures need legal approval
+to happen and it demands the health plan to make some specific procedures — these related flows, pass through the context
+map.
+
+In the mentoring, the application, the application initially being developed was simple — just a single application with
+a single rule. But now it has become more complex, involving more strategic parts.
+
+One might think that only three things are needed to create an app, but we mustn't forget that there are other important
+processes, like talking to the client, gathering requirements, holding meetings, creating user stories, and so on. However,
+when we're talking about DDD, the focus is specifically on a few essential tools. In the end, DDD aims to generate a shared
+vocabulary (a glossary for communication) and a diagram showing all the bounded context and how they interact.
+
+Take the hospital example: imagine we have clients spread across different states. a medical staff was assembled — one
+professional from each state — so the team could gain a broader understanding of how the medical expertise works across
+the country. The team included not only doctors, but also other hospital staff. Since they came from different regions,
+the same business term was often used in different ways depending on the client
+
+To complicate things, the developer who joined the project created the developer, that took the project created yet another
+term to use in the code, and the project team itself ended up choosing a fourth term. As a result, the developers had to
+constantly translate between terms — for example, when someone said "A", they were actually referring to "C" in the code,
+while the client might call it A or B, This lack of a shared, ubiquitous (universal) language increased the complexity of
+the codebase.
+
+### Question Off-Topic
+
+One viewer asked about utilizing a different framework on the project, asking if using a specific framework that has an
+own structure, if it would affect the project that's being dealt with.
+
+The answer is no, because as we've seen before, inside the packages folder, we separate the business logic from the application,
+so it would'nt even be inside the business folder.
+
+The rest of the code application, such as frameworks, they are kept in the apps folder, which will have the front, back
+and mobile applications.
+
+Visually, saying that the core of the business is separated from the shell (outer section), is like having a circle in the
+center, representing the business rules and another circle around it representing the shell where the frameworks is placed.
+
+Frameworks are the shell of our application. As we mentioned at the beginning of the project, the instructor started working
+on the mobile version of the app when a web front-end and a back-end were already in place. Because of the separation implemented
+in the project, he didn't have to adapt the back-end for the mobile version, instead, he built the mobile app around the
+already functional back-end. No other changes were needed — neither in the back-end, nor in the business rules — because
+mobile is part of the shell. Consequently, creating this protection, we'll have a better structure.
