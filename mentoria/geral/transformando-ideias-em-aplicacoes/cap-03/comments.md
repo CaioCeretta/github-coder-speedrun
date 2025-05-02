@@ -150,3 +150,100 @@ on the mobile version of the app when a web front-end and a back-end were alread
 in the project, he didn't have to adapt the back-end for the mobile version, instead, he built the mobile app around the
 already functional back-end. No other changes were needed — neither in the back-end, nor in the business rules — because
 mobile is part of the shell. Consequently, creating this protection, we'll have a better structure.
+
+## Other Commentaries
+
+1. The DDD, tell us that everything said by the client in a meeting — the phrases, the verbs, substantives — they should be
+   placed within everything generated from then on, and it'll influence everything said on the meeting and it will have a
+   complete link with the application.
+
+2. When writing clear code, even someone who doesn't understand programming should be able to look through our folders
+   and grasp their meaning.
+   For example, a person who uses a distance learning platform might occasionally see the developer workspace and notice
+   a folder named "educational". They would automatically wonder if it does what they thinks he does.
+
+If they open it, and navigate to src folder, then into the model folder, they will find familiar names, such as 'curso',
+'progresso', and 'aluno'.
+
+Inside the curso folder, They'll also find more intuitive and recognizable terms, and so on.
+
+3. Having the sensibility and as developer, having this sensibility of changing the mental paradigm, helps one on creating
+   a code more healthy decoupled and interesting in the long term.
+
+4. OOP preaches that we look at the real world, and bring an abstraction of it within the software. However, many times,
+   developers, look into the business and end up creating several disconnected layers, rather than working in the way
+   intended. Given that, programming with a clear architecture — such as DDD.
+
+5. The "update user name" use case requires access to the database because it modifies the user record, just like the registration
+   and login use cases. That's why, when creating use cases that all implement the same interface, a data repository is
+   needed. The specific method of data persistence isn't something we need to worry about; what matters is that
+   the repository is defined as an interface, without implementation, and only says that it has two methods: save and get.
+   However, if we look in the useCase, such as registerUser, we'll notice that it's calling the models to validate the
+   rules — there is no validation inside a useCase, that's why the model is called —, will encrypt the password, verify
+   if the user exists, and then send the request to the database.
+
+6. Usually, a use case that involves the data base, we usually have: Front Web / Front Mobile -> Back-End -> Database.
+   When this use case is called from the front, it will call the back-end — which have accesses to the use cases and the
+   business rules and returns the result.
+
+   Therefore, the important thing to know is: The front-end is the shell, whereas the use cases are implemented in the
+   back-end.
+
+## Application Flow
+
+The flow is basically: We have the web application and the mobile front end, which are the shells, and when interacting
+with it, it has already been made a deploy within the web application — the code is already running on the application —
+and the user interaction will make that the business to already call something from the front-end. Even though they are
+separated, physically inside a project, inside the project, when deploying it, the business has already been compacted
+inside the web application
+
+Now, by deploying, it is now like a dependency of the project, like we are importing it as a library, in a way that when
+we click on a button to execute any action inside a use case that don't need to be called in the back-end, it'll simply
+call the code directly from the front-end, with no need of calling the back-end to do something.
+
+We can even do something local, a "pre-call" could be made to validate everything before going to the back-end and ensure
+that the chance of working is bigger. And for it, another use case can be created just to validate the data before the
+registration; before login; course registration, etc.
+
+## Folders
+
+Inside the business (packages) folder, we have these three contexts, auth; educational; forum.
+
+Within the apps folder, we'll find the back-end, the front-end and the mobile, which are the expected applications to
+be in the project.
+
+In the package.json, we'll notice that in the front-end package-json dependencies, include the educational, forum, and
+auth, which are separate workspaces.
+
+This happens because the front-end depend on those 3, whereas the back-end will depend on the authentication, educational
+and forum —this happen because those three bounded contexts, need, after the application, call the use cases inside these
+elements—. All use cases are called within the adapters folder, which separates each bounded context and its rules.
+
+Each use case has an url inside the API that points to it, e.g. getCourseByIdController.ts, we can see that within it,
+the GetCourseById use case, calls it with the signature created, and returns a formatted response expected by
+the use case
+
+## Use Cases
+
+Some examples are:
+
+1: Toggling the visibility of a class: On the shell, a simple click on a button will change its visibility, and by clicking
+it, he's only modifying the front-end, back-end is not doing nothing and not changing on the database, if the page is
+reloaded, it will show the visibility that is persisted on the database.
+The use case of toggling the class visibility can only be called by an admin and its implementation is on the 'curso',
+entity. Therefore, the entity 'curso', is only being used as a 'shell' to call a state change within the application.
+
+2:Changing classes order on the list:
+This also has a specified code to move the classes, but it's not part of the
+use cases, because there isn't the place to implement domain rules. However, it is still inside the Curso model, where
+it calls the Classes model, which contains the classes and inside of it, move the lesson to the desired position.
+Therefore, inside of it, we have the logic to do so. If one did not intend to do so, and not put that code in the
+model, and suppose that changing the order is a front-end necessity, and this would cause us to implement in the
+front-end web.
+But because a useCase was made, where changing the order of the classes, was not a front-end responsibility, but a
+business necessity. And, he as lecturer, recorded a course where and he needs to upload a lesson, on the second position
+because he needs to give a notice of an important change that occurred in the framework.
+Therefore, it's not a front-end necessity, but rather a business need for him as a teacher.
+And he defends the opinion that this must not be placed in the front-end and yet, on the models, in a way that he can
+use it in both applications with no problems / code rewriting because he does not have to violate a principle named
+`DRY` (Don't Repeat Yourself), which in this case means, Don't write a business rule in more than one place.
