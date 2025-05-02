@@ -247,3 +247,24 @@ Therefore, it's not a front-end necessity, but rather a business need for him as
 And he defends the opinion that this must not be placed in the front-end and yet, on the models, in a way that he can
 use it in both applications with no problems / code rewriting because he does not have to violate a principle named
 `DRY` (Don't Repeat Yourself), which in this case means, Don't write a business rule in more than one place.
+
+## Public Q&A
+
+1 - Inside the turborepo structure, it works really well when we're working in a stack based on javascript, but does it
+work if the front and the back are in different languages?
+
+R: There may not exist a manager tool that manage projects of more than one technology. However, we still can have a single
+repository for the projects and the architecture principles used in the clean architecture; hexagonal architecture; domain
+modelling; use cases; they are going to work independently if one has only one language or not. It will be independent
+from the language, being pure OOP applied to the business.
+It would be grabbing the basic principles, apply them on the business, and this knowledge can be applied for any
+language (including languages that are not OO)
+
+2 - In applications front-end and mobile: beside educational, auth, and forum, do they also depend on the back-end or
+the back-end call is only via API and no dependence is needed?
+
+R: Yes, they don't depend on the back-end, it's only made by API. The dependency do not know to what application
+it's attending to determinate API, we simply call the API without direct dependency.
+The only application that depends on the database is the back-end, no other bounded context depends on it. Unless if we
+change the technology, such as firebase, it's accessed directly on the front-end, but even in these cases, it can still
+be completely unlinked to the front-end and be accessed via use cases
