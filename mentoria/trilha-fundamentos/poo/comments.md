@@ -143,8 +143,88 @@ Now, somar is not just a function — it is a behavior tied to a specific object
 which allows encapsulation. Similarly, we could model a Product object that contains name, price and stock, along with
 behaviors relevant to it — like updating stock or calculating discounts.
 
-Internally, OOP builds on concepts that existed before it (such as structures and functions), but it brings a more disciplined
+Internally, OOP builds on concepts that existed before it—such as structures and functions—but introduces a more disciplined
 and expressive way to organize code.
 
-Just as structured programming imposes discipline over direct control flow (e.g., avoiding goto), OOP imposes discipline
+Just as structured programming imposes discipline over direct control flow (e.g. avoiding goto), OOP imposes discipline
 over indirect control flow, which is closely tied to one of its key pillars: polymorphism.
+
+Before OO:
+
+What we had: Let's say we had an application with three functions and some data —texts, number, booleans, arrays. The
+data would be passed as parameters to the functions, which would then return some result. This means we have this loosely
+coupled elements within a single structure.
+
+After OO:
+
+What we have now: There's a structure we can think of as a capsule —which is basically an object. inside this object, we
+have both data and behaviors.
+
+Using a product capsule as an example, we can divide it into data and behaviors.
+
+Data: name: string, price: number, status: boolean
+
+Behaviors: Methods that operate on the data.
+
+Encapsulation changes the way a developer thinks, because now they are grouping these structures together, which now hold
+state. In procedural programming, data typically exists either in the global scope or in the local scope.
+
+In object-oriented programming, methods can have local variables within their own scope, and they also have direct access
+to instance variables. This strong coupling allows methods to modify the object's internal state directly.
+
+### Classes vs Objects Relation
+
+Let's say we have a cake factory. If we use a star-shaped cake pan, the cake will take on the same defined by that pan.
+
+We can think of this as the mold or model we use to make the cake. After creating that mold, we can use it to make any
+number of cakes. In programming terms, the mold is the class and the cake is the object created from that class. We can
+create as many objects as we want using the smae mold
+
+#### Example 1: A class that represents a date
+
+```js
+class Date {
+	day: number = 1
+	month: number = 1
+	year: number = 2025
+
+	get formatted() {
+		return `${this.day} of ${this.month}, ${this.year}`
+	}
+}
+
+const currentDate = new Date()
+
+currentDate.day = 4
+currentDate.month = 5
+currentDate.year = 2025
+```
+
+When we create an object using the reserved keyword `new`, this object will allocate memory to store the values of day,
+month and year.
+
+Every time we instantiate the `Date` class, we're using the exact same mold. If the class has 3 attributes, the objects
+created from it, will have the same 3 attributes — meaning the structure of all objects from class will be the same, including
+both the data and behavior.
+
+_Reminder: even if the object is a declared as a constant, we can still modify its internal data_
+
+By creating a formatted getter, like this:
+
+get formatted() {
+return `${this.day} of ${this.month}, ${this.year}`
+}
+
+We can retrieve the current object's data and present the date object in a human-readable format. Since the class is only
+a blueprint, the way to reference the data of each specific object is by using the `this` keyword.
+
+### Static Attribute
+
+When you change an attribute from public/private/protected to static, it stops being an instance attribute and becomes a
+class attribute.
+
+This means that the attribute no longer belongs to individual objects created from the class — instead, it belongs to the
+class itself. All instances of the class will share the same static attribute.
+
+While instance attributes are stored in each object and can have different values per instance, static attributes are
+defined once on the class and shared across all instances.
