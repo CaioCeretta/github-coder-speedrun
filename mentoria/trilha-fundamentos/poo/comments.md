@@ -228,3 +228,101 @@ class itself. All instances of the class will share the same static attribute.
 
 While instance attributes are stored in each object and can have different values per instance, static attributes are
 defined once on the class and shared across all instances.
+
+That's why it doesn't make sense to make certain attributes static — like sharing the same `day` value across all objects.
+Instead, static attributes should be used for constant data that doesn't vary from one object to another, such as the value
+of PI on a `Math` class
+
+One valid example, for the Data class, would be creating a static attribute of YEAR_ZERO_UNIX = 1970, because this would
+be the same for every object, and this would now be accessed using Data.YEAR_ZERO_UNIX, without the need of an instance.
+
+### OOP Pillars
+
+An explanation of each pillar with real world examples.
+
+1.  Encapsulation
+
+    Anything that we use, and we don't need to know its details in order to use it. For example, when driving, we don't
+    need to know the communication interface between the human being and the car, nor the details of its pedals, steering
+    wheel, gears, etc.
+
+    However we don't need to know its internal details, such as the combustion process, whether its engine its electric or
+    combustion-based, whether it has a piston, carburetor, a spark plug, or a a cylinder? All of these are internal details
+    of how that object (in this case, the car) works.
+
+    When we think about encapsulation, we think about hiding the internal details. We only need to understand the interface
+    of an object. For example, imagine a car from a different brand than the one we're used to. To fuel it, there might be
+    a handle on the ceiling of the car and we may to turn it from time to time.
+
+    Another car brand, might require us to click on a trackpad to change gears
+
+    By this, the interface of how a car is driven changes. When we have a shock (i.e., a change in interfaces), for example,
+    when we change the way we use a certain object, it creates a higher collateral effect than simply changing the
+    internal details.
+
+    However, car gears are commonly changed in the same way, with pedals in the same order, steering in the same place,
+    the seats in the same position, and so on. This is because the interface is the same. The adaptation process when using
+    cars from two different brands is practically immediate because the communication interface is almost identical.
+
+    Thus, the reason OO hides internal details is that our programs are composed of a large set objects, which interact with
+    each other, The goal is to make communication between these objects as simple as possible, hiding the complex details
+    of how the object was implemented inside itself, so that it can be used in a straightforward way.
+
+    We can use an e-commerce checkout use case as an example. The object that handles the checkout doesn't need to know how
+    the price is calculated internally, taking into account taxes/freight and so on.
+
+    Therefore, what we want is to break the complexity down into small objects, and hiding these details inside the object
+    , which acts as a capsule.
+
+    Encapsulation has two main purposes:
+
+    1. "To combine data and behaviors in the same structure"
+    2. "To hide unnecessary details from the external world, making the object as simple as possible for other objects to
+       use.
+
+    When we start working with a simpler example, the objects will depend on each other and the chances of having
+    a high degree of connection are very high.
+
+    By this, we understand that the objective of encapsulation is to control the levels of visibility of the attributes
+    and behaviors that are part of the object. Not all attributes or behaviors should be visible to the entire
+    codebase. By treating the object as a capsule that holds both, we again, within OO, the ability to keep some attributes
+    hidden from the external world, making the object owner of that information and being only accessed by it.
+
+2.  Inheritance
+
+There are some ways we can reuse a code: The first one is the `DRY` (Don't repeat yourself). Sometimes there are cases
+that we think its repeating and violating this principle, but we are not, because it have different purposes. However, if
+we try to reuse the code, in order to combine both, it will generate a problem.
+
+There's also the composition, which is by far the best way to reuse code, it allows us to reuse code in a more personalized and
+flexible way compared to inheritance. Inheritance may introduce unwanted behaviors in certain scenarios, and since it's
+more rigid, it becomes less appealing than composition, which offers greater flexibility.
+
+Inheritance: 'It's one relation', every time we think of this, like a dog IS AN animal, it doesn't mean we have to use
+inheritance.
+
+There is a well-known principle in OO, that advises us that we favor composition over inheritance. Because the composition
+is simpler, more explicit, more flexible, and so on.
+
+However, there are cases where inheritance is appropriate—typically when we can answer the question "Is it a?"
+
+For example: Is ferrari a car? Is a Civic a car? These are "is-a" a relationships, where car is a more generic
+concept, and Ferrari or Civic are specializations. In such cases, inheritance makes sense because we are modeling a hierarchy
+of generalization and specialization.
+
+In contrast, composition suited for "has-a" relationships. For instance, a car `has` doors, car `has` an engine, car `has`
+wheels. Here, we combine simpler objects into a more complex one. The car is not an engine—it contains one. This is the
+essence of composition: building complex systems by assembling smaller, independent components.
+
+In fact, the real world tends to prioritize composition. Consider a bedroom: it has computers, wardrobes, clothes, andso
+on—objects that, together, make up a more complex environment.
+
+Therefore, if we find ourselves trying to create an inheritance relationship where there is no clear "is-a" logic—like
+saying " an engine is a car", chances are we're modelling the problem incorrectly. In such cases, composition is likely
+the better design choice.
+
+Composition:
+
+1.  Polymorphism
+
+2.  Abstraction
