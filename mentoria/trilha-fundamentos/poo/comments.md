@@ -314,15 +314,126 @@ In contrast, composition suited for "has-a" relationships. For instance, a car `
 wheels. Here, we combine simpler objects into a more complex one. The car is not an engine—it contains one. This is the
 essence of composition: building complex systems by assembling smaller, independent components.
 
-In fact, the real world tends to prioritize composition. Consider a bedroom: it has computers, wardrobes, clothes, andso
+In fact, the real world tends to prioritize composition. Consider a bedroom: it has computers, wardrobes, clothes, and so
 on—objects that, together, make up a more complex environment.
 
 Therefore, if we find ourselves trying to create an inheritance relationship where there is no clear "is-a" logic—like
-saying " an engine is a car", chances are we're modelling the problem incorrectly. In such cases, composition is likely
+saying "an engine is a car", chances are we're modelling the problem incorrectly. In such cases, composition is likely
 the better design choice.
 
-Composition:
+Sometimes, people try to achieve reusability through inheritance just because some attributes are similar.
 
-1.  Polymorphism
+For example, imagine a `Food` class which has name and weight properties, and another class named `Person` that also has
+name and weight. Some developers might decide to use inheritance simply because the properties name match.
 
-2.  Abstraction
+However, this is not a valid use of inheritance. Inheritance should only be used when there's a "is-a" relationship.
+Even though a person has a name and weight, that doesn't mean a person is a food.
+
+This demonstrates why composition is often a better alternative.
+
+A design pattern which works very well for replacing an inheritance for a composition is the `Decorator Pattern`, it
+allows us to modify or extend the behavior of a without needing to inherit from it directly.
+
+The core idea is to wrap or inject behaviors from another class rather than inheriting them.
+
+A more concrete example would be a `Car` class and the `Specialization` class that inherits from `Car`.
+
+The base `Car` class could contain general data and behaviors such as currentSpeed, maxVelocity, brake(), and accelerate().
+
+Using inheritance, every specialization would automatically gain access to these properties and methods.
+
+Example:
+
+```ts
+class Car {
+	currentSpeed: number = 0
+
+	accelerate() {
+		this.currentSpeed += 5
+	}
+
+	brake() {
+		this.currentSpeed -= 5
+	}
+}
+
+export default class Ferrari extends Car {}
+
+// Now, by creating a test file, for example and import this `Ferrari` class and log it, we'll be able to see that it has
+// everything from the Car
+```
+
+However, we could instead apply composition by injecting these behaviors into the specialization, which can provide more
+flexibility and better separation of concerns — especially when we want to extend or change behavior dynamically.
+
+The last example is the polymorphism, which its types are:
+
+Dynamic:
+
+Let's say we have a `Car` class, a `Jeep` and a `Civic`, where these two models inherit from Car with extends.
+
+Assume we create a variable `c: Car = new Jeep()`, what will happen here, is that in the memory, there will be a reserved
+spot that stores the c value, and within this space, we have a Jeep. By the moment the program continues to run and we
+take this c variable, and assigns it to a new Civic(), instantiating a new Civic object — which is also a car. On this memory
+space, what was a Jeep before, is now a Civic.
+
+In other words, the variable c have multiple shapes and we have a polymorphism, meaning that we can have multiple shapes
+inside a single variable.
+
+If, before assigning it to the `Civic` object, we accelerate, we are calling the accelerate from the `Jeep` object, and
+by calling it again, after the transformation, we are calling the behavior from `Civic`. Therefore, we can change the control
+of our application, call codes from different places, because of the polymorphism.
+
+The indirect control transference is because at the moment we have a `Jeep` instance and we call the accelerate method, we
+are calling it after another structure, and by changing this variable and calling the accelerate again, we are calling it
+from a complete different place.
+
+The accelerate method, can have different implementations from one object to another.
+
+If we had another car model that inherits from Car, we are still going to be able to assign the c variable to it and call
+the accelerate method — which also has a different implementation from the others — from the object
+
+Concrete example:
+
+By creating this function, that takes an argument of the Car type and we call accelerate inside of it, we can pass many
+objects, from different types, in other words, we are changing the flow of our application because we have the polymorphism
+and after it, we can alter the transference of the application but no directly, this is not an explicit function call,
+there can be many types of implementations of that c parameter accelerate, and in an indirect manner, we can access
+many codes through it.
+
+```ts
+function xyz(c: Car) {
+	c.accelerate()
+}
+```
+
+Other example:
+
+Imagine we have a generic type called `Database`, which has three implementations: `DBMemory`, `DBOracle`, `DBMongo`.
+
+At the moment of defining the core behavior of a database , we can create a generic interface that defines the base
+methods (e.g. save, delete, find). Each child implementation will then provide its owm logic for these methods
+
+By relying only on the `Database` interface—without coupling our application to any specific implementation— we are applying
+the concept polymorphism, often described in the Ports and Adapters (also known as `Hexagonal`) architecture. In this context:
+
+. The interface (e.g., `Database`) represents the Port (or 'door')
+
+. The concrete implementations (e.g., `DBMemory`, `DBOracle`, `DBMongo`) represent the Adapters.
+
+In our application logic (the "inside" of the system), we know that at some point we'll need to persist data. Depending
+on the environment or situation, we may use a different implementation—for example:
+
+. `DBMemory` for tests,
+. `DBOracle` for production
+. `DBMongo` for data migration
+
+Thanks to polymorphism, we can call database.save() without knowing which specific class is being used. The correct
+implementation is selected at runtime, and the calling code doesn't need to care about it.
+
+This differs from structured programming, where control flow is explicit, and we manually direct which function or module
+to call. With polymorphism, the flow is indirectly handled through abstraction—allowing us to write more flexible and
+decoupled code—
+
+In TypeScript, `interfaces` often play the role of ports (generic contracts), and `classes` implement these interfaces
+as adapters. This one reason why inheritance and polymorphism are so powerful and commonly used in TypeScript.
