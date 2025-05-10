@@ -27,12 +27,14 @@ Page > Header > Logo, Menu > MenuItem, Content > Title, Main, Footer > Logo, Lin
 
 Each paradigm, has its own restrictions/disciplines and, these are the main pillars in functional programming:
 
-### 1. Immutability
+### Functional Programming Paradigms
+
+#### 1. Immutability
 
 . Data does not change, instead of modifying existing values, new ones are created
 . Example: Instead of updating a list, a new one is created with the desired values
 
-### 2. Pure Functions
+#### 2. Pure Functions
 
 . Always return the same data for the same arguments
 . They do not have side effects (don't change external variables, files, database, etc)
@@ -53,7 +55,7 @@ return total;
 The problem is that it modifies the total value outside the function, and as a result, the return depends on the previous
 value of total.
 
-### 3. High Order Functions (HOC)
+#### 3. High Order Functions (HOC)
 
 . Functions that receive other functions as argument or return function
 
@@ -61,13 +63,13 @@ value of total.
 
 const apply = (fn, value) => fn(valor)
 
-### 4. Function compositions
+#### 4. Function compositions
 
 const double = x => x \* 2;
 const sum3 = x => x + 3;
 const compose = x => sum3(double(x))
 
-### 5. Referential Transparency
+#### 5. Referential Transparency
 
 Referential transparency is when a piece of code is referentially transparent if we can safely replace that piece of code
 with the value it computes and vice-versa, anywhere where that piece is used, without changing the meaning o result of our
@@ -132,10 +134,131 @@ console.log(result)
 since add(2, 3) is referentially transparent (always returns the same result with the same input and has no side effects)
 we can safely extract it into a variable — this avoids duplication and makes the code more readable and maintainable.
 
-### 6. Recursion Instead of Loops
+#### 6. Recursion Instead of Loops
 
 . Instead of using for and while, repetition is done through functions that are called recursively
 
 Example:
 
 const factorial = n => n <= 1 ? 1 : n \* factorial(n - 1);
+
+### POO Paradigms
+
+#### Encapsulation
+
+What it means:
+
+Encapsulation is about bundling related data and methods inside a class, and hiding internal details from outside access
+to protect the object's state
+
+It's useful to keep the data safe from unwanted changes as well making our code modular and easier to maintain
+
+```ts
+class BankAccount {
+	#balance = 0 // private field
+
+	deposit(amount) {
+		if (amount > 0) this.#balance += amount
+	}
+
+	getBalance() {
+		return this.#balance
+	}
+}
+```
+
+### Abstraction
+
+What it means:
+
+Abstraction means hiding complex implementation details and only exposing the necessary parts through a simple interface
+
+Why it's useful?
+
+It let's user interact with objects without needing to understand their inner workings as well as reduce complexity
+
+```ts
+class CoffeeMachine {
+	makeCoffee() {
+		this.#boilWater()
+		this.bewCoffee()
+
+		console.log('Coffee is ready')
+	}
+
+	#boilWater() {
+		console.log('Boiling water...')
+	}
+
+	#brewCoffee() {
+		console.log
+	}
+}
+```
+
+Here, we are abstracting away the complex steps involved in making coffee (like boiling water, brewing, temperature
+control, etc.), and giving the user a clean and simple method:
+
+#### Inheritance
+
+Inheritance allows one class (child) to reuse code from another class (parent), and optionally extend or customize its
+behavior.
+
+Why it's useful ?
+Avoids code duplication as well modelling real-word "is-a" relationship
+
+```ts
+class Animal {
+	move() {
+		console.log('Animal moves')
+	}
+}
+
+class Bird extends Animal {
+	fly() {
+		console.log('Bird flies')
+	}
+}
+```
+
+#### Polymorphism
+
+Polymorphism means "many forms" — it allows methods to behave differently depending on the object calling them, even if
+they share the same name
+
+Why it's useful:
+
+Makes the code flexible and easier to extend as well promotes interface reuse
+
+```ts
+
+class Animal() {
+  speak() {
+    console.log("Animal speaks")
+  }
+
+  class Dog extends Animal {
+    speak() {
+      console.log("Dog barks")
+    }
+  }
+
+  class Cat extends Animal {
+    speak() {
+      console.log("Cat meows")
+    }
+  }
+}
+
+```
+
+In short:
+
+Encapsulation: keeps the details inside the object and a real world analogy is a capsule medicine — works inside, safe outside
+
+Abstractions: shows only what's necessary, and a real world analogy would be car pedals — you don't need to know how the engine
+works
+
+Inheritance: Reuses and extends behavior, parent-child relationships
+
+Polymorphism: ALlows different behavior using the same method, like a remote "play" button works for tv, music, or streaming
