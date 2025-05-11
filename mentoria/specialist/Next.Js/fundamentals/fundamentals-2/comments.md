@@ -259,6 +259,30 @@ Encapsulation: keeps the details inside the object and a real world analogy is a
 Abstractions: shows only what's necessary, and a real world analogy would be car pedals — you don't need to know how the engine
 works
 
-Inheritance: Reuses and extends behavior, parent-child relationships
+Inheritance: Reuses and extends behavior, parent-child relationship
 
 Polymorphism: ALlows different behavior using the same method, like a remote "play" button works for tv, music, or streaming
+
+In POO, there's a technique, which is very popular, that is the composition, the composition promotes reuses, and by promoting
+it, paradigms such as `OO`, `Structured Programming`, and `Functional Programming`. We use composition all the time. Basically
+what happened is that we created a model that resembles `OO`, since what before was separated by technologies, we now have
+a component that encapsulates HTML, CSS, JS. Consequently, we can think of a component as an object. In fact, when we look
+at `React`, for example, components can be defined through functions or classes.
+
+javascript doesn't have classes, what it has is one thing called "Syntax sugar", by the end of the day, it is converted
+into a function. However, in js, a function can be instantiated — with new, just like normal classes. When we create a
+<Component />, internally, js is instantiating an object which encapsulates those three technologies.
+
+When thinking on the component tree, we think of objects that are composed by other objects — A page object, that is composed
+by header, content, footer, that is composed by logo, content, and so on — and what we have here is a composition.
+
+When thinking on inheritance, we think on "is-a" relationships, and we think about composition we think of "has-one"
+relationships.
+
+Therefore, when we look in a react application, we can search for OO and functional characteristics, so we'll notice that
+we can grab all the content once learned and can see them being expressed inside a framework.
+
+One important question when thinking about component trees is: "How am i going to connect the components" and "How will
+i share data in many elements inside a tree?"
+
+For example, the footer element may have links, and there will exist a direct connection,
