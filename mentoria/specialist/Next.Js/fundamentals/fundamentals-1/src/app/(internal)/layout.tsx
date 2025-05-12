@@ -1,3 +1,4 @@
+import Menu from '@/components/template/Menu'
 import type { ReactNode } from 'react'
 
 export default function Layout(props: {
@@ -5,7 +6,9 @@ export default function Layout(props: {
 }) {
 	return (
 		<div className="flex h-screen">
-			<aside className="bg-zinc-900 w-72">Sidebar</aside>
+			<aside className="bg-zinc-900 w-72">
+				<Menu />
+			</aside>
 			<main className="">{props.children}</main>
 		</div>
 	)
