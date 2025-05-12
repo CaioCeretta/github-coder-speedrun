@@ -157,3 +157,60 @@ const icon = iconMap[iconName];
     )
 
 }
+
+## Full screen height
+
+In one div i used h-screen to occupy the whole screen, but the question of, is it enough to be responsive? should i use
+a min-h-full emerged
+
+✅ min-h-screen: Ideal for full-page templates/layouts
+Ensures the content takes up at least the full height of the screen.
+
+Commonly used on body, main, or a main layout wrapper.
+
+Allows the content to grow if it’s taller than the viewport.
+
+Prevents that “floating footer in the middle of the screen” effect when content is short.
+
+📌 Usage example:
+
+<main class="min-h-screen">...</main>
+✅ min-h-full: Ideal for components inside a parent with a defined height
+Only works correctly if the parent element has an explicit height (height: 100vh, flex-grow, etc).
+
+Makes the child occupy all available height from the parent.
+
+Very useful inside layouts using flex, grid, or sidebars.
+
+📌 Usage example:
+
+<div class="h-screen flex">
+  <aside class="w-64 bg-gray-800"></aside>
+  <div class="min-h-full flex-1"> <!-- takes the remaining height from the parent -->
+    Main content
+  </div>
+</div>
+
+✅ Final tip
+If you’re building a layout that should:
+
+occupy at least the full height of the screen,
+
+allow content to grow,
+
+have a footer that always sticks to the bottom when content is short,
+
+then the best structure is:
+
+<html>
+  <body class="min-h-screen">
+    <div class="min-h-screen flex flex-col">
+      <main class="flex-1">
+        Content
+      </main>
+      <footer>
+        Sticky footer at the bottom of the page
+      </footer>
+    </div>
+  </body>
+</html>

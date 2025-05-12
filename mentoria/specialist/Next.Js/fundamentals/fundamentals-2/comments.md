@@ -306,3 +306,5 @@ Basically, we should focus on two main aspects:
 
 2. State sharing - making it possible to synchronize data between components, even if they are far apart in the component
    tree.
+
+--------------------- Back to fundamentals 1 --------------------------------------
