@@ -269,20 +269,40 @@ what happened is that we created a model that resembles `OO`, since what before 
 a component that encapsulates HTML, CSS, JS. Consequently, we can think of a component as an object. In fact, when we look
 at `React`, for example, components can be defined through functions or classes.
 
-javascript doesn't have classes, what it has is one thing called "Syntax sugar", by the end of the day, it is converted
-into a function. However, in js, a function can be instantiated — with new, just like normal classes. When we create a
-<Component />, internally, js is instantiating an object which encapsulates those three technologies.
+javascript doesn't truly in the traditional object-oriented sense. What is has is something called `Syntactic Sugar`— features
+that make the code look cleaner or more familiar, but under the hood, it's still based on functions. At the end of the day,
+class syntax in JavaScript is transformed into functions and prototypes.
 
-When thinking on the component tree, we think of objects that are composed by other objects — A page object, that is composed
-by header, content, footer, that is composed by logo, content, and so on — and what we have here is a composition.
+In Javascript, a function can be instantiated using `new`, just like classes. When we create a <Component /> in React, internally
+Javascript is instantiating an object that encapsulates structure, behavior, and styling — bringing together HTML, JS and
+CSS — often referred as a composition of technologies
 
-When thinking on inheritance, we think on "is-a" relationships, and we think about composition we think of "has-one"
-relationships.
+When we think of the component tree, we can visualize it as objects composed of other objects. For example, a page object,
+might be composed of a header, content, footer — and those, in turn, might be composed of smaller elements like logo, a
+navigation bar, or text blocks. This is what we call composition.
 
-Therefore, when we look in a react application, we can search for OO and functional characteristics, so we'll notice that
-we can grab all the content once learned and can see them being expressed inside a framework.
+In contrast, `inheritance` models an "is-a" relationships (e.g., a Dog is an Animal), while composition models a "has-a"
+relationship (e.g., a Page has a Header). React favors composition over inheritance, as it provides greater flexibility
+and modularity in building UI components.
 
-One important question when thinking about component trees is: "How am i going to connect the components" and "How will
-i share data in many elements inside a tree?"
+Therefore, in a react application, we can observe both `object-oriented` and `functional programming` principles. Once we
+understand these paradigms, we can see how they are applied and expressed within the framework
 
-For example, the footer element may have links, and there will exist a direct connection,
+## Sharing Data in Component Trees
+
+One important question when designing a component trees is: "How am i going to connect the components" and "How will
+i share data between multiple elements within a tree?"
+
+For example, when the `Footer` component includes a `Link` component, we can easily pass props from parent to child — this
+is direct communication via component composition.
+
+However, when doing the opposite — for example, if a Link needs to respond to an action triggered by a distant Menu component —
+we need `indirect communication`. In such cases, we can use `shared state` managed by external tools like `Redux`, the
+`Context API`, or third-party state manages like `Zustand` or `Jotai`.
+
+Basically, we should focus on two main aspects:
+
+1. Component design — allowing them to receive props to customize behavior and appearance, and manage their own internal
+
+2. State sharing - making it possible to synchronize data between components, even if they are far apart in the component
+   tree.
