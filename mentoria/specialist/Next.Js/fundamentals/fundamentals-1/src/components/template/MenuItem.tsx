@@ -16,7 +16,9 @@ export const MenuItem = ({
 	return (
 		<Link href={url}>
 			<div
-				className={`${className} flex items-center gap-2 hover:bg-black p-2 rounded-md`}
+				className={`${
+					className ?? ''
+				} flex items-center gap-2 hover:bg-black p-2 rounded-md`}
 			>
 				{icon}
 				<span>{text}</span>
