@@ -3,7 +3,7 @@
 export const Number = () => {
 	return (
 		<div>
-			<h1>Number</h1>
+			<h1>{Math.random()}</h1>
 		</div>
 	)
 }

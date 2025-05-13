@@ -9,7 +9,7 @@ export default function Layout(props: {
 			<aside className="bg-zinc-900 w-72">
 				<Menu />
 			</aside>
-			<main className="">{props.children}</main>
+			<main className="p-10">{props.children}</main>
 		</div>
 	)
 }

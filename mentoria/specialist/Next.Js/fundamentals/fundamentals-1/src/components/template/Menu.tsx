@@ -21,9 +21,9 @@ export default function Menu() {
 				text="Users"
 			/>
 			<MenuItem
-				url="courses"
+				url="/exercises/communication/direct"
 				icon={<IconVideo />}
-				text="Courses"
+				text="Direct Communication"
 			/>
 			<MenuItem
 				url="settings"
@@ -31,7 +31,7 @@ export default function Menu() {
 				text="Settings"
 			/>
 			<MenuItem
-				url="/start"
+				url="/"
 				icon={<IconLogout />}
 				text="Log Out"
 			/>
