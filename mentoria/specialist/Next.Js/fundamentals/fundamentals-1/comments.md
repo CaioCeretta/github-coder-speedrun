@@ -214,3 +214,32 @@ then the best structure is:
     </div>
   </body>
 </html>
+
+## || (Logic OR ) x ?? (nullish coalescing)
+
+### ||
+
+Returns the first truthy value, which means that if the left value being compared is false, it will return the right one
+so { secondary || ''}
+
+if secondary is: `undefined`, `null`, `'' (empty string)`, `0`, `false`
+
+'' will be used as the default value, any value considered 'falsy' will be replaced
+
+### ??
+
+Returns the right value only if the left one is `null` or `undefined` — And only these two values!
+
+in the same example as above
+
+{secondary ?? ''}
+
+In this case, `'' (empty string)`; `0`; `false`, won't be replaced. Only if secondary is null or undefined
+
+### When to use them?
+
+. Use || if you want to replace any falsy value
+. Use ?? when you want to replace only null or defined
+
+In the whole example, secondary is part of TitleProps interface, and its value is optional (string | undefined), ?? is more
+precise, because it avoids hiding values such as '', 0 or false, if in the future our type chages.
