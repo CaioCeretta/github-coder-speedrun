@@ -1,9 +1,11 @@
 import {
+	IconArrowDownCircle,
+	IconArrowUpCircle,
+	IconDatabase,
 	IconLayoutDashboard,
 	IconLogout,
 	IconSettings,
 	IconUser,
-	IconVideo,
 } from '@tabler/icons-react'
 import MenuItem from './MenuItem'
 
@@ -22,9 +24,22 @@ export default function Menu() {
 			/>
 			<MenuItem
 				url="/exercises/communication/direct"
-				icon={<IconVideo />}
+				icon={<IconArrowDownCircle />}
 				text="Direct Communication"
 			/>
+
+			<MenuItem
+				url="/exercises/communication/indirect"
+				icon={<IconArrowUpCircle />}
+				text="Indirect Communication"
+			/>
+
+			<MenuItem
+				url="/exercises/state"
+				icon={<IconDatabase />}
+				text="State Handling"
+			/>
+
 			<MenuItem
 				url="settings"
 				icon={<IconSettings />}
