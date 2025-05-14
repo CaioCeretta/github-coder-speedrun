@@ -242,4 +242,27 @@ In this case, `'' (empty string)`; `0`; `false`, won't be replaced. Only if seco
 . Use ?? when you want to replace only null or defined
 
 In the whole example, secondary is part of TitleProps interface, and its value is optional (string | undefined), ?? is more
-precise, because it avoids hiding values such as '', 0 or false, if in the future our type chages.
+precise, because it avoids hiding values such as '', 0 or false, if in the future our type changes.
+
+## State Reminders
+
+There are two ways of a component to change, or the properties passed in its creation changed, or an internal state change
+
+## Direct Comm
+
+Let's take a variable named number assigned with a let
+
+When changing its value, it still won't reflect on the user screen, but on the program itself, by consoling it, we can see
+that the variable value changed internally, and we can notice a project pattern named `Observer` working.
+
+Javascript is based on `Observer Pattern`, each event we are working on is based on it.
+
+In react, every time the state changes, it will notify the interface, and it will also change.
+
+The interface changing mechanism is always unidirectional: First the state changes and then the render is remade.
+
+Therefore, by adding it to a state, when incrementing, the state changes and the ui re renders
+
+Because this state doesn't have an internal state, the way for it to evolve, is when its properties change.
+
+## State Reminder
