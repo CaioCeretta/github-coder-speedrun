@@ -63,7 +63,7 @@ It won't recognized by tailwind nor by pure PostCSS. It would only have effect i
 
 if none of these was configured, this rule is 'left over'
 
-## File Names
+## File Structure
 
 The default naming convention in Next.Js App Router for identifying a route is simply to create a page.tsx file. Next.js
 will understand of which page we're talking about, (e.g. app/start/page.tsx, corresponds to http://domain/start)
@@ -72,6 +72,14 @@ will render that page.tsx
 However, if we name the file anything other than `page.tsx`, such as `pages.tsx`, it will no longer recognize it as a route.
 In the app router, it's not enough to have a file inside the app directory—it must be specifically named page.tsx in order
 to be routable and fetched by the browser.
+
+The `app` folder contains the layouts and the actual pages.
+The `components` folder holds both reusable components and components that are specific to certain pages
+
+Within the components folder, there's also a `templates` subfolder.
+
+The templates folder contains shared structural components — such as menus, menu items, headings, navigation
+— that are used across multiple pages and help define the layout structure
 
 ## Layout
 
@@ -265,4 +273,54 @@ Therefore, by adding it to a state, when incrementing, the state changes and the
 
 Because this state doesn't have an internal state, the way for it to evolve, is when its properties change.
 
-## State Reminder
+## Indirect Comm
+
+Indirect communication happens when a parent component passes a function down to a child component. So we have:
+
+parent -> function -> child
+
+When the child triggers this function — for example, a button click handler — the parent gets to notified. That's because
+the function passed is just `reference` to a function that is defined in the parent.
+
+When the button calls that function, it's actually executing the logic written in the parent. This is how the child can
+indirectly communicate with the parent.
+
+Whenever we have a component tree that is not too extensive — a component which has only 3 children — it's very common that
+the state is handled by the parent and the information exchange is made by direct communication.
+
+For example, we have a shopping cart and its children are the cart list, a totalizator, and the checkout button which gets
+the information and send to another process. This case is just an example, in more complex applications, we would use, maybe,
+an external state to share the cart among other pages as well.
+
+## Property in a state setter
+
+### When prev is necessary
+
+The property is necessary when we depend on the previous value of the state to calculate the next value. This happens because,
+in some cases, the state may have not been updated instantly, or may other updates are happening in an asynchronous way
+(in "batch", that is, many calculations at the same time). Using the previous value, ensures that we are always calculating
+the next state with the most recent value.
+
+example: `setNumber(prev => prev + 1)`
+
+Here, we are saying: "Grab the previous value of the state (prev) and add 1". This is useful when we don't know if the last
+update has already been applied or if it's happening a simultaneous update, what may lead to synchronization problems if
+we don't utilize the previous value.
+
+### When it is not necessary
+
+If the update doesn't depend on the previous state, then we can simply update the current value, with no need of prev. That
+is, when defining a fixed value or based only on the current value of a variable, prev is not necessary.
+
+example: `setNumber(number + 1)`
+
+In this case, `number` is the state current value, so there is no risk of it being outdated. But, attention: this can turn
+out to be problematic if we have many sequential updates, because number may not be updated during all those changes (depending
+on how React deals internally with state updates).
+
+### Summary
+
+. Use prev when the update depends on the previous value (for example, sum or subtraction based on the current value, or
+transforming what needs the previous state)
+
+. Don't use prev when the update doesn't depend on the previous state and can be calculated directly with the current value.
