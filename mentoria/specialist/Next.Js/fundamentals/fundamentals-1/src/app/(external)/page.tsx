@@ -1,4 +1,4 @@
-import Number from '@/components/Number'
+import Number from '@/components/number'
 
 export default function Home() {
 	return (

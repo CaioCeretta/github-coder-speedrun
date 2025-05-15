@@ -1,5 +1,5 @@
 export interface DisplayProps {
-	value: any
+	value: number
 }
 
 export const Display = ({ value }: DisplayProps) => {

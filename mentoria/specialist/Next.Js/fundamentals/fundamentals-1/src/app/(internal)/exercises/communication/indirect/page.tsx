@@ -1,3 +1,4 @@
+import Counter from '@/components/exercises/communication/indirect/Counter'
 import Title from '@/components/template/Title'
 
 export const Page = () => {
@@ -7,6 +8,7 @@ export const Page = () => {
 				main="Indirect Communication"
 				secondary="How it works in practice"
 			></Title>
+			<Counter />
 		</div>
 	)
 }

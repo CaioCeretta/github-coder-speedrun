@@ -1,4 +1,4 @@
-import Child from './child'
+import Child from './Child'
 
 export interface ParentProps {
 	name: string

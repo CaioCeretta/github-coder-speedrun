@@ -1,4 +1,4 @@
-import Parent from '@/components/exercises/communication/direct/parent'
+import Parent from '@/components/exercises/communication/direct/Parent'
 import Title from '@/components/template/Title'
 
 export const Page = () => {
