@@ -5,6 +5,7 @@ import {
 	IconLayoutDashboard,
 	IconLogout,
 	IconSettings,
+	IconStack,
 	IconUser,
 } from '@tabler/icons-react'
 import MenuItem from './MenuItem'
@@ -38,6 +39,12 @@ export default function Menu() {
 				url="/exercises/state"
 				icon={<IconDatabase />}
 				text="State Handling"
+			/>
+
+			<MenuItem
+				url="/exercises/context"
+				icon={<IconStack />}
+				text="Using contexts"
 			/>
 
 			<MenuItem
