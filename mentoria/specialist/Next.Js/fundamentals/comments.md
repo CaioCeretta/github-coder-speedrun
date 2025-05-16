@@ -394,6 +394,8 @@ Within the components folder, there's also a `templates` subfolder.
 The templates folder contains shared structural components — such as menus, menu items, headings, navigation
 — that are used across multiple pages and help define the layout structure
 
+It was also created a folder, inside src, named data, it's used by the instructor for placing constants / contexts /,
+
 ## Layout
 
 Why was it that when we accessed the /start page, the layout content showed but no the one of page.tsx?
@@ -639,3 +641,41 @@ transforming what needs the previous state)
 . Don't use prev when the update doesn't depend on the previous state and can be calculated directly with the current value.
 
 --------------------- Second Lesson Ended --------------------------------------
+
+Our application is divided in two parts
+
+. src: contains all the source code
+
+. app: this folder is structured hierarchically. Inside it, we create multiple sub folders, each of which
+can define a route and a layout. The layout is determined by the file's position in each folder structure. For example,
+if we are in the `exercises/context/page` folder and there is the layout only in the exercises folder, the application will
+keep traversing upward until it finds one. This layout will then be applied in a nested way
+. components: used to store reusable components separately
+
+## Why do we have contexts?
+
+In large applications, we usually have an extensive component tree with many children, siblings, parents, and so on. These
+components often need to exchange information.
+
+When navigating between pages, many components are reused across the layout. While React optimizes by not recreating everything
+from scratch, a new component tree is still created for the parts that change.
+
+Let's use as an example, a parent component with two children
+
+1. The parent can pass data directly to the child component because it has access to the `Child` tag. This way, it can send
+   the properties directly to the child.
+
+2. For communication from child to parent (indirect communication), the parent can pass a function as a prop. When the
+   invokes this function, it triggers a behavior defined in the parent.
+
+Context is designed to help avoid `props drilling`. Even though we still have the component-tree, context allows us
+to share information between component more easily by creating a "global state" — but scoped only to the parts of the tree
+where the is made available.
+
+## Default Export and Export
+
+The difference between default and named exports is that default exports can be imported without using curly braces and
+can be renamed freely when importing. Each file can have only one default export.
+
+Named exports, on the other hand, allow you to export multiple variables or components from the same file. When importing
+them, you must use the exact names they were exported with, and you need to wrap them in curly braces.
