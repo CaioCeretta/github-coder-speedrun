@@ -672,10 +672,35 @@ Context is designed to help avoid `props drilling`. Even though we still have th
 to share information between component more easily by creating a "global state" — but scoped only to the parts of the tree
 where the is made available.
 
+Every context, exports a Provider — after the provider, the context is going to be made available — and after a provider,
+which is a component like any other else, we'll wrap the components which we want to share the state with.
+
+If we don't type a context with generics, when accessing its exported values, it won't know of which values we are talking
+about. By creating an interface such as interface CounterContextProps { number: number } and by creating the context with
+const CounterContext = createContext<CounterContextProps>(), when utilizing the useContext, it will now know which properties
+are going to be available.
+
+inside the parentheses, it can be {} as any (which is the non proper way, the parentheses will be used for a default value
+whenever this context is applied, it could be an object with ({number: 0}), for example)
+
+This interface structure used to type the context, will also make the Provider value to need these properties, so in this
+case, value must be, something like value={{number: 100}}. Typing it is also useful for when we utilize this context, it
+will offer us auto complete based on its properties.
+
+One thing to notice is: by leaving the area of action of the context, everything of that context which was in memory/cache,
+it'll also be erased.
+
+Sensitive data is usually not stored in contexts, a context is mostly a place for in-memory data, it's volatile — when we leave
+or refresh the page, the context gets "wiped", it's not persistent — therefore, even though it may look like a secure place,
+we avoid placing sensitive data in these places.
+
+A context has both the idea of being the center area to share information, as well as being useful for us to evolve and
+manipulate this data, in a way that it's not tied to a component itself. Therefore it is a good place for placing functions
+and data separate from the component to share it across the rest of the app.
+
 ## Default Export and Export
 
 The difference between default and named exports is that default exports can be imported without using curly braces and
 can be renamed freely when importing. Each file can have only one default export.
 
-Named exports, on the other hand, allow you to export multiple variables or components from the same file. When importing
-them, you must use the exact names they were exported with, and you need to wrap them in curly braces.
+Named exports, on the other hand, allow you to export multiple variables or components from the same file.
