@@ -698,6 +698,18 @@ A context has both the idea of being the center area to share information, as we
 manipulate this data, in a way that it's not tied to a component itself. Therefore it is a good place for placing functions
 and data separate from the component to share it across the rest of the app.
 
+## Context x Redux
+
+Context and Redux are both used for state management in React applications, but they differ in complexity and use cases.
+The Context API is built into React and is best suited for sharing simple, global data such as themes, authentication, or
+language preferences. It helps avoid prop drilling and is easy to set up, but it lacks advanced tools for state
+control, middleware support, or debugging capabilities.
+
+On the other hand, Redux is an external library designed for more complex and centralized state management. It uses a
+predictable architecture based on actions and reducers, making it easier to manage and scale state logic in larger
+applications. Redux supports middleware, integrates with powerful developer tools, and enforces strict patterns, but it
+can be more verbose and requires more setup compared to Context.
+
 ## Default Export and Export
 
 The difference between default and named exports is that default exports can be imported without using curly braces and
